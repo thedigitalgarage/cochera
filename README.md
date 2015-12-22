@@ -1,10 +1,5 @@
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/meanjs/mean?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/meanjs/mean.svg?branch=master)](https://travis-ci.org/meanjs/mean)
-[![Dependencies Status](https://david-dm.org/meanjs/mean.svg)](https://david-dm.org/meanjs/mean)
-[![Coverage Status](https://coveralls.io/repos/meanjs/mean/badge.svg?branch=master&service=github)](https://coveralls.io/github/meanjs/mean?branch=master)
-
 MEAN.JS is a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
 
 ## Before You Begin
@@ -30,30 +25,6 @@ $ npm install -g bower
 ```bash
 $ npm install -g grunt-cli
 ```
-
-## Downloading MEAN.JS
-There are several ways you can get the MEAN.JS boilerplate:
-
-### Cloning The GitHub Repository
-The recommended way to get MEAN.js is to use git to directly clone the MEAN.JS repository:
-
-```bash
-$ git clone https://github.com/meanjs/mean.git meanjs
-```
-
-This will clone the latest version of the MEAN.JS repository to a **meanjs** folder.
-
-### Downloading The Repository Zip File
-Another way to use the MEAN.JS boilerplate is to download a zip copy from the [master branch on GitHub](https://github.com/meanjs/mean/archive/master.zip). You can also do this using `wget` command:
-
-```bash
-$ wget https://github.com/meanjs/mean/archive/master.zip -O meanjs.zip; unzip meanjs.zip; rm meanjs.zip
-```
-
-Don't forget to rename **mean-master** after your project name.
-
-### Yo Generator		
--Another way would be to use the [Official Yo Generator](http://meanjs.org/generator.html), which generates a copy of the MEAN.JS 0.3.x boilerplate and supplies multiple sub-generators to ease your daily development cycles. 
 
 ## Quick Install
 Once you've downloaded the boilerplate and installed all the prerequisites, you're just a few steps away from starting to develop your MEAN application.
@@ -153,86 +124,5 @@ $
 $ docker run -p 3000:3000 -p 35729:35729 -v /Users/mdl/workspace/mean-stack/mean/public:/home/mean/public -v /Users/mdl/workspace/mean-stack/mean/app:/home/mean/app --link db:db_1 mean
 ```
 
-## Getting Started With MEAN.JS
-You have your application running, but there is a lot of stuff to understand. We recommend you go over the [Official Documentation](http://meanjs.org/docs.html).
-In the docs we'll try to explain both general concepts of MEAN components and give you some guidelines to help you improve your development process. We tried covering as many aspects as possible, and will keep it updated by your request. You can also help us develop and improve the documentation by checking out the *gh-pages* branch of this repository.
-
-## Community
-* Use the [Official Website](http://meanjs.org) to learn about changes and the roadmap.
-* Join #meanjs on freenode.
-* Discuss it in the new [Google Group](https://groups.google.com/d/forum/meanjs)
-* Ping us on [Twitter](http://twitter.com/meanjsorg) and [Facebook](http://facebook.com/meanjs)
-
-## Live Example
-Browse the live MEAN.JS example on [http://meanjs.herokuapp.com](http://meanjs.herokuapp.com).
-
-## Deploying To Cloud Foundry
-
-Cloud Foundry is an open source platform-as-a-service (PaaS).  The MEANJS project
-can easily be deployed to any Cloud Foundry instance.  The easiest way to deploy the
-MEANJS project to Cloud Foundry is to use a public hosted instance.  The two most popular
-instances are [Pivotal Web Services](https://run.pivotal.io/) and 
-[IBM Bluemix](https://bluemix.net).  Both provide free trials and support pay-as-you-go models
-for hosting applications in the cloud.  After you have an account follow the below steps to 
-deploy MEANJS.
-
-* Install the [Cloud Foundry command line tools](http://docs.cloudfoundry.org/devguide/installcf/install-go-cli.html).
-* Now you need to log into Cloud Foundry from the Cloud Foundry command line.
-  *  If you are using Pivotal Web Services run `$ cf login -a api.run.pivotal.io`.
-  *  If you are using IBM Bluemix run `$ cf login -a api.ng.bluemix.net`.
-* Create a Mongo DB service, IBM Bluemix and Pivotal Web Services offer a free MongoLabs service.
-  *  `$ cf create-service mongolab sandbox mean-mongo`
-* Clone the GitHub repo for MEANJS if you have not already done so
-  * `$ git clone https://github.com/meanjs/mean.git && cd mean`
-* Run `$ npm install`
-* Run the Grunt Build task to build the optimized JavaScript and CSS files
-  * `$ grunt build`
-* Deploy MEANJS to Cloud Foundry
-  * `$ cf push`
-
-After `cf push` completes you will see the URL to your running MEANJS application 
-(your URL will be different).
-
-    requested state: started
-    instances: 1/1
-    usage: 128M x 1 instances
-    urls: mean-humbler-frappa.mybluemix.net
-
-Open your browser and go to that URL and your should see your MEANJS app running!
-
-###  Deploying MEANJS To IBM Bluemix
-IBM Bluemix is a Cloud Foundry based PaaS.  By clicking the button below you can signup for Bluemix and deploy
-a working copy of MEANJS to the cloud without having to do the steps above.
-
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https%3A%2F%2Fgithub.com%2Fmeanjs%2Fmean)
-
-After the deployment is finished you will be left with a copy of the MEANJS code in your own private Git repo
-in Bluemix complete with a pre-configured build and deploy pipeline.  Just clone the Git repo, make your changes, and
-commit them back.  Once your changes are committed, the build and deploy pipeline will run automatically deploying
-your changes to Bluemix.
-
-## Credits
-Inspired by the great work of [Madhusudhan Srinivasa](https://github.com/madhums/)
-The MEAN name was coined by [Valeri Karpov](http://blog.mongodb.org/post/49262866911/the-mean-stack-mongodb-expressjs-angularjs-and)
-
 ## License
-(The MIT License)
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Digital Garage
