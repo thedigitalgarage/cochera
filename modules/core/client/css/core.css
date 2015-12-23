@@ -1,5 +1,12 @@
 .content {
-  margin-top: 50px;
+  padding-top: 57px;
+  min-height: 455px;
+}
+@media (max-width:767px) {
+  .content {
+    padding-top: 50px;
+    min-height: 250px;
+  }
 }
 .undecorated-link:hover {
   text-decoration: none;
@@ -34,4 +41,7 @@ a:hover .header-profile-image {
 }
 .has-error .help-inline.error-text {
   display: inline;
+}
+.alert{
+  margin-top: 10px;
 }
