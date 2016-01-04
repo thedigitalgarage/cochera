@@ -1,26 +1,10 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus', 'ngProgressFactory', '$modal',
-  function ($scope, $state, Authentication, Menus, ngProgressFactory, $modal) {
-    // Expose view variables
-    // $scope.$state = $state;
-    // $scope.authentication = Authentication;
-
-    // // Get the topbar menu
-    // $scope.menu = Menus.getMenu('topbar');
-
-    // // Toggle the menu items
-    // $scope.isCollapsed = false;
-    // $scope.toggleCollapsibleMenu = function () {
-    //   $scope.isCollapsed = !$scope.isCollapsed;
-    // };
-
-    // // Collapsing the menu after navigation
-    // $scope.$on('$stateChangeSuccess', function () {
-    //   $scope.isCollapsed = false;
-    // });
+angular.module('core').controller('HeaderController', ['$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal',
+  function ($window, $rootScope, $scope, $state,ngProgressFactory, $modal) {
 
     $scope.brand = 'The Digital Garage';
+    $rootScope.loginStatus = false;
     $scope.isCollapsed = true;
     $scope.progressbar = ngProgressFactory.createInstance();
     $scope.progressbar.setColor('#02bbff');
@@ -38,17 +22,36 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
         return document.querySelector(".main").getBoundingClientRect().top;
     };
 
-    $scope.loginModal = function(){
-      var loginModal = $modal.open({
-        templateUrl: 'modules/core/client/views/modal/login.client.view.html',
-        controller: 'LoginController',
-        size: 'md',
-        windowClass: 'login'
-      });
+    $scope.loginKeyCloak = function(){
+        $window.keycloakAuth.login().success(function() {
+            $window.keycloakAuth.updateToken(10).success(function(){
+                alert($window.keycloakAuth.subject);
+            }).error(function() {
+                alert('failed to refresh token');
+            });
+        }).error(function() {
+            alert('failed to refresh token');
+        });
     };
+
+    $scope.regKeyCloak = function(){
+        $window.keycloakAuth.register();
+    };
+
+    $scope.logoutKeyCloak = function(){
+        $window.keycloakAuth.logout();
+    };
+    // $scope.loginModal = function(){
+    //   var loginModal = $modal.open({
+    //     templateUrl: 'modules/core/client/views/modal/login.client.view.html',
+    //     controller: 'LoginController',
+    //     size: 'md',
+    //     windowClass: 'login'
+    //   });
+    // };
   }
 ]);
 
-angular.module('core').controller('LoginController',['$scope', function($scope) {
+// angular.module('core').controller('LoginController',['$scope', function($scope) {
   
-}]);
+// }]);

@@ -37,6 +37,7 @@ module.exports.initLocalVariables = function (app) {
   app.locals.livereload = config.livereload;
   app.locals.logo = config.logo;
   app.locals.favicon = config.favicon;
+  app.locals.keycloak = config.app.keycloak;
 
   // Passing the request url to environment locals
   app.use(function (req, res, next) {
@@ -111,7 +112,7 @@ module.exports.initViewEngine = function (app) {
 /**
  * Configure Express session
  */
-module.exports.initSession = function (app, db) {
+module.exports.initSession = function (app) {
   // Express MongoDB session storage
   app.use(session({
     saveUninitialized: true,
@@ -122,11 +123,7 @@ module.exports.initSession = function (app, db) {
       httpOnly: config.sessionCookie.httpOnly,
       secure: config.sessionCookie.secure && config.secure.ssl
     },
-    key: config.sessionKey,
-    store: new MongoStore({
-      mongooseConnection: db.connection,
-      collection: config.sessionCollection
-    })
+    key: config.sessionKey
   }));
 };
 
@@ -208,21 +205,11 @@ module.exports.initErrorRoutes = function (app) {
   });
 };
 
-/**
- * Configure Socket.io
- */
-module.exports.configureSocketIO = function (app, db) {
-  // Load the Socket.io configuration
-  var server = require('./socket.io')(app, db);
-
-  // Return server object
-  return server;
-};
 
 /**
  * Initialize the Express application
  */
-module.exports.init = function (db) {
+module.exports.init = function () {
   // Initialize express app
   var app = express();
 
@@ -236,7 +223,7 @@ module.exports.init = function (db) {
   this.initViewEngine(app);
 
   // Initialize Express session
-  this.initSession(app, db);
+  this.initSession(app);
 
   // Initialize Modules configuration
   this.initModulesConfiguration(app);
@@ -255,9 +242,6 @@ module.exports.init = function (db) {
 
   // Initialize error routes
   this.initErrorRoutes(app);
-
-  // Configure Socket.io
-  app = this.configureSocketIO(app, db);
 
   return app;
 };

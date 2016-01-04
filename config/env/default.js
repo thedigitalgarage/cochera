@@ -5,7 +5,8 @@ module.exports = {
     title: 'The Digital Garage',
     description: 'The Digital Garage Landing Page',
     keywords: 'the digital garage, mongodb, express, angularjs, node.js, mongoose, passport',
-    googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
+    googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID',
+    keycloak: 'http://master-dev.thedigitalgarage.io/auth/js/keycloak.js',
   },
   port: process.env.PORT || 3000,
   templateEngine: 'swig',
@@ -28,5 +29,5 @@ module.exports = {
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
   logo: 'modules/core/client/img/brand/logo.png',
-  favicon: 'modules/core/client/img/brand/favicon.ico'
+  favicon: 'modules/core/client/img/brand/favicon.ico',
 };

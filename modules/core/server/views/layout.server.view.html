@@ -45,9 +45,6 @@
   <script type="text/javascript">
     var user = {{ user | json | safe }};
   </script>
-  
-  <!--Load The Socket.io File-->
-  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 
   <!--Application JavaScript Files-->
   {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %} 
@@ -56,6 +53,28 @@
   <!--Livereload script rendered -->
   <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
   {% endif %}
+
+  <!-- Load KeyCloakJS -->
+  <script type="text/javascript" src="{{keycloak}}"></script>
+  <script type="text/javascript">
+    angular.element(document).ready(function () {
+      window.keycloakAuth = new Keycloak({
+          url: 'http://localhost:8080/auth',
+          realm: 'dev',
+          clientId: 'dev'
+      });
+      console.log(window.keycloakAuth);
+   //   window.keycloakAuth.init();
+      window.keycloakAuth.init({ onLoad: 'check-sso' });
+      // window.keycloakAuth.init({ onLoad: 'login-required', checkLoginIframe: false }).success(function(authenticated){
+      //      alert(authenticated ? 'authenticated' : 'not authenticated');
+      // }).error(function () {
+      // //   alert('fail');
+      //    console.log(window.keycloakAuth);
+      // });
+    });
+  </script>
+
 </body>
 
 </html>
