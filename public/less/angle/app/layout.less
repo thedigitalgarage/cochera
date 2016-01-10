@@ -39,7 +39,7 @@ html {
 }
 
 html, body {
-  // overflow-x: hidden;
+//  overflow-x: hidden;
   height: 100%;
 }
 
@@ -50,7 +50,7 @@ html, body {
   width: 100%;
   height: auto;
   min-height: 100%;
-  overflow-x: hidden;
+ // overflow-x: hidden;
   &.ng-leave {
     display: none;
   }
@@ -99,7 +99,7 @@ html, body {
     // overflow: hidden;
     z-index: @z-index-main-section;
     background-color: @content-bg;
-    margin-bottom: @footer-hg !important; // ensure a space for the footer
+  //  margin-bottom: @footer-hg !important; // ensure a space for the footer
   }
 
   // Page Footer
@@ -196,8 +196,11 @@ html, body {
       }
     }
 
-    > section,
-    > footer {
+  //  > section,
+  //  > footer {
+  //    margin-left: @aside-wd;
+  //  }
+    > section{
       margin-left: @aside-wd;
     }
 

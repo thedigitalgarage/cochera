@@ -1,0 +1,89 @@
+/*!
+ * 
+ * The Digital Garage
+ * 
+ * Version: 1.0.0
+ * Author: David Dimas
+ * License: The Digital Garage
+ * 
+ */
+
+
+.form{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+.font14{
+	font-size: 14px !important;
+}
+.font20{
+	font-size: 20px !important;
+}
+
+.padding-top-10{
+	padding-top: 10px !important;
+}
+.padding-top-20{
+	padding-top: 20px !important;
+}
+.padding-left-20{
+	padding-left: 20px !important;
+}
+.margin-left-10{
+	margin-left: 10px !important;
+}
+
+.nav-tabs > li.active > a{
+	border: 1px solid #DDE6E9 !important;
+	border-bottom-color: #FFF !important;
+	border-top: 2px solid #006DCC !important;
+}
+.nav-tabs > li.active:hover > a{
+	border-bottom-color: #FFF !important;
+}
+.nav-tabs > li:hover > a{
+	border: 1px solid #DDE6E9 !important;
+	border-top: 2px solid #006DCC !important;
+}
+.nav-tabs > li > a{
+	background: transparent !important;
+	border: 0px none !important;
+}
+
+.labelinput label{
+	position: absolute;
+	top: 1px;
+	left: 27px;
+	font-weight: normal;
+	font-size: 12px;
+	color: #888;
+}
+.labelinput input{
+	padding: 17px 12px 3px;
+	height: 40px;
+}
+/*----------------------*/
+/*-----Profile Page-----*/
+/*----------------------*/
+.profileView .well h3{
+	font-weight: normal;
+}
+
+.profileView .well p{
+	margin-bottom: 5px;
+}
+
+.profileView .well img.userimg{
+	width: 60px;
+	height: 60px;
+	border-radius: 50% !important;
+	margin-top: 15px;
+}
+/*----------------------*/
+/*-----Billing Page-----*/
+/*----------------------*/
+.billingView .well h3,
+.billingView .well h4{
+	font-weight: normal;
+}

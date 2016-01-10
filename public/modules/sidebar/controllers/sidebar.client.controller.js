@@ -8,7 +8,7 @@
 
     angular
         .module('app.sidebar')
-        .controller('SidebarController', SidebarController);
+        .controller('SidebarCoreController', SidebarController);
 
     SidebarController.$inject = ['$rootScope', '$scope', '$state', 'SidebarLoader', 'Utils'];
     function SidebarController($rootScope, $scope, $state, SidebarLoader,  Utils) {

@@ -6913,11 +6913,12 @@ now {
   border-radius: 3px;
   font-size: 13px;
   border-color: transparent;
+  border-width: 2px;
   -webkit-appearance: none;
   outline: none !important;
-  -webkit-transition: all 0.1s;
-  -o-transition: all 0.1s;
-  transition: all 0.1s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
 }
 .btn.btn-link {
   box-shadow: none;
@@ -7055,7 +7056,6 @@ fieldset .form-group {
    Component: typo.less
  ========================================================================== */
 body {
-  font-family: "Source Sans Pro", sans-serif;
   color: #656565;
 }
 h1,
@@ -7083,7 +7083,6 @@ body {
   width: 100%;
   height: auto;
   min-height: 100%;
-  overflow-x: hidden;
 }
 .wrapper.ng-leave {
   display: none;
@@ -7122,9 +7121,8 @@ body {
   margin-left: 0;
   z-index: 111;
   background-color: #f5f7fa;
-  margin-bottom: 60px !important;
 }
-/*.wrapper > footer {
+.wrapper > footer {
   position: absolute;
   left: 0;
   right: 0;
@@ -7136,7 +7134,7 @@ body {
 }
 .wrapper > footer > p {
   margin: 0;
-}*/
+}
 .modal-open .wrapper {
   z-index: 0;
 }

@@ -88,8 +88,9 @@ strong {
   outline: 0 none;
   color: #fff;
   text-shadow: none;
-  padding: 15px;
+  padding: 15px 13px;
   font-weight: 600;
+  font-family: "Lato",sans-serif;
   background: none;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -228,18 +229,21 @@ strong {
   vertical-align: middle;
 }
 .home .intro{
-  font-family: "Open Sans", sans-serif;
   margin-top:210px;
 }
 .home .intro h1{
   color: #FFF;
   font-size: 48px;
+  font-weight: 300 !important;
+  margin: 0px;
 }
 .home .intro h2{
   padding: 30px 8px 0 8px;
   color: #FFF;
   font-size: 33px;
   line-height: 1;
+  font-weight: 300 !important;
+  margin: 0px;
 }
 @media (max-width:1200px) {
   .home .intro h1{
@@ -322,11 +326,11 @@ strong {
     transition: all 0.3s ease-in-out;
 }
 .social a.social:hover{
-  filter: brightness(70%);
-  -webkit-filter: brightness(70%);
-  -moz-filter: brightness(70%);
-  -o-filter: brightness(70%);
-  -ms-filter: brightness(70%);
+  filter: brightness(75%);
+  -webkit-filter: brightness(75%);
+  -moz-filter: brightness(75%);
+  -o-filter: brightness(75%);
+  -ms-filter: brightness(75%);
 }
 /* ---------- SignIn Styles ----------- */
 /* Login Styles */
@@ -376,10 +380,10 @@ strong {
 /* Btn General */
 .btn {
   background-color: #e5e5e5;
-  border: 3px solid #e5e5e5;
+  border: 2px solid #e5e5e5;
   background-image: none;
   text-shadow: none;
-  font-size: 14px;
+  font-size: 14px !important;
   color: #333333;
   cursor: pointer;
   outline: none;
@@ -413,6 +417,7 @@ strong {
   color: #333333;
   box-shadow: none;
   background-color: transparent;
+  border-color: #E5E5E5;
 }
 .btn.red {
   color: white;
@@ -1217,7 +1222,6 @@ ul.pagination > li > span:hover {
 .main {
   padding: 20px 0 50px;
   z-index: 10;
-  color: #000;
   background: #fff;
   position: relative;
 }

@@ -29,12 +29,17 @@
           url: '/dashboard',
           templateUrl: 'modules/core/views/dashboard.client.view.html'
         })
-        //
-        // CUSTOM RESOLVES
-        //   Add your own resolves properties
-        //   following this object extend
-        //   method
-        // -----------------------------------
+        .state('app.profile', {
+          url: '/user/profile',
+          templateUrl: 'modules/core/views/profile.client.view.html',
+          controller: 'ProfileController'
+        })
+        .state('app.billing', {
+          url: '/account/billing',
+          templateUrl: 'modules/core/views/billing.client.view.html',
+          controller: 'BillingController'
+        })
+
         // .state('app.someroute', {
         //   url: '/some_url',
         //   templateUrl: 'path_to_template.html',

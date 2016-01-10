@@ -1,22 +1,23 @@
 'use strict';
 
 angular.module('app.home').controller('HeaderController', ['$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal',
-  function ($window, $rootScope, $scope, $state,ngProgressFactory, $modal) {
+  function ($window, $rootScope, $scope, $state, ngProgressFactory, $modal) {
 
     $scope.brand = 'The Digital Garage';
     $rootScope.loginStatus = false;
     $scope.isCollapsed = true;
-    // $scope.progressbar = ngProgressFactory.createInstance();
-    // $scope.progressbar.setColor('#02bbff');
-    // $scope.progressbar.start();
-    // $scope.$on('$routeChangeStart', function(next, current) { 
-    //   $scope.isCollapsed = true;
-    //   $scope.progressbar.start();
-    // });
-    // $scope.scroll = 0;
-    // $scope.$on('$routeChangeSuccess', function () {
-    //   $scope.progressbar.complete();
-    // });
+    /* Remove Top ProgressBar
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.setColor('#02bbff');
+    $scope.progressbar.start();
+    $scope.$on('$routeChangeStart', function(next, current) { 
+      $scope.isCollapsed = true;
+      $scope.progressbar.start();
+    });
+    $scope.scroll = 0;
+    $scope.$on('$routeChangeSuccess', function () {
+      $scope.progressbar.complete();
+    }); */
     $scope.top = function() {
       if(document.querySelector(".main"))
         return document.querySelector(".main").getBoundingClientRect().top;
@@ -39,9 +40,9 @@ angular.module('app.home').controller('HeaderController', ['$window', '$rootScop
         $window.keycloakAuth.register();
     };
 
-    $scope.logoutKeyCloak = function(){
-        $window.keycloakAuth.logout();
-    };
+    // $scope.logoutKeyCloak = function(){
+    //     $window.keycloakAuth.logout();
+    // };
     // $scope.loginModal = function(){
     //   var loginModal = $modal.open({
     //     templateUrl: 'modules/core/client/views/modal/login.client.view.html',

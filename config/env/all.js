@@ -4,7 +4,7 @@ module.exports = {
 	app: {
 		title: 'The Digital Garage',
 		description: 'The Digital Garage Landing Page',
-		keywords: 'MongoDB, Express, AngularJS, Node.js',
+		keywords: 'Express, AngularJS, Node.js',
 		keycloak: 'http://master-dev.thedigitalgarage.io/auth/js/keycloak.js',
 	},
 	port: process.env.PORT || 3000,

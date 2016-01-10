@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app.core').controller('HeaderController', ['$scope', 'Menus',
-	function($scope, Menus) {
+angular.module('app.core').controller('HeaderCoreController', ['$scope', 'Menus', '$state', 
+	function ($scope, Menus, $state) {
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 
@@ -13,5 +13,10 @@ angular.module('app.core').controller('HeaderController', ['$scope', 'Menus',
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.isCollapsed = false;
 		});
+
+		$scope.logoutKeyCloak = function(){
+        	//$window.keycloakAuth.logout();
+        	$state.go('home.main');
+    	};
 	}
 ]);

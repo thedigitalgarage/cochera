@@ -1,5 +1,4 @@
 .content {
-  padding-top: 57px;
   min-height: 455px;
   margin-left: 0px !important;
   margin-top: 0px !important;
@@ -46,4 +45,9 @@ a:hover .header-profile-image {
 }
 .alert{
   margin-top: 10px;
+}
+
+.homefooter{
+  position: relative !important;
+  height: auto !important;
 }
