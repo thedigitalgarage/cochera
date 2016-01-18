@@ -5,7 +5,7 @@ var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'angleApp';
 
-	var applicationModuleVendorDependencies = ['ngRoute',
+	var applicationModuleVendorDependencies = [ 'ngRoute',
 												'ngAnimate',
 												'ngStorage',
 												'ngTouch',
@@ -21,8 +21,10 @@ var ApplicationConfiguration = (function() {
 												'ngProgress',
 											    'angular-flexslider',
 											    'ng-backstretch',
-											    'angular-parallax'
-												];
+											    'angular-parallax',
+											    'toastr',
+											    'iso-3166-country-codes'
+											   ];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
 		// Create angular module

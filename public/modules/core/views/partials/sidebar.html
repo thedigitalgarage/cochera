@@ -19,7 +19,7 @@
         <li class="sidebar-subnav-header">{{(item.translate | translate) || item.title}}</li>
         <li ng-repeat="item in item.items | orderBy: 'position'"
             ng-include="'sidebar-renderer.html'"
-            ng-class="{active: ($uiRoute)}"
+            ng-class="{active: ($uiRoute || ($state.$current.url.source.indexOf(item.uiRoute)) > -1 )}"
             data-ng-if="item.shouldRender(authentication.user);"
             ui-route="{{item.uiRoute}}"></li>
   </ul>

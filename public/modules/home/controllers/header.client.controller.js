@@ -43,17 +43,34 @@ angular.module('app.home').controller('HeaderController', ['$window', '$rootScop
     // $scope.logoutKeyCloak = function(){
     //     $window.keycloakAuth.logout();
     // };
-    // $scope.loginModal = function(){
-    //   var loginModal = $modal.open({
-    //     templateUrl: 'modules/core/client/views/modal/login.client.view.html',
-    //     controller: 'LoginController',
-    //     size: 'md',
-    //     windowClass: 'login'
-    //   });
-    // };
+    $scope.login = function(){
+      var loginModal = $modal.open({
+        templateUrl: 'modules/home/views/modal/login.client.view.html',
+        controller: 'LoginController',
+        size: 'md',
+        windowClass: 'login'
+      });
+    };
   }
 ]);
 
-// angular.module('core').controller('LoginController',['$scope', function($scope) {
-  
-// }]);
+angular.module('app.home').controller('LoginController',['$scope', '$state', '$modalInstance', '$http', 'toastr', 'Auth', 
+ function($scope, $state, $modalInstance, $http, toastr, Auth) {
+    
+    $scope.authInfo = {
+        username : '',
+        password : ''
+    };
+    $scope.login = function(){
+        if( $scope.authInfo.username!=='' && $scope.authInfo.password!==''){
+            Auth.login($scope.authInfo).then(function(){
+                toastr.success('You are logged in successfully.', 'Success');
+                $state.go('app.dashboard');
+                $modalInstance.close();
+            });
+        }
+        else{
+            toastr.error('Please enter username and password.', 'Error');
+        }
+    };
+}]);

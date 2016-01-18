@@ -7,7 +7,9 @@ module.exports = {
 		keywords: 'Express, AngularJS, Node.js',
 		keycloak: 'http://master-dev.thedigitalgarage.io/auth/js/keycloak.js',
 	},
-	port: process.env.PORT || 3000,
+	port: process.env.PORT || 8080,
+	chargebeeSite: process.env.chargebeeSite || 'tenant-test',
+	chargebeeAPIKey: process.env.chargebeeAPIKey || 'test_Htlw6DLaXvBDjwSsGFm706mX2awaV63cd',
 	templateEngine: 'swig',
 	sessionSecret: 'MEAN',
 	sessionCollection: 'sessions',
@@ -18,7 +20,8 @@ module.exports = {
 				// 'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/lib/ng-progress/css/ngProgress.css',
 		        'public/lib/font-awesome/css/font-awesome.css',
-		        'public/lib/flexslider/flexslider.css'
+		        'public/lib/flexslider/flexslider.css',
+		        'public/lib/angular-toastr/dist/angular-toastr.min.css'
 			],
 			js: [
 				'public/lib/jquery/dist/jquery.js',
@@ -54,7 +57,10 @@ module.exports = {
 				'public/lib/ng-progress/js/ngprogress.min.js',        
 		        'public/lib/angular-flexslider/angular-flexslider.js',
 		        'public/lib/angular-backstretch/ng-backstretch.min.js',
-		        'public/lib/angular-parallax/angular-parallax.js'
+		        'public/lib/angular-parallax/angular-parallax.js',
+		        'public/lib/angular-toastr/dist/angular-toastr.min.js',
+		        'public/lib/angular-toastr/dist/angular-toastr.tpls.min.js',
+		        'public/lib/iso-3166-country-codes-angular/dist/iso-3166-country-codes-angular.min.js'
 				// 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',

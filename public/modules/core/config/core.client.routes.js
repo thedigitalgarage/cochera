@@ -20,24 +20,57 @@
       // -----------------------------------
       $stateProvider
         .state('app', {
-          // url: '/',
-          abstract: true,
-          templateUrl: 'modules/core/views/core.client.view.html',
-          resolve: helper.resolveFor('modernizr', 'icons')
+            // url: '/',
+            abstract: true,
+            templateUrl: 'modules/core/views/core.client.view.html',
+            resolve: helper.resolveFor('modernizr', 'icons')
         })
         .state('app.dashboard', {
-          url: '/dashboard',
-          templateUrl: 'modules/core/views/dashboard.client.view.html'
+            url: '/dashboard',
+            templateUrl: 'modules/core/views/dashboard.client.view.html'
         })
         .state('app.profile', {
-          url: '/user/profile',
-          templateUrl: 'modules/core/views/profile.client.view.html',
-          controller: 'ProfileController'
+            url: '/user/profile',
+            templateUrl: 'modules/core/views/profile.client.view.html',
+            controller: 'ProfileController'
         })
-        .state('app.billing', {
-          url: '/account/billing',
-          templateUrl: 'modules/core/views/billing.client.view.html',
-          controller: 'BillingController'
+        .state('app.subscription', {
+            url: '/account/subscription',
+            templateUrl: 'modules/core/views/subscription/main.client.view.html',
+            controller: 'SubscriptionController'
+        })
+            .state('app.subCusInfo_edit', {
+                url: '/account/subscription/subCusInfo_edit',
+                templateUrl: 'modules/core/views/subscription/subCusInfo_edit.client.view.html',
+                controller: 'SubscriptionController'
+            })
+            .state('app.subBillingInfo', {
+                url: '/account/subscription/subBillingInfo',
+                templateUrl: 'modules/core/views/subscription/subBillingInfo.client.view.html',
+                controller: 'SubscriptionController'
+            })
+            .state('app.subShippingAddress', {
+                url: '/account/subscription/subShippingAddress',
+                templateUrl: 'modules/core/views/subscription/subShippingAddress.client.view.html',
+                controller: 'SubscriptionController'
+            })
+            .state('app.subReactivate', {
+                url: '/account/subscription/reactivate',
+                templateUrl: 'modules/core/views/subscription/reactivate.client.view.html',
+                controller: 'SubscriptionController'
+            })
+            .state('app.subCancel', {
+                url: '/account/subscription/cancel',
+                templateUrl: 'modules/core/views/subscription/cancel.client.view.html',
+                controller: 'SubscriptionController',
+                params: {
+                    'next_renewal': null
+                }
+            })
+        .state('app.invoice', {
+            url: '/account/invoice',
+            templateUrl: 'modules/core/views/invoice.client.view.html',
+            controller: 'InvoiceController'
         })
 
         // .state('app.someroute', {

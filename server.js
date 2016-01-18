@@ -14,6 +14,12 @@ var init = require('./config/init')(),
 // Init the express application
 var app = require('./config/express')();
 
+// Import Chargebee and server initialization
+var chargebee = require('chargebee');
+
+chargebee.configure({site : config.chargebeeSite, 
+  api_key : config.chargebeeAPIKey});
+
 // Start the app by listening on <port>
 app.listen(config.port);
 

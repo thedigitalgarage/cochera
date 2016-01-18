@@ -7083,6 +7083,7 @@ body {
   width: 100%;
   height: auto;
   min-height: 100%;
+  overflow-x: hidden;
 }
 .wrapper.ng-leave {
   display: none;
