@@ -12,7 +12,7 @@ angular.module('app.core').controller('SubscriptionController',
 		$rootScope.card = {};
 		$rootScope.estimate = {};
 		$scope.loading = false;
-
+		$scope.page_loading = true;
 		$scope.cancel_param = {
 			id: $rootScope.subscription.id,
 			next_renewal: $state.params.next_renewal,
@@ -37,9 +37,9 @@ angular.module('app.core').controller('SubscriptionController',
 		//Shipping Address
 		$http.post('/subscription/details', {id: $rootScope.subscription.id}).success(function(response){
 			$rootScope.estimate = response.estimate;
-			
+			$scope.page_loading = false;
 		}).error(function(response){
-			
+			$scope.page_loading = false;
 		//	console.log(response);
 		});
 

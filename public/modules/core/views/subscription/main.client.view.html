@@ -2,7 +2,7 @@
    Subscription
    <small></small>
 </h3>
-<section class="row subscriptionView">
+<section class="row subscriptionView" ng-hide="page_loading">
     <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -296,5 +296,12 @@
             </div>
         </div>
       <!-- END panel-->
+    </div>
+</section>
+<section class="row subscriptionView" ng-show="page_loading">
+    <div class="col-lg-10">
+        <div class="text-center h4 cb-empty-space">
+            Loading...
+        </div>
     </div>
 </section>

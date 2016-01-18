@@ -20,5 +20,5 @@ module.exports = function(app) {
 	app.route('/subscription/cancel').post(subscription.cancel);
 	//Invoice Page
 	app.route('/invoice/for_subscription').post(invoice.forSubscription);
-	
+	app.route('/invoice/retrive_pdf').post(invoice.retrivePDF);
 };
