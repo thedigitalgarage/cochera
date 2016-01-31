@@ -3,7 +3,7 @@
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a MEAN.JS application:
 * Mean.JS - Go through [Mean.JS Official Website](http://meanjs.org/) and proceed to their [Documentation](http://meanjs.org/docs.html), which should help you understand Mean.js better.
-* Chargeebee - Go through [Chargebee Official Website](https://www.chargebee.com/) and proceed to [DEVELOPER CENTER](https://www.chargebee.com/developers/), which should help you understand about Chargeebee and APIs.
+* Chargeebee - Go through [Chargebee Official Website](https://www.chargebee.com/) and proceed to [Developer Center](https://www.chargebee.com/developers/), which should help you understand about Chargeebee and APIs.
 * Sharp Vision Template - [wrapbootstrap.com](https://wrapbootstrap.com/theme/sharp-vision-angularjs-business-theme-WB0T6N6X9).
 * Angle Template - [wrapbootstrap.com](https://wrapbootstrap.com/theme/angle-bootstrap-admin-template-WB04HF123).
 
@@ -38,9 +38,9 @@ This command does a few things:
 * If you're running in a development environment, it will then also install development dependencies needed for testing and running your application.
 * Finally, when the install process is over, npm will initiate a bower install command to install all the front-end modules needed for the application
 
-### Change/Set some enviroment variable
-You could change some enviroment variable like port, your site's name and your site's API key related to Chargebee.
-You could find following codes in `gruntfile.js` easily.
+### Change/Set some enviroment variables
+You could change some enviroment variable like port, your site's name and site's API Key related to Chargebee.
+You could find the following codes in `gruntfile.js` easily.
 
 ```
 159    default: {
@@ -50,9 +50,9 @@ You could find following codes in `gruntfile.js` easily.
 163    },
 ```
 Use the chargebee.configure to configure your site and your API key. It is a global configuration and can be setup as part of your server initialization
-Of course before that, you must have an acount and the Test site(Live site) on [Chargebee](https://www.chargebee.com/).
+Of course before that, you must have an account and Test site(Live site) on [Chargebee](https://www.chargebee.com/).
 
-If you are new on Charegebee, you could visit [Chargebee Official Website](https://www.chargebee.com/), create an acount and get Test/Live site.
+If you are new on Charegebee, you could visit [Chargebee Official Website](https://www.chargebee.com/), create an account and get Test/Live site.
 
 With Signin, You should choose a domain for your business(chargebeeSite).
 After Signin, go to `Setting` / `API & WEBHOOKS` / `API Keys`. You could find the API Key named `full_access_key_v1`.
