@@ -9,6 +9,7 @@ angular.module('ui.mask', [])
                 '*': /[a-zA-Z0-9]/
             },
             clearOnBlur: true,
+            clearOnBlurPlaceholder: false,
             eventsToHandle: ['input', 'keyup', 'click', 'focus']
         })
         .directive('uiMask', ['uiMaskConfig', function(maskConfig) {
@@ -33,7 +34,10 @@ angular.module('ui.mask', [])
                                     originalPlaceholder = iAttrs.placeholder,
                                     originalMaxlength = iAttrs.maxlength,
                                     // Vars used exclusively in eventHandler()
-                                    oldValue, oldValueUnmasked, oldCaretPosition, oldSelectionLength;
+                                    oldValue, oldValueUnmasked, oldCaretPosition, oldSelectionLength,
+                                    // Used for communicating if a backspace operation should be allowed between
+                                    // keydownHandler and eventHandler
+                                    preventBackspace;
 
                             var originalIsEmpty = controller.$isEmpty;
 	                        controller.$isEmpty = function(value) {
@@ -203,6 +207,7 @@ angular.module('ui.mask', [])
                                 }
                                 iElement.bind('blur', blurHandler);
                                 iElement.bind('mousedown mouseup', mouseDownUpHandler);
+                                iElement.bind('keydown', keydownHandler);
                                 iElement.bind(linkOptions.eventsToHandle.join(' '), eventHandler);
                                 eventsBound = true;
                             }
@@ -214,6 +219,7 @@ angular.module('ui.mask', [])
                                 iElement.unbind('blur', blurHandler);
                                 iElement.unbind('mousedown', mouseDownUpHandler);
                                 iElement.unbind('mouseup', mouseDownUpHandler);
+                                iElement.unbind('keydown', keydownHandler);
                                 iElement.unbind('input', eventHandler);
                                 iElement.unbind('keyup', eventHandler);
                                 iElement.unbind('click', eventHandler);
@@ -228,12 +234,30 @@ angular.module('ui.mask', [])
 
                             function unmaskValue(value) {
                                 var valueUnmasked = '',
-                                        maskPatternsCopy = maskPatterns.slice();
+                                    input = iElement[0],
+                                    maskPatternsCopy = maskPatterns.slice(),
+                                    selectionStart = oldCaretPosition,
+                                    selectionEnd = selectionStart + getSelectionLength(input),
+                                    valueOffset, valueDelta, tempValue = '';
                                 // Preprocess by stripping mask components from value
                                 value = value.toString();
+                                valueOffset = 0;
+                                valueDelta = value.length - maskPlaceholder.length;
                                 angular.forEach(maskComponents, function(component) {
-                                    value = value.replace(component, '');
+                                    var position = component.position;
+                                    //Only try and replace the component if the component position is not within the selected range
+                                    //If component was in selected range then it was removed with the user input so no need to try and remove that component
+                                    if (!(position >= selectionStart && position < selectionEnd)) {
+                                        if (position >= selectionStart) {
+                                            position += valueDelta;
+                                        }
+                                        if (value.substring(position, position + component.value.length) === component.value) {
+                                            tempValue += value.slice(valueOffset, position);// + value.slice(position + component.value.length);
+                                            valueOffset = position + component.value.length;
+                                        }
+                                    }
                                 });
+                                value = tempValue + value.slice(valueOffset);
                                 angular.forEach(value.split(''), function(chr) {
                                     if (maskPatternsCopy.length && maskPatternsCopy[0].test(chr)) {
                                         valueUnmasked += chr;
@@ -276,14 +300,9 @@ angular.module('ui.mask', [])
                             // Generate array of mask components that will be stripped from a masked value
                             // before processing to prevent mask components from being added to the unmasked value.
                             // E.g., a mask pattern of '+7 9999' won't have the 7 bleed into the unmasked value.
-                            // If a maskable char is followed by a mask char and has a mask
-                            // char behind it, we'll split it into it's own component so if
-                            // a user is aggressively deleting in the input and a char ahead
-                            // of the maskable char gets deleted, we'll still be able to strip
-                            // it in the unmaskValue() preprocessing.
                             function getMaskComponents() {
                                 var maskPlaceholderChars = maskPlaceholder.split(''),
-                                        maskPlaceholderCopy;
+                                        maskPlaceholderCopy, components;
 
                                 //maskCaretMap can have bad values if the input has the ui-mask attribute implemented as an obversable property, i.e. the demo page
                                 if (maskCaretMap && !isNaN(maskCaretMap[0])) {
@@ -296,7 +315,22 @@ angular.module('ui.mask', [])
                                     });
                                 }
                                 maskPlaceholderCopy = maskPlaceholderChars.join('');
-                                return maskPlaceholderCopy.replace(/[_]+/g, '_').replace(/([^_]+)([a-zA-Z0-9])([^_])/g, '$1$2_$3').split('_');
+                                components = maskPlaceholderCopy.replace(/[_]+/g, '_').replace(/([^_]+)([a-zA-Z0-9])([^_])/g, '$1$2_$3').split('_');
+                                components = components.filter(function(s) {
+                                    return s !== '';
+                                });
+
+                                // need a string search offset in cases where the mask contains multiple identical components
+                                // I.E. a mask of 99.99.99-999.99
+                                var offset = 0;
+                                return components.map(function(c) {
+                                    var componentPosition = maskPlaceholderCopy.indexOf(c, offset);
+                                    offset = componentPosition + 1;
+                                    return {
+                                        value: c,
+                                        position: componentPosition
+                                    };
+                                });
                             }
 
                             function processRawMask(mask) {
@@ -347,7 +381,7 @@ angular.module('ui.mask', [])
 
                             var prevValue = iElement.val();
                             function blurHandler() {
-                                if (linkOptions.clearOnBlur) {
+                                if (linkOptions.clearOnBlur || ((linkOptions.clearOnBlurPlaceholder) && (value.length === 0) && iAttrs.placeholder)) {
                                     oldCaretPosition = 0;
                                     oldSelectionLength = 0;
                                     if (!isValid || value.length === 0) {
@@ -404,6 +438,25 @@ angular.module('ui.mask', [])
                                 iElement.unbind('mouseout', mouseoutHandler);
                             }
 
+                            function keydownHandler(e) {
+                                /*jshint validthis: true */
+                                var isKeyBackspace = e.which === 8,
+                                    caretPos = getCaretPosition(this) - 1 || 0; //value in keydown is pre change so bump caret position back to simulate post change
+
+                                if (isKeyBackspace) {
+                                    while(caretPos >= 0) {
+                                        if (isValidCaretPosition(caretPos)) {
+                                            //re-adjust the caret position.
+                                            //Increment to account for the initial decrement to simulate post change caret position
+                                            setCaretPosition(this, caretPos + 1);
+                                            break;
+                                        }
+                                        caretPos--;
+                                    }
+                                    preventBackspace = caretPos === -1;
+                                }
+                            }
+
                             function eventHandler(e) {
                                 /*jshint validthis: true */
                                 e = e || {};
@@ -453,6 +506,17 @@ angular.module('ui.mask', [])
                                     return;
                                 }
 
+                                if (isKeyBackspace && preventBackspace) {
+                                    iElement.val(maskPlaceholder);
+                                    // This shouldn't be needed but for some reason after aggressive backspacing the controller $viewValue is incorrect.
+                                    // This keeps the $viewValue updated and correct.
+                                    scope.$apply(function () {
+                                        controller.$setViewValue(''); // $setViewValue should be run in angular context, otherwise the changes will be invisible to angular and user code.
+                                    });
+                                    setCaretPosition(this, caretPosOld);
+                                    return;
+                                }
+
                                 // Value Handling
                                 // ==============
 
@@ -467,7 +531,10 @@ angular.module('ui.mask', [])
                                     var charIndex = maskCaretMap.indexOf(caretPos);
                                     // Strip out non-mask character that user would have deleted if mask hadn't been in the way.
                                     valUnmasked = valUnmasked.substring(0, charIndex) + valUnmasked.substring(charIndex + 1);
-                                    valAltered = true;
+
+                                    // If value has not changed, don't want to call $setViewValue, may be caused by IE raising input event due to placeholder
+                                    if (valUnmasked !== valUnmaskedOld)
+                                    	valAltered = true;
                                 }
 
                                 // Update values
@@ -487,7 +554,7 @@ angular.module('ui.mask', [])
                                 //actually doing anything.  Meaning, things like pristine and touched will be set.
                                 if (valAltered) {
                                     scope.$apply(function () {
-                                        controller.$setViewValue(valUnmasked); // $setViewValue should be run in angular context, otherwise the changes will be invisible to angular and user code.
+                                        controller.$setViewValue(valMasked); // $setViewValue should be run in angular context, otherwise the changes will be invisible to angular and user code.
                                     });
                                 }
 

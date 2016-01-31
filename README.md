@@ -40,7 +40,7 @@ This command does a few things:
 
 ### Change/Set some enviroment variable
 You could change some enviroment variable like port, your site's name and your site's API key related to Chargebee.
-You could find some codes in `gruntfile.js` easily.
+You could find following codes in `gruntfile.js` easily.
 
 ```
 159    default: {
@@ -55,10 +55,10 @@ Of course before that, you must have an acount and the Test site(Live site) on [
 If you are new on Charegebee, you could visit [Chargebee Official Website](https://www.chargebee.com/), create an acount and get Test/Live site.
 
 With Signin, You should choose a domain for your business(chargebeeSite).
-After Signin, go to `Setting` /`API & WEBHOOKS` /`API Keys`. You could find the API Key named `full_access_key_v1`.
+After Signin, go to `Setting` / `API & WEBHOOKS` / `API Keys`. You could find the API Key named `full_access_key_v1`.
 
 And then, you must add Redirect URL and Cancel URL for Payment Method Page on Chargebee.
-Go to `Setting` /`HOSTED PAGES SETTINGS` /`Payment Method Page`.
+Go to `Setting` / `HOSTED PAGES SETTINGS` / `Payment Method Page`.
 You could set Redirect URL and Cancel URL there. For instance, `http://localhost:8080/#/account/subscription`.
 Change `http://localhost:8080/` to your site's domain there.
 

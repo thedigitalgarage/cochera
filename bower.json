@@ -44,7 +44,7 @@
     "simple-line-icons": "2.2.3",
     "angular-touch": "1.4.7",
     "jquery.browser": "master",
-    "angular-toastr: "master",
+    "angular-toastr": "1.6.0",
     "iso-3166-country-codes-angular": "~1.1.1"
   },
   "resolutions": {

@@ -5,20 +5,26 @@ var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'angleApp';
 
-	var applicationModuleVendorDependencies = ['ngRoute',
-																						 'ngAnimate',
-																						 'ngStorage',
-																						 'ngTouch',
-																						 'ngCookies',
-																						 'pascalprecht.translate',
-																						 'ui.bootstrap',
-																						 'ui.router',
-																						 'oc.lazyLoad',
-																						 'cfp.loadingBar',
-																						 'ngSanitize',
-																						 'ngResource',
-																						 'ui.utils'
-																						];
+	var applicationModuleVendorDependencies = [ 'ngRoute',
+												'ngAnimate',
+												'ngStorage',
+												'ngTouch',
+												'ngCookies',
+												'pascalprecht.translate',
+												'ui.bootstrap',
+												'ui.router',
+												'oc.lazyLoad',
+												'cfp.loadingBar',
+												'ngSanitize',
+												'ngResource',
+												'ui.utils',
+												'ngProgress',
+											    'angular-flexslider',
+											    'ng-backstretch',
+											    'angular-parallax',
+											    'toastr',
+											    'iso-3166-country-codes'
+											   ];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
 		// Create angular module
@@ -42,20 +48,26 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
 // Setting HTML5 Location Mode
 angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
 	function($locationProvider) {
-		//  $locationProvider.hashPrefix('!');
-    $locationProvider.hashPrefix('');
+	//	$locationProvider.hashPrefix('!');
+		$locationProvider.hashPrefix('');
+	}
 ]);
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function() {
 	//Fixing facebook bug with redirect
-	// if (window.location.hash === '#_=_') window.location.hash = '#!';
-  if (window.location.hash === '#_=_') window.location.hash = '#';
+//	if (window.location.hash === '#_=_') window.location.hash = '#!';
+	if (window.location.hash === '#_=_') window.location.hash = '#';
 
 	//Then init the app
 	angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
 });
+(function() {
+    'use strict';
 
+    ApplicationConfiguration.registerModule('app.colors');
+
+})();
 (function() {
     'use strict';
 
@@ -67,10 +79,17 @@ angular.element(document).ready(function() {
           'app.preloader',
           'app.loadingbar',
           'app.translate',
+          'app.settings',
           //'app.pages',
           'app.utils'
         ]);
 
+})();
+(function() {
+    'use strict';
+
+    // Use Applicaion configuration module to register a new module
+    ApplicationConfiguration.registerModule('app.home',[ ]);
 })();
 (function() {
     'use strict';
@@ -124,10 +143,6 @@ ApplicationConfiguration.registerModule('page');
     ApplicationConfiguration.registerModule('app.translate');
 
 })();
-'use strict';
-
-// Use Applicaion configuration module to register a new module
-ApplicationConfiguration.registerModule('users');
 (function() {
     'use strict';
 
@@ -136,7 +151,6 @@ ApplicationConfiguration.registerModule('users');
           ]);
 
 })();
-
 
 (function() {
     'use strict';
@@ -242,10 +256,19 @@ ApplicationConfiguration.registerModule('users');
 
     coreMenu.$inject = ['Menus'];
     function coreMenu(Menus){
-      // Add default menu entry
-      Menus.addMenuItem('sidebar', 'Home', 'home', null, '/home', true, null, null, 'icon-home');
+        // Add default menu entry
+        Menus.addMenuItem('sidebar', 'Dashboard', 'dashboard', null, '/dashboard', true, null, null, 'icon-home');
+        Menus.addMenuItem('sidebar', 'Account', 'account', null, '', true, null, null, 'icon-user');
+        Menus.addSubMenuItem('sidebar', 'account', 'Subscription', 'account/subscription');
+        Menus.addSubMenuItem('sidebar', 'account', 'Invoice', 'account/invoice');
+        Menus.addSubMenuItem('sidebar', 'account', 'Team', 'account/team');
+        Menus.addSubMenuItem('sidebar', 'account', 'Referrals', 'account/referrals');
+        Menus.addMenuItem('sidebar', 'User', 'user', null, '', true, null, null, 'icon-people');
+        Menus.addSubMenuItem('sidebar', 'user', 'Profile', 'user/profile');
+        Menus.addSubMenuItem('sidebar', 'user', 'Security', 'user/security');
+        Menus.addSubMenuItem('sidebar', 'user', 'Notifications', 'user/notifications');
     }
-
+    
 })();
 (function() {
     'use strict';
@@ -264,6 +287,77 @@ ApplicationConfiguration.registerModule('users');
       // default route
       $urlRouterProvider.otherwise('/');
 
+      //
+      // Application Routes
+      // -----------------------------------
+      $stateProvider
+        .state('app', {
+            // url: '/',
+            abstract: true,
+            templateUrl: 'modules/core/views/core.client.view.html',
+            resolve: helper.resolveFor('modernizr', 'icons')
+        })
+        .state('app.dashboard', {
+            url: '/dashboard',
+            templateUrl: 'modules/core/views/dashboard.client.view.html'
+        })
+        .state('app.profile', {
+            url: '/user/profile',
+            templateUrl: 'modules/core/views/profile.client.view.html',
+            controller: 'ProfileController'
+        })
+        .state('app.subscription', {
+            url: '/account/subscription',
+            templateUrl: 'modules/core/views/subscription/main.client.view.html',
+            controller: 'SubscriptionController'
+        })
+            .state('app.subCusInfo_edit', {
+                url: '/account/subscription/subCusInfo_edit',
+                templateUrl: 'modules/core/views/subscription/subCusInfo_edit.client.view.html',
+                controller: 'SubscriptionController'
+            })
+            .state('app.subBillingInfo', {
+                url: '/account/subscription/subBillingInfo',
+                templateUrl: 'modules/core/views/subscription/subBillingInfo.client.view.html',
+                controller: 'SubscriptionController'
+            })
+            .state('app.subShippingAddress', {
+                url: '/account/subscription/subShippingAddress',
+                templateUrl: 'modules/core/views/subscription/subShippingAddress.client.view.html',
+                controller: 'SubscriptionController'
+            })
+            .state('app.subReactivate', {
+                url: '/account/subscription/reactivate',
+                templateUrl: 'modules/core/views/subscription/reactivate.client.view.html',
+                controller: 'SubscriptionController'
+            })
+            .state('app.subCancel', {
+                url: '/account/subscription/cancel',
+                templateUrl: 'modules/core/views/subscription/cancel.client.view.html',
+                controller: 'SubscriptionController',
+                params: {
+                    'next_renewal': null
+                }
+            })
+        .state('app.invoice', {
+            url: '/account/invoice',
+            templateUrl: 'modules/core/views/invoice.client.view.html',
+            controller: 'InvoiceController'
+        })
+
+        // .state('app.someroute', {
+        //   url: '/some_url',
+        //   templateUrl: 'path_to_template.html',
+        //   controller: 'someController',
+        //   resolve: angular.extend(
+        //     helper.resolveFor(), {
+        //     // YOUR RESOLVES GO HERE
+        //     }
+        //   )
+        // })
+        ;
+
+    }
 })();
 (function() {
     'use strict';
@@ -328,17 +422,14 @@ ApplicationConfiguration.registerModule('users');
         document.title = title;
         return title;
       };
-
     }
-
 })();
 
 
 'use strict';
 
-angular.module('app.core').controller('HeaderController', ['$scope', 'Authentication', 'Menus',
-	function($scope, Authentication, Menus) {
-		$scope.authentication = Authentication;
+angular.module('app.core').controller('HeaderCoreController', ['$scope', 'Menus', '$state', 'Auth',
+	function ($scope, Menus, $state, Auth) {
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 
@@ -350,6 +441,193 @@ angular.module('app.core').controller('HeaderController', ['$scope', 'Authentica
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.isCollapsed = false;
 		});
+
+		$scope.logout = function(){
+        	//$window.keycloakAuth.logout();
+        	Auth.logout();
+        	$state.go('home.main');
+    	};
+	}
+]);
+'use strict';
+
+angular.module('app.core').controller('InvoiceController',
+	['$rootScope', '$scope', '$state', '$http', 'toastr', '$window', '$parse',
+		function ($rootScope, $scope, $state, $http, toastr, $window, $parse) {
+
+			$rootScope.invoices = {};
+			$scope.loading = false;
+			$scope.page_loading = true;
+			$scope.inv_number = 0;
+			
+			$http.post('/invoice/for_subscription', {id: $rootScope.subscription.id}).success(function(response){
+				$scope.page_loading = false;
+				$rootScope.invoices = response.list;
+				angular.forEach($rootScope.invoices, function(value, key){
+					if(value.invoice.status != 'pending')
+					 	$scope.inv_number += 1;
+				});
+			}).error(function(response){
+				$scope.page_loading = false;
+			//	console.log(response);
+			});
+
+			$scope.retrievePDF = function(id){
+				var the_string = 'loading_' + id;
+				$scope[the_string] = true;
+				$http.post('/invoice/retrive_pdf', {id: id}).success(function(response){
+					$scope[the_string] = false;
+					$window.open(response.download.download_url, '_blank');
+				}).error(function(response){
+					$scope[the_string] = false;
+					toastr.error(response.message, 'Error');
+				});
+			};
+		}
+]);
+'use strict';
+
+angular.module('app.core').controller('ProfileController', ['$scope', '$state', 
+	function ($scope, $state) {
+		
+	}
+]);
+'use strict';
+
+angular.module('app.core').controller('SubscriptionController', 
+['$rootScope', '$scope', '$cookieStore', '$state', '$http', 'toastr', '$window', 'ISO3166',
+	function ($rootScope, $scope, $cookieStore, $state, $http, toastr, $window, ISO3166) {
+		
+		$scope.countries = ISO3166.codeToCountry;
+		$rootScope.address = {
+			label: 'shipping_address',
+			subscription_id: $rootScope.subscription.id
+		};
+		$rootScope.card = {};
+		$rootScope.estimate = {};
+		$scope.loading = false;
+		$scope.page_loading = true;
+		$scope.cancel_param = {
+			id: $rootScope.subscription.id,
+			next_renewal: $state.params.next_renewal,
+			end_of_term: 'false'
+		};
+		//Subscription Details
+		$http.post('/subscription/shipping_address', {id: $rootScope.subscription.id}).success(function(response){
+			$rootScope.address = response.address;
+			$rootScope.address.state_code = undefined;
+		}).error(function(response){
+		//	console.log(response);
+		});
+
+		//Customer Card
+		$http.post('/subscription/card', {id: $rootScope.customer.id}).success(function(response){
+			$cookieStore.put('card', response.card);
+			$rootScope.card = response.card;
+		}).error(function(response){
+		//	console.log(response);
+		});
+
+		//Shipping Address
+		$http.post('/subscription/details', {id: $rootScope.subscription.id}).success(function(response){
+			$rootScope.estimate = response.estimate;
+			$scope.page_loading = false;
+		}).error(function(response){
+			$scope.page_loading = false;
+		//	console.log(response);
+		});
+
+		$scope.getStatusLabel = function(status) {
+			var subStatus = [];
+			subStatus.active = "label-success";
+			subStatus.in_trial = "label-default";
+			subStatus.non_renewing = "label-warning";
+			subStatus.cancelled = "label-danger";
+			subStatus.future = "label-primary";
+			return subStatus[status];
+		};
+
+		$scope.updateCusInfo = function(){
+			$scope.loading = true;
+			$http.post('/subscription/update_cus_info', $rootScope.customer).success(function(response){
+				$scope.loading = false;
+				$cookieStore.put('customer', response.customer);
+				$rootScope.customer = response.customer;
+				toastr.success('Customer Information has been updated successfully.', 'Success');
+			}).error(function(response){
+				$scope.loading = false;
+				toastr.error(response.message, 'Error');
+			});
+		};
+
+		$scope.changePaymentMethod = function(){
+			$http.post('/subscription/change_payment_method', {id: $rootScope.customer.id}).success(function(response){
+				$window.location.href = response.hosted_page.url;
+			}).error(function(response){
+				toastr.error(response.message, 'Error');
+			});
+		};
+
+		$scope.changeBillingAddress = function(){
+			$scope.loading = true;
+			$http.post('/subscription/change_billing_info', {id:$rootScope.customer.id, address: $rootScope.customer.billing_address}).success(function(response){
+				$scope.loading = false;
+				$cookieStore.put('customer', response.customer);
+				$rootScope.customer = response.customer;
+				toastr.success('Billing Information has been updated successfully.', 'Success');
+			}).error(function(response){
+				$scope.loading = false;
+				toastr.error(response.message, 'Error');
+			});
+		};
+
+		$scope.changeShippingAddress = function(){
+			$scope.loading = true;
+			$http.post('/subscription/change_shipping_address', $rootScope.address).success(function(response){
+				$scope.loading = false;
+				$cookieStore.put('address', response.address);
+				$rootScope.address = response.address;
+				$rootScope.address.state_code = undefined;
+				toastr.success('Shipping Address has been updated successfully.', 'Success');
+			}).error(function(response){
+				$scope.loading = false;
+				toastr.error(response.message, 'Error');
+			});
+		};
+
+		$scope.reactiveSub = function(){
+			$scope.loading = true;
+			$http.post('/subscription/reactive', {id: $rootScope.subscription.id}).success(function(response){
+				$scope.loading = false;
+				$cookieStore.put('subscription', response.subscription);
+				$cookieStore.put('customer', response.customer);
+				$cookieStore.put('card', response.card);
+				$rootScope.subscription = response.subscription;
+				$rootScope.customer = response.customer;
+				$rootScope.card = response.card;
+				toastr.success('Your subscription has been re-actived successfully.', 'Success');
+			}).error(function(response){
+				$scope.loading = false;
+				toastr.error(response.message, 'Error');
+			});
+		};
+
+		$scope.cancelSub = function(){
+			$scope.loading = true;
+			$http.post('/subscription/cancel', $scope.cancel_param).success(function(response){
+				$scope.loading = false;
+				$cookieStore.put('subscription', response.subscription);
+				$cookieStore.put('customer', response.customer);
+				$cookieStore.put('card', response.card);
+				$rootScope.subscription = response.subscription;
+				$rootScope.customer = response.customer;
+				$rootScope.card = response.card;
+				toastr.success('Your subscription has been cancelled successfully.', 'Success');
+			}).error(function(response){
+				$scope.loading = false;
+				toastr.error(response.message, 'Error');
+			});
+		};
 	}
 ]);
 'use strict';
@@ -524,6 +802,333 @@ angular.module('app.core').service('Menus', [
 		this.addMenu('sidebar');
 	}
 ]);
+(function() {
+		'use strict';
+
+		angular
+			.module('app.home')
+			.config(appRoutes)
+			.run(appRun)
+			;
+
+		appRun.$inject = ['$rootScope', '$state', '$cookieStore', '$http', 'Auth'];
+		function appRun($rootScope, $state, $cookieStore, $http, Auth){
+			$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+				$rootScope.subscription = $cookieStore.get('subscription');
+				$rootScope.customer = $cookieStore.get('customer');
+				$rootScope.card = $cookieStore.get('card');
+				$rootScope.address = $cookieStore.get('address');
+	            var normalRoutes = ['home.main'];
+	            var restrictedRoutes = [];
+	            if (!Auth.isLoggedIn() && $.inArray(toState.name, normalRoutes) == -1) {
+	                event.preventDefault();
+	                $state.transitionTo('home.main', null, {'reload':true});
+	            }
+	        });
+	        $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+	            $rootScope.containerClass = toState.containerClass;
+	        });
+		}
+
+		appRoutes.$inject = ['$stateProvider', '$urlRouterProvider', 'RouteHelpersProvider'];
+		function appRoutes($stateProvider, $urlRouterProvider, helper){
+
+			$stateProvider
+				.state('home', {
+					// url: '/',
+					abstract: true,
+					templateUrl: 'modules/home/views/layout.client.view.html',
+					resolve: helper.resolveFor('modernizr', 'icons')
+				})
+				.state('home.main', {
+					url: '/',
+					templateUrl: 'modules/home/views/home.client.view.html'
+				})
+				;
+		}
+})();
+'use strict';
+
+angular.module('app.home').controller('FooterController', ['$scope',
+  function ($scope) {
+    $scope.brand = 'The Digital Garage';
+  }
+]);
+'use strict';
+
+angular.module('app.home').controller('HeaderController', ['$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal',
+  function ($window, $rootScope, $scope, $state, ngProgressFactory, $modal) {
+
+    $scope.brand = 'The Digital Garage';
+    $rootScope.loginStatus = false;
+    $scope.isCollapsed = true;
+    /* Remove Top ProgressBar
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.setColor('#02bbff');
+    $scope.progressbar.start();
+    $scope.$on('$routeChangeStart', function(next, current) { 
+      $scope.isCollapsed = true;
+      $scope.progressbar.start();
+    });
+    $scope.scroll = 0;
+    $scope.$on('$routeChangeSuccess', function () {
+      $scope.progressbar.complete();
+    }); */
+    $scope.top = function() {
+      if(document.querySelector(".main"))
+        return document.querySelector(".main").getBoundingClientRect().top;
+    };
+
+    $scope.loginKeyCloak = function(){
+        // $window.keycloakAuth.login().success(function() {
+        //     $window.keycloakAuth.updateToken(10).success(function(){
+        //         alert($window.keycloakAuth.subject);
+        //     }).error(function() {
+        //         alert('failed to refresh token');
+        //     });
+        // }).error(function() {
+        //     alert('failed to refresh token');
+        // });
+        $state.go('app.dashboard');
+    };
+
+    $scope.regKeyCloak = function(){
+        $window.keycloakAuth.register();
+    };
+
+    // $scope.logoutKeyCloak = function(){
+    //     $window.keycloakAuth.logout();
+    // };
+    $scope.login = function(){
+      var loginModal = $modal.open({
+        templateUrl: 'modules/home/views/modal/login.client.view.html',
+        controller: 'LoginController',
+        size: 'md',
+        windowClass: 'login'
+      });
+    };
+  }
+]);
+
+angular.module('app.home').controller('LoginController',['$scope', '$state', '$modalInstance', '$http', 'toastr', 'Auth', 
+ function($scope, $state, $modalInstance, $http, toastr, Auth) {
+    $scope.authInfo = {
+        username : '',
+        password : ''
+    };
+    $scope.submitting = false;
+    $scope.login = function(){
+        $scope.submitting = true;
+        if( $scope.authInfo.username!=='' && $scope.authInfo.password!==''){
+            Auth.login($scope.authInfo).then(function(){
+                $scope.submitting = false;
+                toastr.success('You are logged in successfully.', 'Success');
+                $state.go('app.dashboard');
+                $modalInstance.close();
+            }).catch(function(){
+                $scope.submitting = false;
+            });
+        }
+        else{
+            toastr.error('Please enter username and password.', 'Error');
+            $scope.submitting = false;
+        }
+    };
+}]);
+
+'use strict';
+
+angular.module('app.home').controller('HomeController', ['$scope',
+  function ($scope) {
+
+	$scope.top = {
+		backstretch: [
+			'modules/home/img/big/big-1.jpg',
+			'modules/home/img/big/big-2.jpg',
+			'modules/home/img/big/big-3.jpg',
+			'modules/home/img/big/big-4.jpg',
+		]
+	};
+	$scope.clients = [
+		'modules/home/img/clients/logo-1.png',
+        'modules/home/img/clients/logo-2.png',
+        'modules/home/img/clients/logo-3.png',
+        'modules/home/img/clients/logo-4.png',
+        'modules/home/img/clients/logo-5.png',
+        'modules/home/img/clients/logo-6.png',
+        'modules/home/img/clients/logo-7.png',
+        'modules/home/img/clients/logo-8.png',
+        'modules/home/img/clients/logo-9.png',
+        'modules/home/img/clients/logo-10.png'
+	];
+  }
+]);
+
+'use strict';
+
+/* Edits by Thomas  */
+
+angular.module('app.home')
+    .directive('boxGridEffects', function () {
+        return {
+            restrict: 'A',
+            scope: {
+                boxGridEffects: '@'
+            },
+            link: function (scope, element) {
+                element.on('mouseenter', function() {
+                    element.addClass(scope.boxGridEffects);
+                });
+                element.on('mouseleave', function() {
+                    element.removeClass(scope.boxGridEffects);
+                });
+            }
+        };
+    });
+'use strict';
+
+/* Edits by Thomas  */
+
+angular.module('app.home')
+	.directive('scrollPosition', ["$window", function($window) {
+		return {
+			scope: {
+				scroll: '=scrollPosition'
+			},
+			link: function(scope, element, attrs) {
+				var windowEl = angular.element($window);
+				var handler = function() {
+					scope.scroll = windowEl.scrollTop();
+				};
+				windowEl.on('scroll', scope.$apply.bind(scope, handler));
+				handler();
+			}
+		};
+	}]);
+'use strict';
+
+/**
+ * Edits by Ryan Hutchison
+ * Credit: https://github.com/paulyoder/angular-bootstrap-show-errors */
+
+angular.module('app.home')
+  .directive('showErrors', ['$timeout', '$interpolate', function ($timeout, $interpolate) {
+    var linkFn = function (scope, el, attrs, formCtrl) {
+      var inputEl, inputName, inputNgEl, options, showSuccess, toggleClasses,
+        initCheck = false,
+        showValidationMessages = false,
+        blurred = false;
+
+      options = scope.$eval(attrs.showErrors) || {};
+      showSuccess = options.showSuccess || false;
+      inputEl = el[0].querySelector('.form-control[name]') || el[0].querySelector('[name]');
+      inputNgEl = angular.element(inputEl);
+      inputName = $interpolate(inputNgEl.attr('name') || '')(scope);
+
+      if (!inputName) {
+        throw 'show-errors element has no child input elements with a \'name\' attribute class';
+      }
+
+      var reset = function () {
+        return $timeout(function () {
+          el.removeClass('has-error');
+          el.removeClass('has-success');
+          showValidationMessages = false;
+        }, 0, false);
+      };
+
+      scope.$watch(function () {
+        return formCtrl[inputName] && formCtrl[inputName].$invalid;
+      }, function (invalid) {
+        return toggleClasses(invalid);
+      });
+
+      scope.$on('show-errors-check-validity', function (event, name) {
+        if (angular.isUndefined(name) || formCtrl.$name === name) {
+          initCheck = true;
+          showValidationMessages = true;
+
+          return toggleClasses(formCtrl[inputName].$invalid);
+        }
+      });
+
+      scope.$on('show-errors-reset', function (event, name) {
+        if (angular.isUndefined(name) || formCtrl.$name === name) {
+          return reset();
+        }
+      });
+
+      toggleClasses = function (invalid) {
+        el.toggleClass('has-error', showValidationMessages && invalid);
+        if (showSuccess) {
+          return el.toggleClass('has-success', showValidationMessages && !invalid);
+        }
+      };
+    };
+
+    return {
+      restrict: 'A',
+      require: '^form',
+      compile: function (elem, attrs) {
+        if (attrs.showErrors.indexOf('skipFormGroupCheck') === -1) {
+          if (!(elem.hasClass('form-group') || elem.hasClass('input-group'))) {
+            throw 'show-errors element does not have the \'form-group\' or \'input-group\' class';
+          }
+        }
+        return linkFn;
+      }
+    };
+}]);
+
+'use strict';
+
+angular.module('app.home').service('Auth', ['$rootScope', '$cookies', '$cookieStore', '$http', '$q', 'toastr',
+	function ($rootScope, $cookies, $cookieStore, $http, $q, toastr) {
+		var setUser = function (data) {
+			angular.forEach(data, function(val, index){
+				$cookieStore.put(index, val);
+			});
+			$rootScope.subscription = data.subscription;
+			$rootScope.customer = data.customer;
+			$rootScope.card = data.card;
+		};
+
+		this.renewUser = function () {
+			$rootScope.User = {};
+			angular.forEach($cookies, function (value, key) {
+				$rootScope.User[key] = value;
+			});
+		};
+
+		this.setUser = setUser;
+
+		this.login = function (credentials) {
+			var defer = $q.defer();
+			$http.post('/authChargebee', credentials).success(function (data) {
+				defer.resolve(data);
+				setUser(data);
+			}).error(function (data) {
+				defer.reject(data);
+				toastr.error(data.message, 'Error');
+			});
+			return defer.promise;
+		};
+
+		this.isLoggedIn = function () {
+			if ($cookieStore.get('customer'))
+				return true;
+			return false;
+		};
+
+		this.logout = function () {
+			var cookies = $cookies.getAll();
+			angular.forEach(cookies, function (value, key) {
+				$cookies.remove(key);
+			});
+			$rootScope.User = false;
+		};
+	}]);
+
 (function() {
     'use strict';
 
@@ -921,8 +1526,8 @@ angular.module('page').config(['$stateProvider',
       // Global Settings
       // -----------------------------------
       $rootScope.app = {
-        name: 'Angle',
-        description: 'Angular Bootstrap Admin Template',
+        name: 'The Digital Garage',
+        description: 'The Digital Garage Landing Page',
         year: ((new Date()).getFullYear()),
         layout: {
           isFixed: true,
@@ -936,7 +1541,6 @@ angular.module('page').config(['$stateProvider',
         },
         useFullLayout: false,
         hiddenFooter: false,
-        offsidebarOpen: false,
         asideToggled: false,
         viewAnimation: 'ng-fadeInUp'
       };
@@ -974,10 +1578,10 @@ angular.module('page').config(['$stateProvider',
 
     angular
         .module('app.sidebar')
-        .controller('SidebarController', SidebarController);
+        .controller('SidebarCoreController', SidebarController);
 
-    SidebarController.$inject = ['$rootScope', '$scope', '$state', 'SidebarLoader', 'Utils', 'Authentication'];
-    function SidebarController($rootScope, $scope, $state, SidebarLoader,  Utils, Authentication) {
+    SidebarController.$inject = ['$rootScope', '$scope', '$state', 'SidebarLoader', 'Utils'];
+    function SidebarController($rootScope, $scope, $state, SidebarLoader,  Utils) {
 
         activate();
 
@@ -985,8 +1589,6 @@ angular.module('page').config(['$stateProvider',
 
         function activate() {
           var collapseList = [];
-
-          $scope.authentication = Authentication;
 
           // demo: when switch from collapse to hover, close all items
           $rootScope.$watch('app.layout.asideHover', function(oldVal, newVal){
@@ -1386,256 +1988,6 @@ angular.module('page').config(['$stateProvider',
 
     }
 })();
-'use strict';
-
-// Config HTTP Error Handling
-angular.module('users').config(['$httpProvider',
-	function($httpProvider) {
-		// Set the httpProvider "not authorized" interceptor
-		$httpProvider.interceptors.push(['$q', '$location', 'Authentication',
-			function($q, $location, Authentication) {
-				return {
-					responseError: function(rejection) {
-						switch (rejection.status) {
-							case 401:
-								// Deauthenticate the global user
-								Authentication.user = null;
-
-								// Redirect to signin page
-								$location.path('signin');
-								break;
-							case 403:
-								// Add unauthorized behaviour 
-								break;
-						}
-
-						return $q.reject(rejection);
-					}
-				};
-			}
-		]);
-	}
-]);
-'use strict';
-
-// Setting up route
-angular.module('users').config(['$stateProvider',
-	function($stateProvider) {
-		// Users state routing
-		$stateProvider.
-		state('page.signin', {
-			url: '/signin',
-			templateUrl: 'modules/users/views/authentication/signin.client.view.html'
-		}).
-		state('page.signup', {
-			url: '/signup',
-			templateUrl: 'modules/users/views/authentication/signup.client.view.html'
-		}).
-		state('page.forgot', {
-			url: '/password/forgot',
-			templateUrl: 'modules/users/views/password/forgot-password.client.view.html'
-		}).
-		state('page.reset-invalid', {
-			url: '/password/reset/invalid',
-			templateUrl: 'modules/users/views/password/reset-password-invalid.client.view.html'
-		}).
-		state('page.reset-success', {
-			url: '/password/reset/success',
-			templateUrl: 'modules/users/views/password/reset-password-success.client.view.html'
-		}).
-		state('page.reset', {
-			url: '/password/reset/:token',
-			templateUrl: 'modules/users/views/password/reset-password.client.view.html'
-		}).
-		state('app.password', {
-			url: '/settings/password',
-			templateUrl: 'modules/users/views/settings/change-password.client.view.html'
-		}).
-		state('app.profile', {
-			url: '/settings/profile',
-			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
-		}).
-		state('app.accounts', {
-			url: '/settings/accounts',
-			templateUrl: 'modules/users/views/settings/social-accounts.client.view.html'
-		});
-	}
-]);
-'use strict';
-
-angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication',
-	function($scope, $http, $location, Authentication) {
-		$scope.authentication = Authentication;
-
-		// If user is signed in then redirect back home
-		if ($scope.authentication.user) $location.path('/');
-
-		$scope.signup = function() {
-			$http.post('/auth/signup', $scope.credentials).success(function(response) {
-				// If successful we assign the response to the global user model
-				$scope.authentication.user = response;
-
-				// And redirect to the index page
-				$location.path('/');
-			}).error(function(response) {
-				$scope.error = response.message;
-			});
-		};
-
-		$scope.signin = function() {
-			$http.post('/auth/signin', $scope.credentials).success(function(response) {
-				// If successful we assign the response to the global user model
-				$scope.authentication.user = response;
-
-				// And redirect to the index page
-				$location.path('/');
-			}).error(function(response) {
-				$scope.error = response.message;
-			});
-		};
-	}
-]);
-'use strict';
-
-angular.module('users').controller('PasswordController', ['$scope', '$stateParams', '$http', '$location', 'Authentication',
-	function($scope, $stateParams, $http, $location, Authentication) {
-		$scope.authentication = Authentication;
-
-		//If user is signed in then redirect back home
-		if ($scope.authentication.user) $location.path('/');
-
-		// Submit forgotten password account id
-		$scope.askForPasswordReset = function() {
-			$scope.success = $scope.error = null;
-
-			$http.post('/auth/forgot', $scope.credentials).success(function(response) {
-				// Show user success message and clear form
-				$scope.credentials = null;
-				$scope.success = response.message;
-
-			}).error(function(response) {
-				// Show user error message and clear form
-				$scope.credentials = null;
-				$scope.error = response.message;
-			});
-		};
-
-		// Change user password
-		$scope.resetUserPassword = function() {
-			$scope.success = $scope.error = null;
-
-			$http.post('/auth/reset/' + $stateParams.token, $scope.passwordDetails).success(function(response) {
-				// If successful show success message and clear form
-				$scope.passwordDetails = null;
-
-				// Attach user profile
-				Authentication.user = response;
-
-				// And redirect to the index page
-				$location.path('/password/reset/success');
-			}).error(function(response) {
-				$scope.error = response.message;
-			});
-		};
-	}
-]);
-'use strict';
-
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
-		$scope.user = Authentication.user;
-
-		// If user is not signed in then redirect back home
-		if (!$scope.user) $location.path('/');
-
-		// Check if there are additional accounts 
-		$scope.hasConnectedAdditionalSocialAccounts = function(provider) {
-			for (var i in $scope.user.additionalProvidersData) {
-				return true;
-			}
-
-			return false;
-		};
-
-		// Check if provider is already in use with current user
-		$scope.isConnectedSocialAccount = function(provider) {
-			return $scope.user.provider === provider || ($scope.user.additionalProvidersData && $scope.user.additionalProvidersData[provider]);
-		};
-
-		// Remove a user social account
-		$scope.removeUserSocialAccount = function(provider) {
-			$scope.success = $scope.error = null;
-
-			$http.delete('/users/accounts', {
-				params: {
-					provider: provider
-				}
-			}).success(function(response) {
-				// If successful show success message and clear form
-				$scope.success = true;
-				$scope.user = Authentication.user = response;
-			}).error(function(response) {
-				$scope.error = response.message;
-			});
-		};
-
-		// Update a user profile
-		$scope.updateUserProfile = function(isValid) {
-			if (isValid) {
-				$scope.success = $scope.error = null;
-				var user = new Users($scope.user);
-
-				user.$update(function(response) {
-					$scope.success = true;
-					Authentication.user = response;
-				}, function(response) {
-					$scope.error = response.data.message;
-				});
-			} else {
-				$scope.submitted = true;
-			}
-		};
-
-		// Change user password
-		$scope.changeUserPassword = function() {
-			$scope.success = $scope.error = null;
-
-			$http.post('/users/password', $scope.passwordDetails).success(function(response) {
-				// If successful show success message and clear form
-				$scope.success = true;
-				$scope.passwordDetails = null;
-			}).error(function(response) {
-				$scope.error = response.message;
-			});
-		};
-	}
-]);
-'use strict';
-
-// Authentication service for user variables
-angular.module('users').factory('Authentication', [
-	function() {
-		var _this = this;
-
-		_this._data = {
-			user: window.user
-		};
-
-		return _this._data;
-	}
-]);
-'use strict';
-
-// Users service used for communicating with the users REST endpoint
-angular.module('users').factory('Users', ['$resource',
-	function($resource) {
-		return $resource('users', {}, {
-			update: {
-				method: 'PUT'
-			}
-		});
-	}
-]);
 /**=========================================================
  * Module: animate-enabled.js
  * Enable or disables ngAnimate for element with directive
