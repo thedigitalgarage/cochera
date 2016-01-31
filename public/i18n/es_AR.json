@@ -1,0 +1,16 @@
+{
+  "dashboard": {
+    "WELCOME": "Bienvenido a {{appName}}"
+  },
+  "topbar": {
+    "search": {
+      "PLACEHOLDER": "Escribe y presiona enter.."
+    },
+    "notification": {
+      "MORE": "Mas notificaciones"
+    }
+  },
+  "sidebar": {
+    "WELCOME": "Bienvenido"
+  }
+}

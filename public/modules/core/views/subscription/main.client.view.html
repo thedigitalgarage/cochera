@@ -1,0 +1,307 @@
+<h3>
+   Subscription
+   <small></small>
+</h3>
+<section class="row subscriptionView" ng-hide="page_loading">
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Customer Information
+                    <a ui-sref="app.subCusInfo_edit" class="pull-right h6">
+                        <i class="fa fa-pencil"></i> 
+                        <span>Edit</span>
+                    </a>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div class="row form-horizontal">
+                    <div class="col-sm-6 col-lg-5">
+                        <div class="row">
+                            <label class="col-sm-5 control-label">Name</label>
+                            <div class="col-sm-7 form-control-static">
+                                {{customer.first_name + ' ' + customer.last_name}}
+                            </div>
+                        </div>
+                       
+                        <div class="row">
+                            <label class="col-sm-5 control-label">Email</label>
+                            <div class="col-sm-7 form-control-static">
+                                {{customer.email}}
+                            </div>
+                        </div> 
+                    </div> 
+                    <div class="col-sm-6 col-lg-5">
+                        <div class="row">
+                            <label class="col-sm-5 control-label">Organization</label>
+                            <div class="col-sm-7 form-control-static">
+                                {{customer.company}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-5 control-label">Phone</label>
+                            <div class="col-sm-7 form-control-static">
+                                {{customer.phone}}
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- END panel-->
+    </div>
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Payment Details
+                    <a class="pull-right h6" ng-click="changePaymentMethod()">
+                        <i class="fa fa-pencil"></i> 
+                        <span ng-if="!customer.payment_method">Add</span>
+                        <span ng-if="customer.payment_method">Update</span>
+                    </a>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div class="text-center" ng-if="!customer.payment_method">
+                    <p class="alert alert-info">
+                        <i class="fa fa-info-circle"></i>
+                        Please add your payment details
+                    </p>
+                </div>
+                <div class="row form-horizontal" ng-if="customer.payment_method">
+                    <div class="col-sm-6 col-lg-5" ng-if="customer.payment_method.type == 'card'">
+                        <div class="row">
+                            <label class="col-sm-5 control-label">Card holder name</label>
+                            <div class="col-sm-7 form-control-static">
+                                {{card.first_name + ' ' + card.last_name}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-5 control-label">Card type </label>
+                            <div class="col-sm-7 form-control-static">
+                                {{card.card_type}}
+                            </div>
+                        </div> 
+                    </div> 
+                    <div class="col-sm-6 col-lg-5">
+                        <div class="row">
+                            <label class="col-sm-5 control-label">Card no</label>
+                            <div class="col-sm-7 form-control-static">
+                                **** **** **** {{card.last4}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-5 control-label"> Expiry</label>
+                            <div class="col-sm-7 form-control-static">
+                                {{card.expiry_month + '/' + card.expiry_year}}
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col-sm-6 col-lg-5" ng-if="customer.payment_method.type != 'card'">
+                        <div class="row">
+                            <label class="col-sm-5 control-label">Payment Method</label>
+                            <div class="col-sm-7 form-control-static">
+                                <span ng-if="customer.payment_method.type == 'amazon_payments'">Amazon Payments</span>
+                                <span ng-if="customer.payment_method.type == 'paypal_express_checkout'">PayPal Express Checkout</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-5 control-label"> Billing Agreement Id</label>
+                            <div class="col-sm-7 form-control-static">
+                                {{card.payment_method.reference_id}}
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- END panel-->
+    </div>
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Billing Address 
+                    <a ui-sref="app.subBillingInfo" class="pull-right h6">
+                        <i class="fa fa-pencil"></i> 
+                        <span ng-if="!customer.billing_address">Add</span>
+                        <span ng-if="customer.billing_address">Edit</span>
+                    </a>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div class="text-center" ng-if="!customer.billing_address">
+                    <p class="alert alert-info">
+                        <i class="fa fa-info-circle"></i>
+                        Please add your billing address
+                    </p>
+                </div>
+                <div class="col-sm-12" ng-if="customer.billing_address">
+                    <span ng-if="customer.billing_address.first_name">{{customer.billing_address.first_name}}</span>
+                    <span ng-if="customer.billing_address.last_name">{{customer.billing_address.last_name}}<br></span>
+                    <span ng-if="customer.billing_address.line1">{{customer.billing_address.line1}}<br></span>
+                    <span ng-if="customer.billing_address.line2">{{customer.billing_address.line2}}<br></span>
+                    <span ng-if="customer.billing_address.city">{{customer.billing_address.city}}<br></span>
+                    <span ng-if="customer.billing_address.state">{{customer.billing_address.state}}<br></span>
+                    <span ng-if="customer.billing_address.country">{{customer.billing_address.country | isoCountry}}<br></span>
+                    <span ng-if="customer.billing_address.zip">{{customer.billing_address.zip}}</span><br>
+                </div>
+            </div>
+        </div>
+      <!-- END panel-->
+    </div>
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Subscription Details
+                    <span class="label" ng-class="getStatusLabel(subscription.status)">
+                        <span class="hidden-xs">{{subscription.status}}</span>
+                   </span>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12" ng-if="estimate.line_items">
+                    <ul class="list-unstyled border-bottom-dashed">
+                        <li ng-repeat="li in estimate.line_items">
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <strong class="list-prefix">{{li.entity_type}}:</strong>&nbsp;&nbsp;
+                                    <span>{{li.description + " ( x " + li.quantity + ")" }}</span>
+                                </div>
+                                <div class="col-xs-4 text-right">
+                                    {{li.amount/100 | currency}}
+                                </div>
+                            </div>
+                        </li>
+                        <li class="row" ng-repeat="tax in estimate.taxes" ng-if="estimate.taxes">
+                            <div class="col-xs-8">
+                                <span class="cb-list-prefix">Tax:</span> 
+                                <strong> {{tax.description}} </strong>
+                            </div>
+                            <div class="col-xs-4 text-right">
+                                {{tax.amount/100 | currency}} 
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="text-right">
+                        Next Invoice Amount &nbsp;&nbsp;
+                        <span class="h2">
+                            {{estimate.amount/100 | currency}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- END panel-->
+    </div>
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Shipping Address
+                    <a ui-sref="app.subShippingAddress" class="pull-right h6">
+                        <i class="fa fa-pencil"></i> 
+                        <span ng-if="!address.object">Add</span>
+                        <span ng-if="address.object">Edit</span>
+                    </a>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div class="text-center" ng-if="!address.object">
+                    <p class="alert alert-info">
+                        <i class="fa fa-info-circle"></i>
+                        Please add your shipping address
+                    </p>
+                </div>
+                <div class="col-sm-12" ng-if="address.object">
+                    <span ng-if="address.first_name">{{address.first_name}}</span>
+                    <span ng-if="address.last_name">{{address.last_name}}<br></span>
+                    <span ng-if="address.addr">{{address.addr}}<br></span>
+                    <span ng-if="address.extended_addr">{{address.extended_addr}}<br></span>
+                    <span ng-if="address.city">{{address.city}}<br></span>
+                    <span ng-if="address.state">{{address.state}}<br></span>
+                    <span ng-if="address.country">{{address.country | isoCountry}}<br></span>
+                    <span ng-if="address.zip">{{address.zip}}</span><br>
+                </div>
+            </div>
+        </div>
+      <!-- END panel-->
+    </div>
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Account Summary</h4>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <p>
+                        <span class="text-muted">Subscription created at </span>
+                        {{subscription.created_at*1000 | date:'MM/dd/yyyy'}}
+                    </p>
+                    <foo ng-if="subscription.status=='in_trial'">
+                        <p>
+                            <span class="text-muted">Trial period is between </span>
+                            {{subscription.trial_start*1000 | date:'MM/dd/yyyy'}}
+                            <span class="text-muted"> and</span>
+                            {{subscription.trial_end*1000 | date:'MM/dd/yyyy'}}
+                        </p>
+                        <p>
+                            <span class="text-muted">The subscription will be changed to active state from </span>
+                            {{subscription.trial_end*1000 | date:'MM/dd/yyyy'}}
+                        </p>
+                    </foo>
+                    <foo ng-if="subscription.status=='cancelled'">
+                        <p>
+                            <span class="text-muted">Your subscription has been canceled on </span>
+                            {{subscription.cancelled_at*1000 | date:'MM/dd/yyyy'}}
+                        </p>
+                    </foo>
+                    <foo ng-if="subscription.status=='active'">
+                        <p>
+                            <span class="text-muted">The current term of your subscription is between </span>
+                            {{subscription.current_term_start*1000 | date:'MM/dd/yyyy'}}
+                            <span class="text-muted"> and</span> 
+                            {{subscription.current_term_end*1000 | date:'MM/dd/yyyy'}}
+                        </p>
+                        <p><span class="text-muted">Your next billing date is </span> 
+                            {{subscription.current_term_end*1000 | date:'MM/dd/yyyy'}}
+                        </p>
+                    </foo>
+                    <foo ng-if="subscription.status=='non_renewing'">
+                        <p>
+                            <span class="text-muted">The subscription will be canceled on next renewal </span>
+                            {{subscription.current_term_end*1000 | date:'MM/dd/yyyy'}}
+                        </p>
+                    </foo>
+                    <foo ng-if="subscription.status=='future'">
+                        <p>
+                            <span class="text-muted">The subscription will start at </span>
+                            {{subscription.start_date*1000 | date:'MM/dd/yyyy'}}
+                        </p>
+                    </foo>
+                </div>
+                <div class="text-right">
+                    <span ng-if="subscription.status=='cancelled'">
+                        <a ui-sref="app.subReactivate" class="text-primary">Re-activate</a>
+                    </span>
+                    <span ng-if="subscription.status=='non_renewing'">
+                        <a ui-sref="app.subReactivate" class="text-primary">Re-activate</a>
+                        / <a ui-sref="app.subCancel({next_renewal: false})" class="text-danger">Cancel</a>
+                    </span>
+                    <span ng-if="subscription.status=='in_trial' || subscription.status=='future'">
+                        <a ui-sref="app.subCancel({next_renewal: false})" class="text-danger">Cancel</a>
+                    </span>
+                    <span ng-if="subscription.status=='active'">
+                        <a ui-sref="app.subCancel({next_renewal: true})" class="text-danger">Cancel</a>
+                    </span>
+                     this Subscription.
+                </div>
+            </div>
+        </div>
+      <!-- END panel-->
+    </div>
+</section>
+<section class="row subscriptionView" ng-show="page_loading">
+    <div class="col-lg-10">
+        <div class="text-center h4 cb-empty-space">
+            Loading...
+        </div>
+    </div>
+</section>

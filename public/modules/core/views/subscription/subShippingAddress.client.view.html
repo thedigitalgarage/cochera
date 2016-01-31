@@ -1,0 +1,101 @@
+<h3>
+   <a ui-sref="app.subscription">Subscription</a>
+   <small>Shipping Address</small>
+</h3>
+<section class="row subscriptionView">
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Shipping Address</h4>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <form name="form" novalidate>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="shipping_address[first_name]">First Name</label>
+                                    <small for="shipping_address[first_name]" class="pull-right text-danger">&nbsp;</small>
+                                    <input type="text" class="form-control" name="shipping_address[first_name]" placeholder="Enter your first name" ng-model="address.first_name" maxlength=50 required />
+                                </div>
+                                
+                             </div>
+                             <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="shipping_address[last_name]">Last Name</label>
+                                    <small for="shipping_address[last_name]" class="pull-right text-danger">&nbsp;</small>
+                                    <input type="text" class="form-control" name="shipping_address[last_name]" placeholder="Enter your last name" ng-model="address.last_name" maxlength=50 required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="shipping_address[line1]">Address Line 1</label>
+                                    <small for="shipping_address[line1]" class="pull-right text-danger">&nbsp;</small>
+                                    <input type="text" name="shipping_address[line1]" class="form-control" placeholder="Enter your address line 1" ng-model="address.addr" maxlength=50 required />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="shipping_address[line2]">Address Line2</label>
+                                    <small for="shipping_address[line2]"class="pull-right text-danger">&nbsp;</small>
+                                    <input type="text" name="shipping_address[line2]" class="form-control" placeholder="Enter your address line 2" ng-model="address.extended_addr" maxlength=50 required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="shipping_address[city]">City</label>
+                                    <small for="shipping_address[city]" class="pull-right text-danger">&nbsp;</small>
+                                    <input type="text" name="shipping_address[city]" class="form-control" placeholder="Enter your city" 
+                                           ng-model="address.city" maxlength=50 />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="shipping_address[state]" >State</label>
+                                    <small for="shipping_address[state]"class="pull-right text-danger">&nbsp;</small>
+                                    <input type="text" name="shipping_address[state]"class="form-control" placeholder="Enter your state" 
+                                           ng-model="address.state" maxlength=50 required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="shipping_address[zip]" >Pincode</label>
+                                    <small for="shipping_address[zip]" class="pull-right text-danger">&nbsp;</small>
+                                    <input type="text" name="shipping_address[zip]" class="form-control" placeholder="Enter your zip" 
+                                           ng-model="address.zip" maxlength=20 required />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="shipping_address[country]">Country</label>
+                                    <small for="shipping_address[country]" class="pull-right text-danger">&nbsp;</small>
+                                    <select class="form-control" name="shipping_address[country]" placeholder="true" ng-model="address.country" required>
+                                        <option ng-repeat="(key,val) in countries" value="{{key}}">{{val}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="clearfix">
+                        <div class="form-inline">
+                            <span class="form-group">
+                                <button type="button" class="btn btn-sm btn-primary" ng-click="changeShippingAddress()">
+                                    <i class="fa fa-spinner fa-pulse" ng-show="loading"></i> Update Address
+                                </button>
+                            </span>
+                            <span class="form-group">
+                                <a ui-sref="app.subscription" class="btn btn-sm btn-link">Cancel</a>
+                            </span>
+                        </div>
+                    </form>
+                </div>   
+            </div>
+        </div>
+      <!-- END panel-->
+    </div>
+</section>

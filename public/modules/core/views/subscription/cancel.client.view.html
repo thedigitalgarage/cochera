@@ -1,0 +1,55 @@
+<h3>
+   <a ui-sref="app.subscription">Subscription</a>
+   <small>Cancel Subscription</small>
+</h3>
+<section class="row subscriptionView">
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Cancel Subscription</h4>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <form name="form">
+                        <p>We're sorry to lose you as a customer.</p>
+                        <p>When do you want to cancel your subscription?</p>
+                        <div class="radio-group">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="cancel_status" value="false" ng-model="cancel_param.end_of_term"/>
+                                    <span class="text-muted">Cancel Immediately</span>
+                                </label>
+                            </div>
+                            <div class="radio" ng-if="cancel_param.next_renewal">
+                                <label>
+                                    <input type="radio" name="cancel_status" value="true" ng-model="cancel_param.end_of_term"/>
+                                    <span class="text-muted">Cancel on next renewal</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="alert alert-warning">
+                            <i class="fa fa-warning fa-sign"></i>
+                            <span class="cancel-immediately" ng-if="cancel_param.end_of_term=='false'">
+                                Your subscription will be canceled right away!
+                            </span>
+                            <span class="cancel-on-next-renewal" ng-if="cancel_param.end_of_term=='true'">
+                                Your subscription will be canceled at the end of your current billing period.
+                            </span>
+                        </div>
+                        <div class="form-inline">
+                            <span class="form-group">
+                                <button type="button"class="btn btn-danger btn-sm" ng-click="cancelSub()">
+                                    <i class="fa fa-spinner fa-pulse" ng-show="loading"></i> Cancel My Subscription
+                                </button>
+                            </span>
+                            <span class="form-inline">
+                                <a ui-sref="app.subscription" class="btn btn-link btn-sm">Go back</a>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      <!-- END panel-->
+    </div>
+</section>

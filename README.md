@@ -2,7 +2,7 @@
 
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a MEAN.JS application:
-* Mean.js - Go through [Mean.js Official Website](http://meanjs.org/) and proceed to their [Documentation](http://meanjs.org/docs.html), which should help you understand Mean.js better.
+* Mean.JS - Go through [Mean.JS Official Website](http://meanjs.org/) and proceed to their [Documentation](http://meanjs.org/docs.html), which should help you understand Mean.js better.
 * Chargeebee - Go through [Chargebee Official Website](https://www.chargebee.com/) and proceed to [DEVELOPER CENTER](https://www.chargebee.com/developers/), which should help you understand about Chargeebee and APIs.
 * Sharp Vision Template - [wrapbootstrap.com](https://wrapbootstrap.com/theme/sharp-vision-angularjs-business-theme-WB0T6N6X9).
 * Angle Template - [wrapbootstrap.com](https://wrapbootstrap.com/theme/angle-bootstrap-admin-template-WB04HF123).
@@ -55,10 +55,10 @@ Of course before that, you must have an acount and the Test site(Live site) on [
 If you are new on Charegebee, you could visit [Chargebee Official Website](https://www.chargebee.com/), create an acount and get Test/Live site.
 
 With Signin, You should choose a domain for your business(chargebeeSite).
-After Signin, go to `Setting /API & WEBHOOKS /API Keys`. You could find the API Key named `full_access_key_v1`.
+After Signin, go to `Setting` /`API & WEBHOOKS` /`API Keys`. You could find the API Key named `full_access_key_v1`.
 
 And then, you must add Redirect URL and Cancel URL for Payment Method Page on Chargebee.
-Go to `Setting /HOSTED PAGES SETTINGS /Payment Method Page`.
+Go to `Setting` /`HOSTED PAGES SETTINGS` /`Payment Method Page`.
 You could set Redirect URL and Cancel URL there. For instance, `http://localhost:8080/#/account/subscription`.
 Change `http://localhost:8080/` to your site's domain there.
 

@@ -1,0 +1,207 @@
+/*!
+ * 
+ * The Digital Garage
+ * 
+ * Version: 1.0.0
+ * Author: David Dimas
+ * License: The Digital Garage
+ * 
+ */
+
+.form{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+.content-wrapper h3 a{
+	color: #929292;
+}
+.content-wrapper h3 a:hover,
+.content-wrapper h3 a:focus{
+	color: #656565;
+	text-decoration: none;
+}
+.font14{
+	font-size: 14px !important;
+}
+.font20{
+	font-size: 20px !important;
+}
+
+.padding-top-10{
+	padding-top: 10px !important;
+}
+.padding-top-20{
+	padding-top: 20px !important;
+}
+.padding-left-20{
+	padding-left: 20px !important;
+}
+.margin-left-10{
+	margin-left: 10px !important;
+}
+
+.nav-tabs > li.active > a{
+	border: 1px solid #DDE6E9 !important;
+	border-bottom-color: #FFF !important;
+	border-top: 2px solid #006DCC !important;
+}
+.nav-tabs > li.active:hover > a{
+	border-bottom-color: #FFF !important;
+}
+.nav-tabs > li:hover > a{
+	border: 1px solid #DDE6E9 !important;
+	border-top: 2px solid #006DCC !important;
+}
+.nav-tabs > li > a{
+	background: transparent !important;
+	border: 0px none !important;
+}
+
+.labelinput label{
+	position: absolute;
+	top: 1px;
+	left: 27px;
+	font-weight: normal;
+	font-size: 12px;
+	color: #888;
+}
+.labelinput input{
+	padding: 17px 12px 3px;
+	height: 40px;
+}
+
+.control-label{
+	color: #A0A0A0;
+	font-weight: normal;
+}
+
+.text-center .alert {
+    display: inline-block;
+}
+.alert {
+    background-color: transparent !important;
+    border-style: dashed !important;
+    padding: 15px !important;
+}
+.alert-info {
+    border-color: #BCE8F1 !important;
+    color: #31708F !important;
+}
+.alert-warning {
+    border-color: #FAEBCC !important;
+    color: #8A6D3B !important;
+}
+.alert i + span {
+    margin-left: 10px;
+}
+.alert span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.alert .fa-sign {
+    font-size: 20px;
+}
+
+h4 .label{
+	font-size: 10px;
+	display: inline-block;
+	font-family: sans-serif;
+	min-height: 12px;
+}
+hr.dashed {
+    border-style: dashed !important;
+    margin-bottom: 5px !important;
+}
+
+.border-bottom-dashed {
+    border-bottom: 1px dashed #DADADA !important;
+}
+
+.label-default {
+    background-color: #DEA928 !important;
+}
+.label-warning {
+    background-color: #575F77 !important;
+}
+.label-success {
+    background-color: #68AC23 !important;
+}
+.label-danger {
+    background-color: #CC3434 !important;
+}
+.label-primary {
+    background-color: #91388C !important;
+}
+
+.text-danger {
+    color: #A94442 !important;
+}
+.text-primary {
+    color: #428BCA !important;
+}
+.text-success {
+    color: #3C763D !important;
+}
+.text-warning {
+    color: #8A6D3B !important;
+}
+.text-info {
+    color: #31708F !important;
+}
+
+.list-prefix{
+	text-transform: capitalize;
+}
+
+
+/*----------------------*/
+/*-----Profile Page-----*/
+/*----------------------*/
+.profileView .well h3{
+	font-weight: normal;
+}
+.profileView .well p{
+	margin-bottom: 5px;
+}
+.profileView .well img.userimg{
+	width: 60px;
+	height: 60px;
+	border-radius: 50% !important;
+	margin-top: 15px;
+}
+/*----------------------*/
+/*-----Billing Page-----*/
+/*----------------------*/
+.subscriptionView .panel .panel-heading{
+	padding-bottom: 0px;
+}
+.subscriptionView .panel .panel-heading h4 {
+    font-family: Cambria,"Hoefler Text","Liberation Serif",Times,"Times New Roman",serif;
+    font-size: 20px;
+    border-bottom: 1px solid #EBEBEB;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    color: #656565;
+}
+.subscriptionView .panel .panel-heading h4 > a {
+    margin-top: 5px;
+    color: #428BCA;
+    float: right;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+.subscriptionView .panel .panel-body select option{
+	padding: 0px 16px;
+}
+
+.invoiceView table > tbody > tr > th {
+    background: #EEE;
+    font-weight: bold;
+}
+
+.invoiceView table > tbody > tr > td,
+.invoiceView table > tbody > tr > th {
+    border:none;
+	border-bottom:1px solid #EBEBEB;
+}
