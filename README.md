@@ -39,7 +39,7 @@ This command does a few things:
 * Finally, when the install process is over, npm will initiate a bower install command to install all the front-end modules needed for the application
 
 ### Change/Set some enviroment variables
-You could change some enviroment variable like port, your site's name and site's API Key related to Chargebee.
+You could change some enviroment variables like port, your site's name and site's API Key related to Chargebee.
 You could find the following codes in `gruntfile.js` easily.
 
 ```
@@ -49,13 +49,13 @@ You could find the following codes in `gruntfile.js` easily.
 162    	  chargebeeAPIKey: 'test_Htlw6DLaXvBDjwSsGFm706mX2awaV63cd'
 163    },
 ```
-Use the chargebee.configure to configure your site and your API key. It is a global configuration and can be setup as part of your server initialization
+Use the `chargebee.configure` to configure your site and your API key. It is a global configuration and can be setup as part of your server initialization
 Of course before that, you must have an account and Test site(Live site) on [Chargebee](https://www.chargebee.com/).
 
 If you are new on Charegebee, you could visit [Chargebee Official Website](https://www.chargebee.com/), create an account and get Test/Live site.
 
-With Signin, You should choose a domain for your business(chargebeeSite).
-After Signin, go to `Setting` / `API & WEBHOOKS` / `API Keys`. You could find the API Key named `full_access_key_v1`.
+During SignUp process, You should choose a domain for your business(chargebeeSite).
+After SignUp/SignIn, go to `Setting` / `API & WEBHOOKS` / `API Keys`. You could find the API Key named `full_access_key_v1`.
 
 And then, you must add Redirect URL and Cancel URL for Payment Method Page on Chargebee.
 Go to `Setting` / `HOSTED PAGES SETTINGS` / `Payment Method Page`.
