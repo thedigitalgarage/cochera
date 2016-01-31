@@ -1,17 +1,15 @@
-[![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
+# Tenant Management System (The Digital Garage)
 
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a MEAN.JS application:
-* MongoDB - Go through [MongoDB Official Website](http://mongodb.org/) and proceed to their [Official Manual](http://docs.mongodb.org/manual/), which should help you understand NoSQL and MongoDB better.
-* Express - The best way to understand express is through its [Official Website](http://expressjs.com/), which has a [Getting Started](http://expressjs.com/starter/installing.html) guide, as well as an [ExpressJS Guide](http://expressjs.com/guide/error-handling.html) guide for general express topics. You can also go through this [StackOverflow Thread](http://stackoverflow.com/questions/8144214/learning-express-for-node-js) for more resources.
-* AngularJS - Angular's [Official Website](http://angularjs.org/) is a great starting point. You can also use [Thinkster Popular Guide](http://www.thinkster.io/), and the [Egghead Videos](https://egghead.io/).
-* Node.js - Start by going through [Node.js Official Website](http://nodejs.org/) and this [StackOverflow Thread](http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js), which should get you going with the Node.js platform in no time.
-* Sharp Vision Template - See [wrapbootstrap.com](https://wrapbootstrap.com/theme/sharp-vision-angularjs-business-theme-WB0T6N6X9).
+* Mean.js - Go through [Mean.js Official Website](http://meanjs.org/) and proceed to their [Documentation](http://meanjs.org/docs.html), which should help you understand Mean.js better.
+* Chargeebee - Go through [Chargebee Official Website](https://www.chargebee.com/) and proceed to [DEVELOPER CENTER](https://www.chargebee.com/developers/), which should help you understand about Chargeebee and APIs.
+* Sharp Vision Template - [wrapbootstrap.com](https://wrapbootstrap.com/theme/sharp-vision-angularjs-business-theme-WB0T6N6X9).
+* Angle Template - [wrapbootstrap.com](https://wrapbootstrap.com/theme/angle-bootstrap-admin-template-WB04HF123).
 
 ## Prerequisites
 Make sure you have installed all of the following prerequisites on your development machine:
 * Node.js - [Download & Install Node.js](http://www.nodejs.org/download/) and the npm package manager. If you encounter any problems, you can also use this [GitHub Gist](https://gist.github.com/isaacs/579814) to install Node.js.
-* MongoDB - [Download & Install MongoDB](http://www.mongodb.org/downloads), and make sure it's running on the default port (27017).
 * Bower - You're going to use the [Bower Package Manager](http://bower.io/) to manage your front-end packages. Make sure you've installed Node.js and npm first, then install bower globally using npm:
 
 ```bash
@@ -40,14 +38,43 @@ This command does a few things:
 * If you're running in a development environment, it will then also install development dependencies needed for testing and running your application.
 * Finally, when the install process is over, npm will initiate a bower install command to install all the front-end modules needed for the application
 
+### Change/Set some enviroment variable
+You could change some enviroment variable like port, your site's name and your site's API key related to Chargebee.
+You could find some codes in `gruntfile.js` easily.
+
+```
+159    default: {
+160    	  PORT: 8080,
+161    	  chargebeeSite: 'tenant-test',
+162    	  chargebeeAPIKey: 'test_Htlw6DLaXvBDjwSsGFm706mX2awaV63cd'
+163    },
+```
+Use the chargebee.configure to configure your site and your API key. It is a global configuration and can be setup as part of your server initialization
+Of course before that, you must have an acount and the Test site(Live site) on [Chargebee](https://www.chargebee.com/).
+
+If you are new on Charegebee, you could visit [Chargebee Official Website](https://www.chargebee.com/), create an acount and get Test/Live site.
+
+With Signin, You should choose a domain for your business(chargebeeSite).
+After Signin, go to `Setting /API & WEBHOOKS /API Keys`. You could find the API Key named `full_access_key_v1`.
+
+And then, you must add Redirect URL and Cancel URL for Payment Method Page on Chargebee.
+Go to `Setting /HOSTED PAGES SETTINGS /Payment Method Page`.
+You could set Redirect URL and Cancel URL there. For instance, `http://localhost:8080/#/account/subscription`.
+Change `http://localhost:8080/` to your site's domain there.
+
+As Chargebee allows only 443, 80, 8443, 8080 ports, you must set PORT value with one of these values.
+Intially, MEAN.JS application provide us PORT 3000, but we cann't use this Value as of that reason.
+
 ## Running Your Application
+
+### Running in Development mode
 After the install process is over, you'll be able to run your application using Grunt, just run grunt default task:
 
 ```
 $ grunt
 ```
 
-Your application should run on port 3000 with the *development* environment configuration, so in your browser just go to [http://localhost:3000](http://localhost:3000)
+Your application should run on port 8080 with the *development* environment configuration, so in your browser just go to [http://localhost:8080](http://localhost:8080)
 
 That's it! Your application should be running. To proceed with your development, check the other sections in this documentation.
 If you encounter any problems, try the Troubleshooting section.
@@ -113,13 +140,13 @@ $ docker-compose up
 ```bash
 $ docker build -t mean .
 $ docker run -p 27017:27017 -d --name db mongo
-$ docker run -p 3000:3000 --link db:db_1 mean
+$ docker run -p 8080:8080 --link db:db_1 mean
 $
 ```
 
 * To enable live reload, forward port 35729 and mount /app and /public as volumes:
 ```bash
-$ docker run -p 3000:3000 -p 35729:35729 -v /Users/mdl/workspace/mean-stack/mean/public:/home/mean/public -v /Users/mdl/workspace/mean-stack/mean/app:/home/mean/app --link db:db_1 mean
+$ docker run -p 8080:8080 -p 35729:35729 -v /Users/mdl/workspace/mean-stack/mean/public:/home/mean/public -v /Users/mdl/workspace/mean-stack/mean/app:/home/mean/app --link db:db_1 mean
 ```
 
 ## License
