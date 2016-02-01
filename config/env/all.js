@@ -73,7 +73,7 @@ module.exports = {
 			]
 		},
 		css: [
-			'public/modules/**/css/*.css',
+		//	'public/modules/**/css/*.css',
 			'public/dist/application.min.css'
 		],
 		js: [

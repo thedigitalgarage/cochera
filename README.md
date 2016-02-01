@@ -55,15 +55,15 @@ Of course before that, you must have an account and Test site(Live site) on [Cha
 If you are new on Charegebee, you could visit [Chargebee Official Website](https://www.chargebee.com/), create an account and get Test/Live site.
 
 During SignUp process, You should choose a domain for your business(chargebeeSite).
-After SignUp/SignIn, go to `Setting` / `API & WEBHOOKS` / `API Keys`. You could find the API Key named `full_access_key_v1`.
+After SignUp/SignIn, go to `Setting/API & WEBHOOKS/API Keys`. You could find the API Key named `full_access_key_v1`.
 
 And then, you must add Redirect URL and Cancel URL for Payment Method Page on Chargebee.
-Go to `Setting` / `HOSTED PAGES SETTINGS` / `Payment Method Page`.
+Go to `Setting/HOSTED PAGES SETTINGS/Payment Method Page`.
 You could set Redirect URL and Cancel URL there. For instance, `http://localhost:8080/#/account/subscription`.
 Change `http://localhost:8080/` to your site's domain there.
 
-As Chargebee allows only 443, 80, 8443, 8080 ports, you must set PORT value with one of these values.
-Intially, MEAN.JS application provide us PORT 3000, but we cann't use this Value as of that reason.
+As Chargebee allows only 443, 80, 8443, 8080 ports, you must set port value with one of these values.
+Intially, MEAN.JS application provide us port 3000, but we cann't use this value as of that reason.
 
 ## Running Your Application
 
