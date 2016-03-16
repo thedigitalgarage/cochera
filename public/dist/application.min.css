@@ -12899,7 +12899,7 @@ strong {
 }
 /*------------- Navbar Styles -------------*/
 .frontnav {
-  background: #000;
+  background: none;
 }
 .navbar {
   z-index: 99;
@@ -12972,7 +12972,7 @@ strong {
   text-shadow: none;
 }
 .navbar.flip {
-  background: #000;
+  background: #019125;
 }
 .navbar.flip li a {
   color: #FFF;
@@ -13097,6 +13097,7 @@ strong {
   font-size: 48px;
   font-weight: 300 !important;
   margin: 0px;
+  text-align: center;
 }
 .home .intro h2 {
   padding: 30px 8px 0 8px;
@@ -13104,7 +13105,8 @@ strong {
   font-size: 33px;
   line-height: 1;
   font-weight: 300 !important;
-  margin: 0px;
+  margin-top: 30px;
+  text-align: center;
 }
 @media (max-width: 1200px) {
   .home .intro h1 {
