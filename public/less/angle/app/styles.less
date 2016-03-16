@@ -385,7 +385,7 @@ strong {
   border: 2px solid #e5e5e5;
   background-image: none;
   text-shadow: none;
-  font-size: 14px !important;
+  font-size: 14px;
   color: #333333;
   cursor: pointer;
   outline: none;
@@ -668,6 +668,29 @@ strong {
 }
 .btn.btn-block {
   margin-bottom: 5px;
+}
+
+.btn-circle {
+  color: black;
+  width: 70px;
+  height: 70px;
+  margin-top: 15px;
+  padding: 7px 16px;
+  border-radius: 100%!important;
+  font-size: 35px !important;
+  -webkit-transition: background .3s ease-in-out;
+  -moz-transition: background .3s ease-in-out;
+  transition: background .3s ease-in-out;
+
+  &.bottom-center {
+    top: -7%;
+    left: ~"calc(50% - 35px)";
+    position: absolute;
+
+    @media @mobile-s {
+      top: -3%;
+    }
+  }
 }
 /* ---------- Portfolio Styles ----------- */
 /* Hover Effects */
