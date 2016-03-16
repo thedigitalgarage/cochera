@@ -6935,6 +6935,20 @@ now {
 .input-group .input-sm + .input-group-btn .btn {
   font-size: 13px;
 }
+.btn-circle {
+  width: 70px;
+  height: 70px;
+  margin-top: 15px;
+  padding: 7px 16px;
+  border: 2px solid #fff;
+  border-radius: 100%!important;
+  font-size: 40px;
+  color: #fff;
+  background: 0 0;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
+}
 .form-control {
   box-shadow: 0 0 0 #000 !important;
 }
@@ -12902,8 +12916,9 @@ strong {
   background: none;
 }
 .navbar {
-  z-index: 99;
   border: 0;
+  height: 55px;
+  z-index: 99;
 }
 .navbar.fixed-no-top {
   background: rgba(255, 255, 255, 0.9);
@@ -12916,7 +12931,6 @@ strong {
   font-size: 20px;
   color: #fff;
   text-shadow: none;
-  font-weight: 600;
   background: none;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -12950,7 +12964,6 @@ strong {
   color: #fff;
   text-shadow: none;
   padding: 15px 13px;
-  font-weight: 600;
   font-family: "Lato", sans-serif;
   background: none;
   -webkit-transition: all 0.5s ease-in-out;
