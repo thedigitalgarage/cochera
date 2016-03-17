@@ -698,7 +698,7 @@ strong {
   }
 
   &.top-center {
-    top: -19%;
+    top: -25%;
     left: ~"calc(50% - 35px)";
     position: absolute;
 
@@ -1287,6 +1287,11 @@ ul.pagination > li > span:hover {
   margin-bottom: 20px;
   width: 100%;
 }
+.circle-bordered {
+  border: 1px solid @green-600;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
 @media (max-width: 767px) {
   .content-panel,
   .content-panel-title {
@@ -1416,4 +1421,11 @@ footer .update {
 }
 .social > li a.social-youtube {
   background: url('../img/social/youtube.png');
+}
+img {
+  &.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+  }
 }
