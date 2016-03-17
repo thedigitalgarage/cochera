@@ -14130,6 +14130,12 @@ ul.pagination > li > span:hover {
   background: #fff;
   position: relative;
 }
+.pricing {
+  background-color: #43A047;
+  color: white;
+  z-index: 10;
+  position: relative;
+}
 .masonry {
   margin: 5px -5px -5px;
 }
