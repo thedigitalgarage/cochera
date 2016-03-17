@@ -115,7 +115,7 @@ strong {
   text-shadow: none;
 }
 .navbar.flip {
-  background: #019125;
+  background: @green-700;
   padding: 0;
   height: 55px;
 }
@@ -160,7 +160,9 @@ strong {
 }
 @media (max-width: 767px) {
   .navbar {
-    background: rgba(0, 0, 0, 0.9) !important;
+    &.flip{
+      background: @green-700 !important;
+    }
   }
   .navbar  li {
   	color: #fff !important;
@@ -689,12 +691,19 @@ strong {
   transition: background .3s ease-in-out;
 
   &.bottom-center {
-    top: -7%;
+    bottom: 4%;
+    left: ~"calc(50% - 35px)";
+    position: absolute;
+    z-index: 99999;
+  }
+
+  &.top-center {
+    top: -19%;
     left: ~"calc(50% - 35px)";
     position: absolute;
 
     @media @mobile-s {
-      top: -3%;
+      top: -9%;
     }
   }
 }

@@ -1,13 +1,13 @@
 @charset "UTF-8";
 /*!
- * 
+ *
  * Angle - Bootstrap Admin App + MeanJS
- * 
+ *
  * Version: 3.2.0
  * Author: @themicon_co
  * Website: http://themicon.co
  * License: https://wrapbootstrap.com/help/licenses
- * 
+ *
  */
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
@@ -7239,6 +7239,9 @@ body {
     -o-transition: -o-transform 0.3s ease;
     transition: transform 0.3s ease;
   }
+  .csstransforms3d .wrapper > section {
+    padding-top: 0;
+  }
   .csstransforms3d .wrapper > .aside {
     margin-left: 0;
     -webkit-transform: translate3d(-220px, 0, 0);
@@ -11624,7 +11627,7 @@ h3 > .breadcrumb.pull-right,
  ========================================================================== */
 /**
  * Custom form elements
- *    - Checkbox 
+ *    - Checkbox
  *    - Radios
  *    - Switch
  *    - Rounded inputs
@@ -12595,7 +12598,7 @@ label + .form-control + .parsley-errors-list + .form-control-feedback {
   max-width: 100%;
   min-width: 100%;
 }
-/** 
+/**
  * Displays hidden content on hover. Add this class to the parent element.
  * Markup
  *   <div class="hover-visible">
@@ -12975,7 +12978,7 @@ strong {
   text-shadow: none;
 }
 .navbar.flip {
-  background: #019125;
+  background: #388E3C;
   padding: 0;
   height: 55px;
 }
@@ -13019,8 +13022,8 @@ strong {
   }
 }
 @media (max-width: 767px) {
-  .navbar {
-    background: rgba(0, 0, 0, 0.9) !important;
+  .navbar.flip {
+    background: #388E3C !important;
   }
   .navbar li {
     color: #fff !important;
@@ -13548,13 +13551,19 @@ strong {
   transition: background 0.3s ease-in-out;
 }
 .btn-circle.bottom-center {
-  top: -7%;
+  bottom: 4%;
+  left: calc(50% - 35px);
+  position: absolute;
+  z-index: 99999;
+}
+.btn-circle.top-center {
+  top: -19%;
   left: calc(50% - 35px);
   position: absolute;
 }
 @media only screen and (max-width: 480px) {
-  .btn-circle.bottom-center {
-    top: -3%;
+  .btn-circle.top-center {
+    top: -9%;
   }
 }
 /* ---------- Portfolio Styles ----------- */
@@ -14320,13 +14329,13 @@ a:hover .header-profile-image {
   height: auto !important;
 }
 /*!
- * 
+ *
  * The Digital Garage
- * 
+ *
  * Version: 1.0.0
  * Author: David Dimas
  * License: The Digital Garage
- * 
+ *
  */
 .form {
   padding-left: 0px !important;
