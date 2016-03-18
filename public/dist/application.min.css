@@ -13332,8 +13332,8 @@ strong {
 .btn.green {
   color: white;
   text-shadow: none;
-  border-color: #00C618;
-  background-color: #00C618;
+  border-color: #43A047;
+  background-color: #43A047;
 }
 .btn.green:hover,
 .btn.green:focus,
@@ -13341,9 +13341,8 @@ strong {
 .btn.green.active,
 .btn.green.disabled,
 .btn.green[disabled] {
-  background: transparent;
-  border-color: #00C618;
-  color: #00C618 !important;
+  border-color: #43A047;
+  color: #43A047 !important;
 }
 .btn.purple {
   color: white;
@@ -14125,7 +14124,7 @@ ul.pagination > li > span:hover {
   }
 }
 .main {
-  padding: 20px 0 50px;
+  padding: 20px 0 30px;
   z-index: 10;
   background: #fff;
   position: relative;
@@ -14311,6 +14310,19 @@ img.center {
 }
 .fa-icon-container i.big {
   font-size: 90px !important;
+}
+#ACCOUNT h2 {
+  color: #43A047;
+}
+#ACCOUNT hr {
+  background-color: #43A047;
+}
+#ACCOUNT .row {
+  margin-top: 30px;
+}
+#ACCOUNT .row input,
+#ACCOUNT .row a {
+  margin: 5px 0 5px 0;
 }
 .content {
   min-height: 455px;
