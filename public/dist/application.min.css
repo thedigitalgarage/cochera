@@ -14321,17 +14321,17 @@ img.center {
 .fa-icon-container i.big {
   font-size: 90px !important;
 }
-#ACCOUNT h2 {
+#account h2 {
   color: #43A047;
 }
-#ACCOUNT hr {
+#account hr {
   background-color: #43A047;
 }
-#ACCOUNT .row {
+#account .row {
   margin-top: 30px;
 }
-#ACCOUNT .row input,
-#ACCOUNT .row a {
+#account .row input,
+#account .row a {
   margin: 5px 0 5px 0;
 }
 @media (max-width: 767px) {
