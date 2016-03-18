@@ -13332,8 +13332,8 @@ strong {
 .btn.green {
   color: white;
   text-shadow: none;
-  border-color: #43A047;
-  background-color: #43A047;
+  border-color: #388E3C;
+  background-color: #388E3C;
 }
 .btn.green:hover,
 .btn.green:focus,
@@ -14191,6 +14191,16 @@ footer {
 footer p {
   font-size: 14px;
 }
+footer ul {
+  padding: 0;
+}
+footer li {
+  font-size: 14px;
+  list-style-type: none;
+}
+footer li a {
+  color: darkgray;
+}
 footer .footer-content {
   padding: 20px 0;
   border-top: 1px solid #999999;
@@ -14199,7 +14209,7 @@ footer .footer-content {
 footer .footer-title {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  text-align: center;
+  text-align: left;
   margin: 10px;
   padding-bottom: 5px;
 }
@@ -14323,6 +14333,11 @@ img.center {
 #ACCOUNT .row input,
 #ACCOUNT .row a {
   margin: 5px 0 5px 0;
+}
+@media (max-width: 767px) {
+  .content {
+    padding-top: 0 !important;
+  }
 }
 .content {
   min-height: 455px;
