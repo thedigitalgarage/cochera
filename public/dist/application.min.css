@@ -9,18 +9,7 @@
  * License: https://wrapbootstrap.com/help/licenses
  *
  */
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic);
-@import url(http://fonts.googleapis.com/css?family=Lato:700,300,100);
-@font-face {
-  font-family: 'Roboto';
-  src: url('fonts/RobotoTTF/Roboto-Bold.ttf') format('truetype');
-  font-weight: bold;
-}
-@font-face {
-  font-family: 'Roboto';
-  src: url('fonts/RobotoTTF/Roboto-Regular.ttf') format('truetype');
-  font-weight: normal;
-}
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic);
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -28,7 +17,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -1094,7 +1083,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 1.52857143;
   color: #515253;
@@ -1544,7 +1533,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: 'Roboto', sans-serif;
 }
 code {
   padding: 2px 4px;
@@ -6033,7 +6022,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6151,7 +6140,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -12871,8 +12860,8 @@ html[xmlns] .slides {
   }
 }
 body {
-  /*  font-family: 'Lato', sans-serif;*/
   font-weight: 300;
+  font-family: 'Roboto', sans-serif;
 }
 p {
   font-size: 14px;
@@ -12964,7 +12953,7 @@ strong {
   color: #fff;
   text-shadow: none;
   padding: 15px 13px;
-  font-family: "Lato", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background: none;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -13642,7 +13631,7 @@ strong {
 /* ---------- Labels & Badges Styles ----------- */
 .label,
 .badge {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   color: #ffffff;
   -webkit-border-top-right-radius: 2px;
@@ -13669,7 +13658,7 @@ ul.pagination > li > span {
   background-color: #dcdcdc;
   border: 1px solid #dcdcdc;
   color: #fff;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -13686,7 +13675,7 @@ ul.pagination > li > span:hover {
   background-color: #dcdcdc;
   border: 1px solid #dcdcdc;
   color: #fff;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -13772,7 +13761,7 @@ ul.pagination > li > span:hover {
   width: 550px;
   padding: 20px 0;
   margin: 200px auto 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #ffffff;
 }
 .countdown .item {
@@ -14207,7 +14196,7 @@ footer .footer-content {
   min-height: 80px;
 }
 footer .footer-title {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   text-align: left;
   margin: 10px;
