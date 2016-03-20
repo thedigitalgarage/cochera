@@ -4,13 +4,14 @@ angular.module('app.home').controller('HeaderController', ['$window', '$rootScop
   function ($window, $rootScope, $scope, $state, ngProgressFactory, $modal) {
 
     $scope.brand = 'The Digital Garage';
+    $scope.brandSmall = 'Dg';
     $rootScope.loginStatus = false;
     $scope.isCollapsed = true;
     /* Remove Top ProgressBar
     $scope.progressbar = ngProgressFactory.createInstance();
     $scope.progressbar.setColor('#02bbff');
     $scope.progressbar.start();
-    $scope.$on('$routeChangeStart', function(next, current) { 
+    $scope.$on('$routeChangeStart', function(next, current) {
       $scope.isCollapsed = true;
       $scope.progressbar.start();
     });
@@ -54,7 +55,7 @@ angular.module('app.home').controller('HeaderController', ['$window', '$rootScop
   }
 ]);
 
-angular.module('app.home').controller('LoginController',['$scope', '$state', '$modalInstance', '$http', 'toastr', 'Auth', 
+angular.module('app.home').controller('LoginController',['$scope', '$state', '$modalInstance', '$http', 'toastr', 'Auth',
  function($scope, $state, $modalInstance, $http, toastr, Auth) {
     $scope.authInfo = {
         username : '',
