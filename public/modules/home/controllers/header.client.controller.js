@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('app.home').controller('HeaderController', ['$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal',
-  function ($window, $rootScope, $scope, $state, ngProgressFactory, $modal) {
+angular.module('app.home').controller('HeaderController', ['APP_BRAND', '$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal',
+  function (APP_BRAND, $window, $rootScope, $scope, $state, ngProgressFactory, $modal) {
 
-    $scope.brand = 'The Digital Garage';
-    $scope.brandSmall = 'Dg';
+    $scope.brand = APP_BRAND.BIG;
+    $scope.brandSmall = APP_BRAND.SMALL;
     $rootScope.loginStatus = false;
     $scope.isCollapsed = true;
     /* Remove Top ProgressBar

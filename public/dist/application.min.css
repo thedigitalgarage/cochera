@@ -12917,7 +12917,7 @@ strong {
   color: #000;
 }
 .navbar .navbar-brand {
-  font-size: 20px;
+  font-size: 30px;
   color: #fff;
   text-shadow: none;
   background: none;
@@ -13535,15 +13535,15 @@ strong {
 }
 .btn-circle {
   color: black;
-  width: 70px;
   height: 70px;
-  margin-top: 15px;
-  padding: 7px 16px;
   border-radius: 100%!important;
   font-size: 35px !important;
-  -webkit-transition: background 0.3s ease-in-out;
-  -moz-transition: background 0.3s ease-in-out;
+  margin-top: 15px;
+  padding: 7px 16px;
   transition: background 0.3s ease-in-out;
+  width: 70px;
+  -moz-transition: background 0.3s ease-in-out;
+  -webkit-transition: background 0.3s ease-in-out;
 }
 .btn-circle.bottom-center {
   bottom: 4%;
@@ -13552,9 +13552,9 @@ strong {
   z-index: 99999;
 }
 .btn-circle.top-center {
-  top: -25%;
   left: calc(50% - 35px);
   position: absolute;
+  top: -25%;
 }
 @media only screen and (max-width: 480px) {
   .btn-circle.top-center {
@@ -14121,8 +14121,8 @@ ul.pagination > li > span:hover {
 .pricing {
   background-color: #43A047;
   color: white;
-  z-index: 10;
   position: relative;
+  z-index: 10;
 }
 .masonry {
   margin: 5px -5px -5px;
@@ -14199,7 +14199,6 @@ footer .footer-title {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   text-align: left;
-  margin: 10px;
   padding-bottom: 5px;
 }
 footer .footer-input {

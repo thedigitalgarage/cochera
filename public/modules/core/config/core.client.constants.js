@@ -14,6 +14,10 @@
           'tablet':                 768,
           'mobile':                 480
         })
+        .constant('APP_BRAND', {
+            SMALL : 'Dg',
+            BIG : 'The Digital Garage'
+        })
       ;
 
 })();
