@@ -1,24 +1,23 @@
 @charset "UTF-8";
 /*!
- * 
+ *
  * Angle - Bootstrap Admin App + MeanJS
- * 
+ *
  * Version: 3.2.0
  * Author: @themicon_co
  * Website: http://themicon.co
  * License: https://wrapbootstrap.com/help/licenses
- * 
+ *
  */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic);
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic);
-@import url(http://fonts.googleapis.com/css?family=Lato:700,300,100);
 html {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -1084,7 +1083,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 1.52857143;
   color: #515253;
@@ -1534,7 +1533,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: 'Roboto', sans-serif;
 }
 code {
   padding: 2px 4px;
@@ -6023,7 +6022,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6141,7 +6140,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -12861,8 +12860,8 @@ html[xmlns] .slides {
   }
 }
 body {
-  /*  font-family: 'Lato', sans-serif;*/
   font-weight: 300;
+  font-family: 'Roboto', sans-serif;
 }
 p {
   font-size: 14px;
@@ -12899,11 +12898,16 @@ strong {
 }
 /*------------- Navbar Styles -------------*/
 .frontnav {
-  background: #000;
+  background: none;
 }
 .navbar {
-  z-index: 99;
   border: 0;
+  z-index: 99;
+  padding: 10px 0 10px 0;
+  -webkit-transition: all 0.7s ease-in-out;
+  -moz-transition: all 0.7s ease-in-out;
+  -o-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
 }
 .navbar.fixed-no-top {
   background: rgba(255, 255, 255, 0.9);
@@ -12913,10 +12917,9 @@ strong {
   color: #000;
 }
 .navbar .navbar-brand {
-  font-size: 20px;
+  font-size: 30px;
   color: #fff;
   text-shadow: none;
-  font-weight: 600;
   background: none;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -12950,8 +12953,7 @@ strong {
   color: #fff;
   text-shadow: none;
   padding: 15px 13px;
-  font-weight: 600;
-  font-family: "Lato", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background: none;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -12972,7 +12974,9 @@ strong {
   text-shadow: none;
 }
 .navbar.flip {
-  background: #000;
+  background: #388E3C;
+  padding: 0;
+  height: 55px;
 }
 .navbar.flip li a {
   color: #FFF;
@@ -13014,8 +13018,8 @@ strong {
   }
 }
 @media (max-width: 767px) {
-  .navbar {
-    background: rgba(0, 0, 0, 0.9) !important;
+  .navbar.flip {
+    background: #388E3C !important;
   }
   .navbar li {
     color: #fff !important;
@@ -13097,6 +13101,7 @@ strong {
   font-size: 48px;
   font-weight: 300 !important;
   margin: 0px;
+  text-align: center;
 }
 .home .intro h2 {
   padding: 30px 8px 0 8px;
@@ -13104,7 +13109,8 @@ strong {
   font-size: 33px;
   line-height: 1;
   font-weight: 300 !important;
-  margin: 0px;
+  margin-top: 30px;
+  text-align: center;
 }
 @media (max-width: 1200px) {
   .home .intro h1 {
@@ -13244,7 +13250,7 @@ strong {
   border: 2px solid #e5e5e5;
   background-image: none;
   text-shadow: none;
-  font-size: 14px !important;
+  font-size: 14px;
   color: #333333;
   cursor: pointer;
   outline: none;
@@ -13315,8 +13321,8 @@ strong {
 .btn.green {
   color: white;
   text-shadow: none;
-  border-color: #00C618;
-  background-color: #00C618;
+  border-color: #388E3C;
+  background-color: #388E3C;
 }
 .btn.green:hover,
 .btn.green:focus,
@@ -13324,9 +13330,8 @@ strong {
 .btn.green.active,
 .btn.green.disabled,
 .btn.green[disabled] {
-  background: transparent;
-  border-color: #00C618;
-  color: #00C618 !important;
+  border-color: #43A047;
+  color: #43A047 !important;
 }
 .btn.purple {
   color: white;
@@ -13528,6 +13533,34 @@ strong {
 .btn.btn-block {
   margin-bottom: 5px;
 }
+.btn-circle {
+  color: black;
+  height: 70px;
+  border-radius: 100%!important;
+  font-size: 35px !important;
+  margin-top: 15px;
+  padding: 7px 16px;
+  transition: background 0.3s ease-in-out;
+  width: 70px;
+  -moz-transition: background 0.3s ease-in-out;
+  -webkit-transition: background 0.3s ease-in-out;
+}
+.btn-circle.bottom-center {
+  bottom: 4%;
+  left: calc(50% - 35px);
+  position: absolute;
+  z-index: 99999;
+}
+.btn-circle.top-center {
+  left: calc(50% - 35px);
+  position: absolute;
+  top: -25%;
+}
+@media only screen and (max-width: 480px) {
+  .btn-circle.top-center {
+    top: -9%;
+  }
+}
 /* ---------- Portfolio Styles ----------- */
 /* Hover Effects */
 .boxgrid {
@@ -13598,7 +13631,7 @@ strong {
 /* ---------- Labels & Badges Styles ----------- */
 .label,
 .badge {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   color: #ffffff;
   -webkit-border-top-right-radius: 2px;
@@ -13625,7 +13658,7 @@ ul.pagination > li > span {
   background-color: #dcdcdc;
   border: 1px solid #dcdcdc;
   color: #fff;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -13642,7 +13675,7 @@ ul.pagination > li > span:hover {
   background-color: #dcdcdc;
   border: 1px solid #dcdcdc;
   color: #fff;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -13728,7 +13761,7 @@ ul.pagination > li > span:hover {
   width: 550px;
   padding: 20px 0;
   margin: 200px auto 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #ffffff;
 }
 .countdown .item {
@@ -14080,10 +14113,16 @@ ul.pagination > li > span:hover {
   }
 }
 .main {
-  padding: 20px 0 50px;
+  padding: 20px 0 30px;
   z-index: 10;
   background: #fff;
   position: relative;
+}
+.pricing {
+  background-color: #43A047;
+  color: white;
+  position: relative;
+  z-index: 10;
 }
 .masonry {
   margin: 5px -5px -5px;
@@ -14107,6 +14146,11 @@ ul.pagination > li > span:hover {
 .content-image {
   margin-bottom: 20px;
   width: 100%;
+}
+.circle-bordered {
+  border: 1px solid #43A047;
+  border-radius: 50%;
+  margin-bottom: 20px;
 }
 @media (max-width: 767px) {
   .content-panel,
@@ -14136,16 +14180,25 @@ footer {
 footer p {
   font-size: 14px;
 }
+footer ul {
+  padding: 0;
+}
+footer li {
+  font-size: 14px;
+  list-style-type: none;
+}
+footer li a {
+  color: darkgray;
+}
 footer .footer-content {
   padding: 20px 0;
   border-top: 1px solid #999999;
   min-height: 80px;
 }
 footer .footer-title {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  text-align: center;
-  margin: 10px;
+  text-align: left;
   padding-bottom: 5px;
 }
 footer .footer-input {
@@ -14237,6 +14290,42 @@ footer .update {
 }
 .social > li a.social-youtube {
   background: url('../img/social/youtube.png');
+}
+img.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.top-buffer {
+  margin-top: 5rem;
+}
+.bottom-buffer {
+  margin-bottom: 10rem;
+}
+.fa-icon-container {
+  padding-top: 20px;
+  text-align: center;
+}
+.fa-icon-container i.big {
+  font-size: 90px !important;
+}
+#account h2 {
+  color: #43A047;
+}
+#account hr {
+  background-color: #43A047;
+}
+#account .row {
+  margin-top: 30px;
+}
+#account .row input,
+#account .row a {
+  margin: 5px 0 5px 0;
+}
+@media (max-width: 767px) {
+  .content {
+    padding-top: 0 !important;
+  }
 }
 .content {
   min-height: 455px;

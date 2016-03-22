@@ -5,6 +5,7 @@ angular.module('app.home').controller('HomeController', ['$scope',
 
 	$scope.top = {
 		backstretch: [
+			'modules/home/img/big/Startup-Garage.jpg',
 			'modules/home/img/big/big-1.jpg',
 			'modules/home/img/big/big-2.jpg',
 			'modules/home/img/big/big-3.jpg',

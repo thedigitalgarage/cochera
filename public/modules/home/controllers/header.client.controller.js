@@ -1,16 +1,17 @@
 'use strict';
 
-angular.module('app.home').controller('HeaderController', ['$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal',
-  function ($window, $rootScope, $scope, $state, ngProgressFactory, $modal) {
+angular.module('app.home').controller('HeaderController', ['APP_BRAND', '$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal',
+  function (APP_BRAND, $window, $rootScope, $scope, $state, ngProgressFactory, $modal) {
 
-    $scope.brand = 'The Digital Garage';
+    $scope.brand = APP_BRAND.BIG;
+    $scope.brandSmall = APP_BRAND.SMALL;
     $rootScope.loginStatus = false;
     $scope.isCollapsed = true;
     /* Remove Top ProgressBar
     $scope.progressbar = ngProgressFactory.createInstance();
     $scope.progressbar.setColor('#02bbff');
     $scope.progressbar.start();
-    $scope.$on('$routeChangeStart', function(next, current) { 
+    $scope.$on('$routeChangeStart', function(next, current) {
       $scope.isCollapsed = true;
       $scope.progressbar.start();
     });
@@ -54,7 +55,7 @@ angular.module('app.home').controller('HeaderController', ['$window', '$rootScop
   }
 ]);
 
-angular.module('app.home').controller('LoginController',['$scope', '$state', '$modalInstance', '$http', 'toastr', 'Auth', 
+angular.module('app.home').controller('LoginController',['$scope', '$state', '$modalInstance', '$http', 'toastr', 'Auth',
  function($scope, $state, $modalInstance, $http, toastr, Auth) {
     $scope.authInfo = {
         username : '',
