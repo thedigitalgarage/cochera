@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 			clientViews: {
 				files: watchFiles.clientViews,
 				options: {
-					livereload: true,
+					livereload: true
 				}
 			},
 			clientJS: {
@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 		},
 		csslint: {
 			options: {
-				csslintrc: '.csslintrc',
+				csslintrc: '.csslintrc'
 			},
 			all: {
 				src: watchFiles.clientCSS
@@ -158,11 +158,11 @@ module.exports = function(grunt) {
 		env: {
 			default: {
 				PORT: 8080,
-				chargebeeSite: 'tenant-test',
-				chargebeeAPIKey: 'test_Htlw6DLaXvBDjwSsGFm706mX2awaV63cd'
+				chargebeeSite: 'thedigitalgarage-test',
+				chargebeeAPIKey: 'test_1XcdcdRWOQYMUdsd3VE9c1gbwdaxrj6Vj3'
 			},
 			prod: {
-				NODE_ENV: 'production',				
+				NODE_ENV: 'production'
 			},
 			test: {
 				NODE_ENV: 'test'
