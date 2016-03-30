@@ -13,32 +13,33 @@
                     No invoice found
                 </div>
                 <div class="col-sm-12" ng-if="invoices.length" style="margin-top:20px;">
+                  <div class="table-responsive">
                     <table class="table table-hover">
-                        <tbody>
-                            <tr>
-                                <th>Status</th>
-                                <th>Date</th>
-                                <th>Number</th>
-                                <th>Amount</th>
-                                <th>Payment</th>
-                                <th>Download</th>
-                            </tr>
-                            <tr ng-repeat="list in invoices" ng-if=" list.invoice.status !='pending' ">
-                                <td>
-                                    <i class="fa fa-info-circle text-warning" ng-if="list.invoice.status == 'payment_due'"></i>
-                                    <i class="fa fa-check text-success" ng-if="list.invoice.status == 'paid'"></i>
-                                    <i class="fa fa-close text-danger" ng-if="list.invoice.status == 'not_paid'"></i>
-                                </td>
-                                <td>
-                                    {{ list.invoice.end_date * 1000 | date:'MM/dd/yyyy' }}
-                                </td>
-                                <td> 
-                                    {{ list.invoice.id }}
-                                </td>
-                                <td >
-                                    {{ list.invoice.amount/100 | currency }}
-                                </td>
-                                <td class="text-muted">
+                      <tbody>
+                      <tr>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Number</th>
+                        <th>Amount</th>
+                        <th>Payment</th>
+                        <th>Download</th>
+                      </tr>
+                      <tr ng-repeat="list in invoices" ng-if=" list.invoice.status !='pending' ">
+                        <td>
+                          <i class="fa fa-info-circle text-warning" ng-if="list.invoice.status == 'payment_due'"></i>
+                          <i class="fa fa-check text-success" ng-if="list.invoice.status == 'paid'"></i>
+                          <i class="fa fa-close text-danger" ng-if="list.invoice.status == 'not_paid'"></i>
+                        </td>
+                        <td>
+                          {{ list.invoice.end_date * 1000 | date:'MM/dd/yyyy' }}
+                        </td>
+                        <td>
+                          {{ list.invoice.id }}
+                        </td>
+                        <td >
+                          {{ list.invoice.amount/100 | currency }}
+                        </td>
+                        <td class="text-muted">
                                     <span ng-if=" list.invoice.status == 'paid' ">
                                         Paid on : {{ list.invoice.paid_on * 1000 | date:'MM/dd/yyyy' }}
                                     </span>
@@ -48,16 +49,18 @@
                                     <span ng-if=" list.invoice.status == 'not_paid' ">
                                         Not Paid
                                     </span>
-                                </td>
-                                <td style="vertical-align:middle;">
-                                    <a class="download" ng-click="retrievePDF(list.invoice.id)" id="download_{{list.invoice.id}}">
-                                        <i class="fa fa-cloud-download text-info" ng-hide="loading_{{list.invoice.id}}"></i>
-                                        <i class="fa fa-spinner fa-pulse" ng-show="loading_{{list.invoice.id}}"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
+                        </td>
+                        <td style="vertical-align:middle;">
+                          <a class="download" ng-click="retrievePDF(list.invoice.id)" id="download_{{list.invoice.id}}">
+                            <i class="fa fa-cloud-download text-info" ng-hide="loading_{{list.invoice.id}}"></i>
+                            <i class="fa fa-spinner fa-pulse" ng-show="loading_{{list.invoice.id}}"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      </tbody>
                     </table>
+                  </div>
+
                     <p class="pull-left">
                         <i class="fa fa-check text-success"></i>
                         <span class="text-muted"> Paid</span>&nbsp;&nbsp;
