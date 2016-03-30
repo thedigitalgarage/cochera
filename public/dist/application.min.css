@@ -14484,7 +14484,7 @@ a:hover .header-profile-image {
 h4 .label {
   font-size: 10px;
   display: inline-block;
-  font-family: sans-serif;
+  font-family: Roboto, sans-serif;
   min-height: 12px;
 }
 hr.dashed {
@@ -14551,7 +14551,7 @@ hr.dashed {
   padding-bottom: 0px;
 }
 .subscriptionView .panel .panel-heading h4 {
-  font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+  font-family: Roboto, sans-serif;
   font-size: 20px;
   border-bottom: 1px solid #EBEBEB;
   padding-bottom: 5px;
@@ -14563,7 +14563,7 @@ hr.dashed {
   color: #428BCA;
   float: right;
   font-size: 12px;
-  font-family: sans-serif;
+  font-family: Roboto, sans-serif;
 }
 .subscriptionView .panel .panel-body select option {
   padding: 0px 16px;
@@ -14576,6 +14576,14 @@ hr.dashed {
 .invoiceView table > tbody > tr > th {
   border: none;
   border-bottom: 1px solid #EBEBEB;
+}
+@media (max-width: 768px) {
+  .navbar .nav-wrapper {
+    background: #388E3C none;
+  }
+}
+.topnavbar .navbar-header {
+  background: #388E3C none;
 }
 .preloader-progress {
   background-image: url('/modules/preloader/img/preloader.empty.png');

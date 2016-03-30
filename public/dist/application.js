@@ -267,15 +267,16 @@ ApplicationConfiguration.registerModule('page');
         Menus.addMenuItem('sidebar', 'Account', 'account', null, '', true, null, null, 'icon-user');
         Menus.addSubMenuItem('sidebar', 'account', 'Subscription', 'account/subscription');
         Menus.addSubMenuItem('sidebar', 'account', 'Invoice', 'account/invoice');
-        Menus.addSubMenuItem('sidebar', 'account', 'Team', 'account/team');
-        Menus.addSubMenuItem('sidebar', 'account', 'Referrals', 'account/referrals');
+        //Menus.addSubMenuItem('sidebar', 'account', 'Team', 'account/team');
+        //Menus.addSubMenuItem('sidebar', 'account', 'Referrals', 'account/referrals');
         Menus.addMenuItem('sidebar', 'User', 'user', null, '', true, null, null, 'icon-people');
         Menus.addSubMenuItem('sidebar', 'user', 'Profile', 'user/profile');
-        Menus.addSubMenuItem('sidebar', 'user', 'Security', 'user/security');
-        Menus.addSubMenuItem('sidebar', 'user', 'Notifications', 'user/notifications');
+        //Menus.addSubMenuItem('sidebar', 'user', 'Security', 'user/security');
+        //Menus.addSubMenuItem('sidebar', 'user', 'Notifications', 'user/notifications');
     }
-    
+
 })();
+
 (function() {
     'use strict';
 
@@ -653,7 +654,7 @@ angular.module('app.core').service('Menus', [
 		// Define the menus object
 		this.menus = {};
 
-		// A private function for rendering decision 
+		// A private function for rendering decision
 		var shouldRender = function(user) {
 			if (user) {
 				if (!!~this.roles.indexOf('*')) {
@@ -813,6 +814,7 @@ angular.module('app.core').service('Menus', [
 		this.addMenu('sidebar');
 	}
 ]);
+
 (function() {
 		'use strict';
 
