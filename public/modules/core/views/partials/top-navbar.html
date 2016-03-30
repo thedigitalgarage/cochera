@@ -1,14 +1,12 @@
 <!-- START Top Navbar-->
-<nav role="navigation" class="navbar topnavbar">
+<nav role="navigation" class="navbar topnavbar flip">
    <!-- START navbar header-->
    <div class="navbar-header">
-      <a href="#/" class="navbar-brand">
-         <div class="brand-logo">
-            <img src="modules/core/img/brand/logo.png" alt="App Logo" class="img-responsive" />
-         </div>
-         <div class="brand-logo-collapsed">
-            <img src="modules/core/img/brand/logo-single.png" alt="App Logo" class="img-responsive" />
-         </div>
+      <a href="#/" class="navbar-brand sm hidden-xs">
+        {{ brand }}
+      </a>
+      <a href="#/" class="navbar-brand sm visible-xs">
+        {{ brandSmall }}
       </a>
    </div>
    <!-- END navbar header-->
