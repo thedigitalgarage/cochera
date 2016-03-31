@@ -24,7 +24,7 @@
                         <th>Payment</th>
                         <th>Download</th>
                       </tr>
-                      <tr ng-repeat="list in invoices" ng-if=" list.invoice.status !='pending' ">
+                      <tr ng-repeat="list in invoices" ng-if="list.invoice.status !='pending'">
                         <td>
                           <i class="fa fa-info-circle text-warning" ng-if="list.invoice.status == 'payment_due'"></i>
                           <i class="fa fa-check text-success" ng-if="list.invoice.status == 'paid'"></i>
