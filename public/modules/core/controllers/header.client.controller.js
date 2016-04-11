@@ -1,7 +1,10 @@
 'use strict';
 
-angular.module('app.core').controller('HeaderCoreController', ['$scope', 'Menus', '$state', 'Auth',
-	function ($scope, Menus, $state, Auth) {
+angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$scope', 'Menus', '$state', 'Auth',
+	function (APP_BRAND, $scope, Menus, $state, Auth) {
+        $scope.brand = APP_BRAND.BIG;
+        $scope.brandSmall = APP_BRAND.SMALL;
+
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 

@@ -6,8 +6,8 @@ module.exports = {
 		description: 'The Digital Garage Landing Page',
 		keywords: 'Mean.js, Chargeebee, keycloak'
 	},
-	chargebeeSite: process.env.chargebeeSite || 'tenant-test',
-	chargebeeAPIKey: process.env.chargebeeAPIKey || 'test_Htlw6DLaXvBDjwSsGFm706mX2awaV63cd',
+	chargebeeSite: process.env.chargebeeSite || 'thedigitalgarage-test',
+	chargebeeAPIKey: process.env.chargebeeAPIKey || 'test_1XcdcdRWOQYMUdsd3VE9c1gbwdaxrj6Vj3',
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
 	sessionSecret: 'MEAN',
@@ -53,7 +53,7 @@ module.exports = {
 
 				'public/lib/screenfull/dist/screenfull.js',
 				'public/lib/flexslider/jquery.flexslider.js',
-				'public/lib/ng-progress/js/ngprogress.min.js',        
+				'public/lib/ng-progress/js/ngprogress.min.js',
 		        'public/lib/angular-flexslider/angular-flexslider.js',
 		        'public/lib/angular-backstretch/ng-backstretch.min.js',
 		        'public/lib/angular-parallax/angular-parallax.js',

@@ -40,6 +40,7 @@ var ApplicationConfiguration = (function() {
 		registerModule: registerModule
 	};
 })();
+
 'use strict';
 
 //Start by defining the main module and adding the module dependencies
@@ -266,15 +267,16 @@ ApplicationConfiguration.registerModule('page');
         Menus.addMenuItem('sidebar', 'Account', 'account', null, '', true, null, null, 'icon-user');
         Menus.addSubMenuItem('sidebar', 'account', 'Subscription', 'account/subscription');
         Menus.addSubMenuItem('sidebar', 'account', 'Invoice', 'account/invoice');
-        Menus.addSubMenuItem('sidebar', 'account', 'Team', 'account/team');
-        Menus.addSubMenuItem('sidebar', 'account', 'Referrals', 'account/referrals');
+        //Menus.addSubMenuItem('sidebar', 'account', 'Team', 'account/team');
+        //Menus.addSubMenuItem('sidebar', 'account', 'Referrals', 'account/referrals');
         Menus.addMenuItem('sidebar', 'User', 'user', null, '', true, null, null, 'icon-people');
         Menus.addSubMenuItem('sidebar', 'user', 'Profile', 'user/profile');
-        Menus.addSubMenuItem('sidebar', 'user', 'Security', 'user/security');
-        Menus.addSubMenuItem('sidebar', 'user', 'Notifications', 'user/notifications');
+        //Menus.addSubMenuItem('sidebar', 'user', 'Security', 'user/security');
+        //Menus.addSubMenuItem('sidebar', 'user', 'Notifications', 'user/notifications');
     }
-    
+
 })();
+
 (function() {
     'use strict';
 
@@ -364,6 +366,7 @@ ApplicationConfiguration.registerModule('page');
 
     }
 })();
+
 (function() {
     'use strict';
 
@@ -433,8 +436,11 @@ ApplicationConfiguration.registerModule('page');
 
 'use strict';
 
-angular.module('app.core').controller('HeaderCoreController', ['$scope', 'Menus', '$state', 'Auth',
-	function ($scope, Menus, $state, Auth) {
+angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$scope', 'Menus', '$state', 'Auth',
+	function (APP_BRAND, $scope, Menus, $state, Auth) {
+        $scope.brand = APP_BRAND.BIG;
+        $scope.brandSmall = APP_BRAND.SMALL;
+
 		$scope.isCollapsed = false;
 		$scope.menu = Menus.getMenu('topbar');
 
@@ -454,6 +460,7 @@ angular.module('app.core').controller('HeaderCoreController', ['$scope', 'Menus'
     	};
 	}
 ]);
+
 'use strict';
 
 angular.module('app.core').controller('InvoiceController',
@@ -647,7 +654,7 @@ angular.module('app.core').service('Menus', [
 		// Define the menus object
 		this.menus = {};
 
-		// A private function for rendering decision 
+		// A private function for rendering decision
 		var shouldRender = function(user) {
 			if (user) {
 				if (!!~this.roles.indexOf('*')) {
@@ -807,6 +814,7 @@ angular.module('app.core').service('Menus', [
 		this.addMenu('sidebar');
 	}
 ]);
+
 (function() {
 		'use strict';
 

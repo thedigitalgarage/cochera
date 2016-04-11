@@ -1,14 +1,15 @@
 <!-- START Top Navbar-->
-<nav role="navigation" class="navbar topnavbar">
+<nav role="navigation" class="navbar topnavbar flip">
    <!-- START navbar header-->
    <div class="navbar-header">
-      <a href="#/" class="navbar-brand">
-         <div class="brand-logo">
-            <img src="modules/core/img/brand/logo.png" alt="App Logo" class="img-responsive" />
-         </div>
-         <div class="brand-logo-collapsed">
-            <img src="modules/core/img/brand/logo-single.png" alt="App Logo" class="img-responsive" />
-         </div>
+      <a href="#/" class="navbar-brand sm brand-logo hidden-xs">
+        {{ brand }}
+      </a>
+      <a href="#/" class="navbar-brand sm brand-logo-collapsed">
+        {{ brandSmall }}
+      </a>
+      <a href="#/" class="navbar-brand sm brand-logo-collapsed visible-xs">
+        {{ brandSmall }}
       </a>
    </div>
    <!-- END navbar header-->
@@ -57,7 +58,7 @@
          <li style="" uib-dropdown="" class="dropdown dropdown-list">
             <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" uib-dropdown-toggle="">
                <em class="icon-bell"></em>
-               <div class="label label-danger">11</div>
+               <!--<div class="label label-danger">11</div>-->
             </a>
             <!-- START Dropdown menu-->
             <ul class="dropdown-menu animated flipInX">
