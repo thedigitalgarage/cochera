@@ -174,7 +174,51 @@ hr.dashed {
   }
 }
 
+.panel {
+  .panel-heading {
+    padding-bottom: 0;
+  }
+}
+
+.panel {
+  .panel-heading {
+    h4 {
+      border-bottom: 1px solid @gray-300;
+      color: @gray-700;
+      font-family: Roboto, sans-serif;
+      font-size: 20px;
+      margin-bottom: 5px;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.panel {
+  .panel-heading {
+    h4 {
+      > a {
+        color: @light-blue-300;
+        float: right;
+        font-family: Roboto, sans-serif;
+        font-size: 12px;
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+.panel {
+  .panel-body {
+    select {
+      option {
+        padding: 0 16px;
+      }
+    }
+  }
+}
+
 @import 'profile/profile';
 @import 'billing/billing';
+@import 'dashboard/dashboard';
 
 

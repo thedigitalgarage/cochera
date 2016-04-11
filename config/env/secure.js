@@ -13,7 +13,8 @@ module.exports = {
 				'public/lib/angular-resource/angular-resource.min.js',
 				'public/lib/angular-animate/angular-animate.min.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
-				'public/lib/angular-ui-utils/ui-utils.min.js',
+                'public/lib/lodash/dist/lodash.js',
+                'public/lib/angular-ui-utils/ui-utils.min.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js'
 			]
 		},

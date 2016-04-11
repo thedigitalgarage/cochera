@@ -249,6 +249,10 @@ ApplicationConfiguration.registerModule('page');
             SMALL : 'Dg',
             BIG : 'The Digital Garage'
         })
+        .constant('CHARGEBEE_API', {
+            PREFIX : 'chargebee/',
+            EVENTS : 'events/'
+        })
       ;
 
 })();
@@ -304,10 +308,12 @@ ApplicationConfiguration.registerModule('page');
             templateUrl: 'modules/core/views/core.client.view.html',
             resolve: helper.resolveFor('modernizr', 'icons')
         })
-        .state('app.dashboard', {
+          .state('app.dashboard', {
             url: '/dashboard',
-            templateUrl: 'modules/core/views/dashboard.client.view.html'
-        })
+            templateUrl: 'modules/core/views/dashboard.client.view.html',
+            controller : 'DashboardController',
+            controllerAs : 'DashboardCtrl'
+          })
         .state('app.profile', {
             url: '/user/profile',
             templateUrl: 'modules/core/views/profile.client.view.html',
@@ -432,6 +438,38 @@ ApplicationConfiguration.registerModule('page');
       };
     }
 })();
+
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.core')
+        .controller('DashboardController', DashboardController);
+
+    DashboardController.$inject = [
+        'ChargebeeEventsAPI'
+    ];
+
+    function DashboardController(
+        ChargebeeEventsAPI
+    ) {
+        var controller = this;
+
+
+        (function initController() {
+            controller.page_loading = true;
+
+            ChargebeeEventsAPI
+                .get()
+                .then(function (events) {
+                    controller.events = events.list;
+                    controller.page_loading = false;
+                });
+        })();
+    }
+})();
+
 
 
 'use strict';
@@ -642,6 +680,85 @@ angular.module('app.core').controller('SubscriptionController',
 		};
 	}
 ]);
+(function () {
+    'use strict';
+
+    angular
+        .module('app.core')
+        .factory('ChargebeeEventsAPI', ChargebeeEventsAPI);
+
+    ChargebeeEventsAPI.$inject = [
+        '$http',
+        'CHARGEBEE_API'
+    ];
+
+    function ChargebeeEventsAPI(
+        $http,
+        CHARGEBEE_API
+    ){
+
+        //------------------------------------------------------------------------//
+        // @begin: internal logic
+
+        //function transformResponse(data){
+        //    var response = angular.fromJson(data);
+        //    return (_.isArray(response) ?
+        //        _.map(response, serverModelToClientModel)
+        //        : serverModelToClientModel(response));
+        //}
+
+        //--- @begin: API
+
+        function get(
+            limit,
+            offset,
+            startDate,
+            endTime,
+            webhookStatus,
+            eventType
+        ){
+            return $http.post(
+                CHARGEBEE_API.PREFIX +
+                CHARGEBEE_API.EVENTS,
+                {
+                    limit : limit || 10,
+                    offset: offset || null,
+                    start_date: startDate || null,
+                    end_time : endTime || null,
+                    webhook_status: webhookStatus || null,
+                    event_type: eventType || null
+                }
+            ).then(function(response){
+                    return response.data;
+                });
+        }
+
+        function getById(eventId){
+            return $http.post(
+                CHARGEBEE_API.PREFIX +
+                CHARGEBEE_API.EVENTS +
+                eventId
+            ).then(function(response){
+                    return response.data;
+                });
+        }
+        //--- @end: API
+
+        // @end: internal logic
+        //------------------------------------------------------------------------//
+
+        var API = {
+            get : get,
+            getById : getById
+        };
+
+        return API;
+
+    }
+})();
+
+
+
 'use strict';
 
 //Menu service used for managing  menus

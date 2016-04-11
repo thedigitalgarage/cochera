@@ -4,9 +4,15 @@ module.exports = function(app) {
 	// Root routing
 	var home = require('../../app/controllers/home.server.controller');
 	var subscription = require('../../app/controllers/subscription.server.controller');
+	var events = require('../../app/controllers/events.server.controller');
 	var invoice = require('../../app/controllers/invoice.server.controller');
 
-	//Subscription and Invoice
+
+    // Dashboard Page
+    app.route('/chargebee/events').post(events.getEvents);
+    app.route('/chargebee/events/:eventId').post(events.getEvents);
+
+    //Subscription and Invoice
 	app.route('/authChargebee').post(subscription.authChargebee);
 	//Subscription Page
 	app.route('/subscription/details').post(subscription.details);
