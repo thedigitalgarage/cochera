@@ -14520,6 +14520,27 @@ hr.dashed {
 .topnavbar .navbar-header {
   background: #388E3C none;
 }
+.panel .panel-heading {
+  padding-bottom: 0;
+}
+.panel .panel-heading h4 {
+  border-bottom: 1px solid #E0E0E0;
+  color: #616161;
+  font-family: Roboto, sans-serif;
+  font-size: 20px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+.panel .panel-heading h4 > a {
+  color: #4FC3F7;
+  float: right;
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.panel .panel-body select option {
+  padding: 0 16px;
+}
 /*----------------------*/
 /*-----Profile Page-----*/
 /*----------------------*/
@@ -14538,27 +14559,6 @@ hr.dashed {
 /*----------------------*/
 /*-----Billing Page-----*/
 /*----------------------*/
-.subscriptionView .panel .panel-heading {
-  padding-bottom: 0;
-}
-.subscriptionView .panel .panel-heading h4 {
-  border-bottom: 1px solid #E0E0E0;
-  color: #616161;
-  font-family: Roboto, sans-serif;
-  font-size: 20px;
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-}
-.subscriptionView .panel .panel-heading h4 > a {
-  color: #4FC3F7;
-  float: right;
-  font-family: Roboto, sans-serif;
-  font-size: 12px;
-  margin-top: 5px;
-}
-.subscriptionView .panel .panel-body select option {
-  padding: 0 16px;
-}
 .invoiceView table > tbody > tr > th {
   background: #EEEEEE;
   font-weight: bold;
@@ -14568,6 +14568,9 @@ hr.dashed {
   border: none;
   border-bottom: 1px solid #E0E0E0;
 }
+/*----------------------*/
+/*----Dashboard Page----*/
+/*----------------------*/
 .preloader-progress {
   background-image: url('/modules/preloader/img/preloader.empty.png');
 }

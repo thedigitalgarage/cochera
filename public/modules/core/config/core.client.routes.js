@@ -25,10 +25,12 @@
             templateUrl: 'modules/core/views/core.client.view.html',
             resolve: helper.resolveFor('modernizr', 'icons')
         })
-        .state('app.dashboard', {
+          .state('app.dashboard', {
             url: '/dashboard',
-            templateUrl: 'modules/core/views/dashboard.client.view.html'
-        })
+            templateUrl: 'modules/core/views/dashboard.client.view.html',
+            controller : 'DashboardController',
+            controllerAs : 'DashboardCtrl'
+          })
         .state('app.profile', {
             url: '/user/profile',
             templateUrl: 'modules/core/views/profile.client.view.html',

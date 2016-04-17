@@ -49,7 +49,7 @@ exports.card = function(req, res) {
 
 exports.shippingAddress = function(req, res) {
 	chargebee.address.retrieve({
-	    subscription_id : req.body.id, 
+	    subscription_id : req.body.id,
 	    label : "shipping_address"
 	}).request(function(error, result){
 	    if(error){
@@ -95,7 +95,7 @@ exports.changePaymentMethod = function(req, res) {
 };
 
 exports.changeBillingInfo = function(req, res) {
-	chargebee.customer.update_billing_info(req.body.id, 
+	chargebee.customer.update_billing_info(req.body.id,
 		{billing_address : req.body.address}
 	).request(function(error,result){
 		if(error){

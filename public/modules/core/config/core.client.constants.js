@@ -18,6 +18,13 @@
             SMALL : 'Dg',
             BIG : 'The Digital Garage'
         })
+        .constant('DATE_FORMATS', {
+            EN_DATE_TIME : "MM/dd/yyyy 'at' h:mm a"
+        })
+        .constant('CHARGEBEE_API', {
+            PREFIX : 'chargebee/',
+            EVENTS : 'events/'
+        })
       ;
 
 })();

@@ -32,6 +32,7 @@ module.exports = {
                 'public/lib/angular-ui-scrollpoint/dist/scrollpoint.js',
                 'public/lib/angular-ui-scroll/dist/ui-scroll.js',
                 'public/lib/angular-ui-uploader/dist/uploader.js',
+                'public/lib/lodash/dist/lodash.js',
 				'public/lib/angular-sanitize/angular-sanitize.js',
 				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-translate/angular-translate.js',
@@ -43,10 +44,10 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-loading-bar/build/loading-bar.js',
 				'public/lib/jquery.browser/dist/jquery.browser.min.js',
-				
+
 				'public/lib/screenfull/dist/screenfull.js',
 				'public/lib/flexslider/jquery.flexslider.js',
-				'public/lib/ng-progress/js/ngprogress.min.js',        
+				'public/lib/ng-progress/js/ngprogress.min.js',
 		        'public/lib/angular-flexslider/angular-flexslider.js',
 		        'public/lib/angular-backstretch/ng-backstretch.min.js',
 		        'public/lib/angular-parallax/angular-parallax.js',
