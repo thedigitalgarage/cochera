@@ -126,6 +126,7 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		/* test remove for oo
 		'node-inspector': {
 			custom: {
 				options: {
@@ -138,7 +139,7 @@ module.exports = function(grunt) {
 					'hidden': []
 				}
 			}
-		},
+		},*/
 		ngAnnotate: {
 			production: {
 				files: {
