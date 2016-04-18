@@ -249,6 +249,9 @@ ApplicationConfiguration.registerModule('page');
             SMALL : 'Dg',
             BIG : 'The Digital Garage'
         })
+        .constant('DATE_FORMATS', {
+            EN_DATE_TIME : "MM/dd/yyyy 'at' h:mm a"
+        })
         .constant('CHARGEBEE_API', {
             PREFIX : 'chargebee/',
             EVENTS : 'events/'
@@ -463,7 +466,7 @@ ApplicationConfiguration.registerModule('page');
             ChargebeeEventsAPI
                 .get()
                 .then(function (events) {
-                    controller.events = events.list;
+                    controller.events = events.data.list;
                     controller.page_loading = false;
                 });
         })();
@@ -688,24 +691,41 @@ angular.module('app.core').controller('SubscriptionController',
         .factory('ChargebeeEventsAPI', ChargebeeEventsAPI);
 
     ChargebeeEventsAPI.$inject = [
+        '$filter',
         '$http',
-        'CHARGEBEE_API'
+        'CHARGEBEE_API',
+        'DATE_FORMATS'
     ];
 
     function ChargebeeEventsAPI(
+        $filter,
         $http,
-        CHARGEBEE_API
+        CHARGEBEE_API,
+        DATE_FORMATS
     ){
 
         //------------------------------------------------------------------------//
         // @begin: internal logic
 
-        //function transformResponse(data){
-        //    var response = angular.fromJson(data);
-        //    return (_.isArray(response) ?
-        //        _.map(response, serverModelToClientModel)
-        //        : serverModelToClientModel(response));
-        //}
+        function serverModelToClientModel(item){
+            item.event.occurredAtDisplay = $filter('date')(
+                new Date(item.event.occurred_at * 1000),
+                DATE_FORMATS.EN_DATE_TIME
+            );
+
+            item.event.eventTypeDisplay = _.chain(item.event.event_type)
+                .lowerCase()
+                .upperFirst()
+                .value();
+            return item;
+        }
+
+        function transformResponse(data){
+            var response = angular.fromJson(data).list;
+            return (_.isArray(response) ?
+                _.map(response, serverModelToClientModel)
+                : serverModelToClientModel(response));
+        }
 
         //--- @begin: API
 
@@ -728,9 +748,7 @@ angular.module('app.core').controller('SubscriptionController',
                     webhook_status: webhookStatus || null,
                     event_type: eventType || null
                 }
-            ).then(function(response){
-                    return response.data;
-                });
+            ).success(transformResponse);
         }
 
         function getById(eventId){
