@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$scope', 'Menus', '$state', 'Auth',
-	function (APP_BRAND, $scope, Menus, $state, Auth) {
+angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$scope', 'Menus', '$state', 'Auth', 'Urls',
+	function (APP_BRAND, $scope, Menus, $state, Auth, Urls) {
         $scope.brand = APP_BRAND.BIG;
         $scope.brandSmall = APP_BRAND.SMALL;
 
@@ -18,9 +18,18 @@ angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$sc
 		});
 
 		$scope.logout = function(){
-        	//$window.keycloakAuth.logout();
+        	//$windo	w.keycloakAuth.logout();
         	Auth.logout();
         	$state.go('home.main');
     	};
+
+		function init(){
+			Urls.getUrls().then(function(res){
+				$scope.urls =res;
+			});
+		}
+
+		init();
+
 	}
 ]);
