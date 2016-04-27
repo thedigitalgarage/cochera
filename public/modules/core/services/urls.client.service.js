@@ -14,10 +14,10 @@ angular
                 .then(function (res) {
                     var red = res.data.reduce(reduce, {});
                     return red;
-                })
+                });
         }
 
         return {
             getUrls: getAll
-        }
+        };
     }]);

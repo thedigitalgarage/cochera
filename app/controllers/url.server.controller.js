@@ -6,7 +6,8 @@
 
 var mongoose = require('mongoose');
 
-var MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost/test';
+var MONGO_HOST = process.env.MONGODB_SERVICE_HOST|| 'localhost';
+var MONGO_URL = ['mongodb:/', MONGO_HOST, 'test'].join('/');
 mongoose.connect(MONGO_URL);
 
 var Url = mongoose.model('Url', {name: String, value: String});
@@ -17,12 +18,12 @@ exports.urls = function (req, res) {
         res.json(urls);
         console.log(err, urls);
     });
-}
+};
 
 exports.urlById = function (req, res) {
     var name = req.params.name;
     Url.findOne({name: name}, function (err, urls) {
         res.json(urls);
     });
-}
+};
 
