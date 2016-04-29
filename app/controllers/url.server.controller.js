@@ -6,8 +6,11 @@
 
 var mongoose = require('mongoose');
 
-var MONGO_HOST = process.env.MONGODB_SERVICE_HOST|| 'localhost';
-var MONGO_URL = ['mongodb:/', MONGO_HOST, 'test'].join('/');
+var MONGO_HOST = process.env.MONGODB_SERVICE_HOST || 'localhost';
+var MONGODB_DATABASE = process.env.MONGODB_DATABASE || 'cochera';
+var MONGODB_USER = process.env.MONGODB_USER || 'cochera';
+var MONGODB_PASSWORD = process.env.MONGODB_PASSWORD || 'cochera';
+var MONGO_URL = ['mongodb://' + MONGODB_USER + ':' + MONGODB_PASSWORD + '@' + MONGO_HOST, MONGODB_DATABASE].join('/');
 mongoose.connect(MONGO_URL);
 
 var Url = mongoose.model('Url', {name: String, value: String});
