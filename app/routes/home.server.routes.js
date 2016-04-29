@@ -31,4 +31,5 @@ module.exports = function(app) {
 	//url
 	app.route('/urls').get(urls.urls);
 	app.route('/urls/:name').get(urls.urlById);
+	app.route('/urls').put(urls.createUrl);
 };

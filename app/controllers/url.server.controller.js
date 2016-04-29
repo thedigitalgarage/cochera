@@ -11,7 +11,7 @@ var MONGODB_DATABASE = process.env.MONGODB_DATABASE || 'cochera';
 var MONGODB_USER = process.env.MONGODB_USER || 'cochera';
 var MONGODB_PASSWORD = process.env.MONGODB_PASSWORD || 'cochera';
 var MONGO_URL = ['mongodb://' + MONGODB_USER + ':' + MONGODB_PASSWORD + '@' + MONGO_HOST, MONGODB_DATABASE].join('/');
-mongoose.connect(MONGO_URL);
+mongoose.connect('mongodb://localhost/test');//(MONGO_URL);
 
 var Url = mongoose.model('Url', {name: String, value: String});
 
@@ -30,3 +30,13 @@ exports.urlById = function (req, res) {
     });
 };
 
+exports.createUrl = function (req, res) {
+    var name = req.query.name;
+    var url = req.query.url;
+    Url.create({name: name, value:url}, function (err, url) {
+        if(!err)
+            res.json(url);
+        else
+            res.status(500).send({error: 'Create'});
+    });
+};
