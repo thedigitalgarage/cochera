@@ -31,5 +31,13 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Url": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Profile": {
+    "dataSource": "mongo",
+    "public": true
   }
 }
