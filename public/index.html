@@ -35,7 +35,10 @@
     <link href="/modules/core/img/brand/favicon/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
     <!--Application CSS Files-->
-    <link rel="stylesheet" href="lib/ng-progress/css/ngProgress.css"><link rel="stylesheet" href="lib/flexslider/flexslider.css"><link rel="stylesheet" href="lib/angular-toastr/dist/angular-toastr.min.css"><link rel="stylesheet" href="dist/application.min.css">
+    <link rel="stylesheet" href="lib/ng-progress/css/ngProgress.css">
+    <link rel="stylesheet" href="lib/flexslider/flexslider.css">
+    <link rel="stylesheet" href="lib/angular-toastr/dist/angular-toastr.min.css">
+    <link rel="stylesheet" href="dist/application.min.css">
     <!--Theme-->
     <link rel="stylesheet" ng-href="{{app.layout.theme}}" data-ng-if="app.layout.theme">
 
@@ -45,7 +48,8 @@
     <![endif]-->
 </head>
 
-<body class="ng-cloak" data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 'offsidebar-open': app.offsidebarOpen, 'aside-toggled': app.asideToggled}">
+<body class="ng-cloak"
+      data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 'offsidebar-open': app.offsidebarOpen, 'aside-toggled': app.asideToggled}">
 
 
 <div data-preloader></div>
@@ -58,7 +62,109 @@
 </script>
 
 <!--Application JavaScript Files-->
-<script type="text/javascript" src="lib/jquery/dist/jquery.js"></script><script type="text/javascript" src="lib/angular/angular.js"></script><script type="text/javascript" src="lib/angular-route/angular-route.js"></script><script type="text/javascript" src="lib/angular-cookies/angular-cookies.js"></script><script type="text/javascript" src="lib/angular-animate/angular-animate.js"></script><script type="text/javascript" src="lib/angular-touch/angular-touch.js"></script><script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.js"></script><script type="text/javascript" src="lib/ngstorage/ngStorage.js"></script><script type="text/javascript" src="lib/angular-ui-utils/index.js"></script><script type="text/javascript" src="lib/angular-ui-mask/dist/mask.js"></script><script type="text/javascript" src="lib/angular-ui-event/dist/event.js"></script><script type="text/javascript" src="lib/angular-ui-validate/dist/validate.js"></script><script type="text/javascript" src="lib/angular-ui-indeterminate/dist/indeterminate.js"></script><script type="text/javascript" src="lib/angular-ui-scrollpoint/dist/scrollpoint.js"></script><script type="text/javascript" src="lib/angular-ui-scroll/dist/ui-scroll.js"></script><script type="text/javascript" src="lib/angular-ui-uploader/dist/uploader.js"></script><script type="text/javascript" src="lib/lodash/dist/lodash.js"></script><script type="text/javascript" src="lib/angular-sanitize/angular-sanitize.js"></script><script type="text/javascript" src="lib/angular-resource/angular-resource.js"></script><script type="text/javascript" src="lib/angular-translate/angular-translate.js"></script><script type="text/javascript" src="lib/angular-translate-loader-url/angular-translate-loader-url.js"></script><script type="text/javascript" src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script><script type="text/javascript" src="lib/angular-translate-storage-local/angular-translate-storage-local.js"></script><script type="text/javascript" src="lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script><script type="text/javascript" src="lib/oclazyload/dist/ocLazyLoad.js"></script><script type="text/javascript" src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script><script type="text/javascript" src="lib/angular-loading-bar/build/loading-bar.js"></script><script type="text/javascript" src="lib/jquery.browser/dist/jquery.browser.js"></script><script type="text/javascript" src="lib/screenfull/dist/screenfull.js"></script><script type="text/javascript" src="lib/flexslider/jquery.flexslider.js"></script><script type="text/javascript" src="lib/ng-progress/js/ngprogress.min.js"></script><script type="text/javascript" src="lib/angular-flexslider/angular-flexslider.js"></script><script type="text/javascript" src="lib/angular-backstretch/ng-backstretch.min.js"></script><script type="text/javascript" src="lib/angular-parallax/angular-parallax.js"></script><script type="text/javascript" src="lib/angular-toastr/dist/angular-toastr.min.js"></script><script type="text/javascript" src="lib/angular-toastr/dist/angular-toastr.tpls.min.js"></script><script type="text/javascript" src="lib/iso-3166-country-codes-angular/dist/iso-3166-country-codes-angular.min.js"></script><script type="text/javascript" src="config.js"></script><script type="text/javascript" src="application.js"></script><script type="text/javascript" src="modules/colors/colors.module.js"></script><script type="text/javascript" src="modules/core/core.client.module.js"></script><script type="text/javascript" src="modules/home/home.client.module.js"></script><script type="text/javascript" src="modules/lazyload/lazyload.client.module.js"></script><script type="text/javascript" src="modules/loadingbar/loadingbar.client.module.js"></script><script type="text/javascript" src="modules/navsearch/navsearch.client.module.js"></script><script type="text/javascript" src="modules/page/page.client.module.js"></script><script type="text/javascript" src="modules/preloader/preloader.client.module.js"></script><script type="text/javascript" src="modules/routes/routes.client.module.js"></script><script type="text/javascript" src="modules/settings/settings.client.module.js"></script><script type="text/javascript" src="modules/sidebar/sidebar.client.module.js"></script><script type="text/javascript" src="modules/translate/translate.client.module.js"></script><script type="text/javascript" src="modules/utils/utils.client.module.js"></script><script type="text/javascript" src="modules/colors/config/colors.client.contant.js"></script><script type="text/javascript" src="modules/colors/services/colors.client.service.js"></script><script type="text/javascript" src="modules/core/config/core.client.config.js"></script><script type="text/javascript" src="modules/core/config/core.client.constants.js"></script><script type="text/javascript" src="modules/core/config/core.client.menu.js"></script><script type="text/javascript" src="modules/core/config/core.client.routes.js"></script><script type="text/javascript" src="modules/core/config/core.client.run.js"></script><script type="text/javascript" src="modules/core/controllers/dashboard.client.controller.js"></script><script type="text/javascript" src="modules/core/controllers/header.client.controller.js"></script><script type="text/javascript" src="modules/core/controllers/invoice.client.controller.js"></script><script type="text/javascript" src="modules/core/controllers/profile.client.controller.js"></script><script type="text/javascript" src="modules/core/controllers/subscription.client.controller.js"></script><script type="text/javascript" src="modules/core/services/chargebee-events.client.service.js"></script><script type="text/javascript" src="modules/core/services/menus.client.service.js"></script><script type="text/javascript" src="modules/core/services/urls.client.service.js"></script><script type="text/javascript" src="modules/home/config/home.client.route.js"></script><script type="text/javascript" src="modules/home/controllers/footer.client.controller.js"></script><script type="text/javascript" src="modules/home/controllers/header.client.controller.js"></script><script type="text/javascript" src="modules/home/controllers/home.client.controller.js"></script><script type="text/javascript" src="modules/home/directives/box-grid-effect.client.directives.js"></script><script type="text/javascript" src="modules/home/directives/scroll-position.client.directives.js"></script><script type="text/javascript" src="modules/home/directives/scroll-to-element.client.directives.js"></script><script type="text/javascript" src="modules/home/directives/show-errors.client.directives.js"></script><script type="text/javascript" src="modules/home/services/auth.js"></script><script type="text/javascript" src="modules/lazyload/config/lazyload.client.config.js"></script><script type="text/javascript" src="modules/lazyload/config/lazyload.client.constants.js"></script><script type="text/javascript" src="modules/loadingbar/config/loadingbar.client.config.js"></script><script type="text/javascript" src="modules/loadingbar/config/loadingbar.client.run.js"></script><script type="text/javascript" src="modules/navsearch/directives/navsearch.client.directive.js"></script><script type="text/javascript" src="modules/navsearch/services/navsearch.client.service.js"></script><script type="text/javascript" src="modules/page/config/page.client.routes.js"></script><script type="text/javascript" src="modules/preloader/directives/preloader.client.directive.js"></script><script type="text/javascript" src="modules/routes/services/route-helpers.client.provider.js"></script><script type="text/javascript" src="modules/settings/config/settings.client.run.js"></script><script type="text/javascript" src="modules/sidebar/controllers/sidebar.client.controller.js"></script><script type="text/javascript" src="modules/sidebar/controllers/sidebar.userblock.client.controller.js"></script><script type="text/javascript" src="modules/sidebar/directives/sidebar.client.directive.js"></script><script type="text/javascript" src="modules/sidebar/services/sidebar.client.service.js"></script><script type="text/javascript" src="modules/translate/config/translate.client.config.js"></script><script type="text/javascript" src="modules/translate/config/translate.client.run.js"></script><script type="text/javascript" src="modules/utils/directives/animate-enabled.client.directive.js"></script><script type="text/javascript" src="modules/utils/directives/clear-storage.client.directive.js"></script><script type="text/javascript" src="modules/utils/directives/fullscreen.client.directive.js"></script><script type="text/javascript" src="modules/utils/directives/load-css.client.directive.js"></script><script type="text/javascript" src="modules/utils/directives/now.client.directive.js"></script><script type="text/javascript" src="modules/utils/directives/table-checkall.client.directive.js"></script><script type="text/javascript" src="modules/utils/directives/trigger-resize.client.directive.js"></script><script type="text/javascript" src="modules/utils/services/browser.client.service.js"></script><script type="text/javascript" src="modules/utils/services/utils.client.service.js"></script>
+<script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="lib/angular/angular.js"></script>
+<script type="text/javascript" src="lib/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="lib/angular-cookies/angular-cookies.js"></script>
+<script type="text/javascript" src="lib/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="lib/angular-touch/angular-touch.js"></script>
+<script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+<script type="text/javascript" src="lib/ngstorage/ngStorage.js"></script>
+<script type="text/javascript" src="lib/angular-ui-utils/index.js"></script>
+<script type="text/javascript" src="lib/angular-ui-mask/dist/mask.js"></script>
+<script type="text/javascript" src="lib/angular-ui-event/dist/event.js"></script>
+<script type="text/javascript" src="lib/angular-ui-validate/dist/validate.js"></script>
+<script type="text/javascript" src="lib/angular-ui-indeterminate/dist/indeterminate.js"></script>
+<script type="text/javascript" src="lib/angular-ui-scrollpoint/dist/scrollpoint.js"></script>
+<script type="text/javascript" src="lib/angular-ui-scroll/dist/ui-scroll.js"></script>
+<script type="text/javascript" src="lib/angular-ui-uploader/dist/uploader.js"></script>
+<script type="text/javascript" src="lib/lodash/dist/lodash.js"></script>
+<script type="text/javascript" src="lib/angular-sanitize/angular-sanitize.js"></script>
+<script type="text/javascript" src="lib/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="lib/angular-translate/angular-translate.js"></script>
+<script type="text/javascript" src="lib/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+<script type="text/javascript"
+        src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script type="text/javascript" src="lib/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+<script type="text/javascript" src="lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script type="text/javascript" src="lib/oclazyload/dist/ocLazyLoad.js"></script>
+<script type="text/javascript" src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script type="text/javascript" src="lib/angular-loading-bar/build/loading-bar.js"></script>
+<script type="text/javascript" src="lib/jquery.browser/dist/jquery.browser.js"></script>
+<script type="text/javascript" src="lib/screenfull/dist/screenfull.js"></script>
+<script type="text/javascript" src="lib/flexslider/jquery.flexslider.js"></script>
+<script type="text/javascript" src="lib/ng-progress/js/ngprogress.min.js"></script>
+<script type="text/javascript" src="lib/angular-flexslider/angular-flexslider.js"></script>
+<script type="text/javascript" src="lib/angular-backstretch/ng-backstretch.min.js"></script>
+<script type="text/javascript" src="lib/angular-parallax/angular-parallax.js"></script>
+<script type="text/javascript" src="lib/angular-toastr/dist/angular-toastr.min.js"></script>
+<script type="text/javascript" src="lib/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script type="text/javascript"
+        src="lib/iso-3166-country-codes-angular/dist/iso-3166-country-codes-angular.min.js"></script>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="application.js"></script>
+<script type="text/javascript" src="modules/colors/colors.module.js"></script>
+<script type="text/javascript" src="modules/core/core.client.module.js"></script>
+<script type="text/javascript" src="modules/home/home.client.module.js"></script>
+<script type="text/javascript" src="modules/lazyload/lazyload.client.module.js"></script>
+<script type="text/javascript" src="modules/loadingbar/loadingbar.client.module.js"></script>
+<script type="text/javascript" src="modules/navsearch/navsearch.client.module.js"></script>
+<script type="text/javascript" src="modules/page/page.client.module.js"></script>
+<script type="text/javascript" src="modules/preloader/preloader.client.module.js"></script>
+<script type="text/javascript" src="modules/routes/routes.client.module.js"></script>
+<script type="text/javascript" src="modules/settings/settings.client.module.js"></script>
+<script type="text/javascript" src="modules/sidebar/sidebar.client.module.js"></script>
+<script type="text/javascript" src="modules/translate/translate.client.module.js"></script>
+<script type="text/javascript" src="modules/utils/utils.client.module.js"></script>
+<script type="text/javascript" src="modules/colors/config/colors.client.contant.js"></script>
+<script type="text/javascript" src="modules/colors/services/colors.client.service.js"></script>
+<script type="text/javascript" src="modules/core/config/core.client.config.js"></script>
+<script type="text/javascript" src="modules/core/config/core.client.constants.js"></script>
+<script type="text/javascript" src="modules/core/config/core.client.menu.js"></script>
+<script type="text/javascript" src="modules/core/config/core.client.routes.js"></script>
+<script type="text/javascript" src="modules/core/config/core.client.run.js"></script>
+<script type="text/javascript" src="modules/core/controllers/dashboard.client.controller.js"></script>
+<script type="text/javascript" src="modules/core/controllers/header.client.controller.js"></script>
+<script type="text/javascript" src="modules/core/controllers/invoice.client.controller.js"></script>
+<script type="text/javascript" src="modules/core/controllers/profile.client.controller.js"></script>
+<script type="text/javascript" src="modules/core/controllers/subscription.client.controller.js"></script>
+<script type="text/javascript" src="modules/core/services/chargebee-events.client.service.js"></script>
+<script type="text/javascript" src="modules/core/services/menus.client.service.js"></script>
+<script type="text/javascript" src="modules/home/config/home.client.route.js"></script>
+<script type="text/javascript" src="modules/home/controllers/footer.client.controller.js"></script>
+<script type="text/javascript" src="modules/home/controllers/header.client.controller.js"></script>
+<script type="text/javascript" src="modules/home/controllers/home.client.controller.js"></script>
+<script type="text/javascript" src="modules/home/directives/box-grid-effect.client.directives.js"></script>
+<script type="text/javascript" src="modules/home/directives/scroll-position.client.directives.js"></script>
+<script type="text/javascript" src="modules/home/directives/scroll-to-element.client.directives.js"></script>
+<script type="text/javascript" src="modules/home/directives/show-errors.client.directives.js"></script>
+<script type="text/javascript" src="modules/home/services/auth.js"></script>
+<script type="text/javascript" src="modules/lazyload/config/lazyload.client.config.js"></script>
+<script type="text/javascript" src="modules/lazyload/config/lazyload.client.constants.js"></script>
+<script type="text/javascript" src="modules/loadingbar/config/loadingbar.client.config.js"></script>
+<script type="text/javascript" src="modules/loadingbar/config/loadingbar.client.run.js"></script>
+<script type="text/javascript" src="modules/navsearch/directives/navsearch.client.directive.js"></script>
+<script type="text/javascript" src="modules/navsearch/services/navsearch.client.service.js"></script>
+<script type="text/javascript" src="modules/page/config/page.client.routes.js"></script>
+<script type="text/javascript" src="modules/preloader/directives/preloader.client.directive.js"></script>
+<script type="text/javascript" src="modules/routes/services/route-helpers.client.provider.js"></script>
+<script type="text/javascript" src="modules/settings/config/settings.client.run.js"></script>
+<script type="text/javascript" src="modules/sidebar/controllers/sidebar.client.controller.js"></script>
+<script type="text/javascript" src="modules/sidebar/controllers/sidebar.userblock.client.controller.js"></script>
+<script type="text/javascript" src="modules/sidebar/directives/sidebar.client.directive.js"></script>
+<script type="text/javascript" src="modules/sidebar/services/sidebar.client.service.js"></script>
+<script type="text/javascript" src="modules/translate/config/translate.client.config.js"></script>
+<script type="text/javascript" src="modules/translate/config/translate.client.run.js"></script>
+<script type="text/javascript" src="modules/utils/directives/animate-enabled.client.directive.js"></script>
+<script type="text/javascript" src="modules/utils/directives/clear-storage.client.directive.js"></script>
+<script type="text/javascript" src="modules/utils/directives/fullscreen.client.directive.js"></script>
+<script type="text/javascript" src="modules/utils/directives/load-css.client.directive.js"></script>
+<script type="text/javascript" src="modules/utils/directives/now.client.directive.js"></script>
+<script type="text/javascript" src="modules/utils/directives/table-checkall.client.directive.js"></script>
+<script type="text/javascript" src="modules/utils/directives/trigger-resize.client.directive.js"></script>
+<script type="text/javascript" src="modules/utils/services/browser.client.service.js"></script>
+<script type="text/javascript" src="modules/utils/services/utils.client.service.js"></script>
+<script type="text/javascript" src="lib/lbservices/lb-services.js"></script>
 
 
 <!--Livereload script rendered -->
@@ -74,7 +180,7 @@
             realm: 'dev',
             clientId: 'dev'
         });
-        window.keycloakAuth.init({ onLoad: 'check-sso' });
+        window.keycloakAuth.init({onLoad: 'check-sso'});
         // window.keycloakAuth.init({ onLoad: 'login-required', checkLoginIframe: false }).success(function(authenticated){
         //     alert(authenticated ? 'authenticated' : 'not authenticated');
         // }).error(function () {

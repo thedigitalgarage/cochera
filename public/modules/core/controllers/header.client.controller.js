@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$scope', 'Menus', '$state', 'Auth', 'Urls',
-    function (APP_BRAND, $scope, Menus, $state, Auth, Urls) {
+angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$scope', 'Menus', '$state', 'Auth', 'Url',
+    function (APP_BRAND, $scope, Menus, $state, Auth, Url) {
         $scope.brand = APP_BRAND.BIG;
         $scope.brandSmall = APP_BRAND.SMALL;
 
@@ -18,16 +18,26 @@ angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$sc
         });
 
         $scope.logout = function () {
-            //$windo	w.keycloakAuth.logout();
+            //$window.keycloakAuth.logout();
             Auth.logout();
             $state.go('home.main');
         };
 
         // Load database url
+
+        function reduce(acc, obj) {
+            acc[obj.name] = obj.url;
+            return acc;
+        }
+
         function init() {
-            Urls.getUrls().then(function (res) {
-                $scope.urls = res;
-            });
+            Url.find()
+                .$promise
+                .then(function (res) {
+                    console.log('RETRIEVE URLS', res);
+                    $scope.urls = res.reduce(reduce, {});
+                    console.log($scope.urls);
+                });
         }
 
         init();

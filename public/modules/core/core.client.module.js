@@ -11,7 +11,8 @@
           'app.translate',
           'app.settings',
           //'app.pages',
-          'app.utils'
+          'app.utils',
+        'lbServices'
         ]);
 
 })();

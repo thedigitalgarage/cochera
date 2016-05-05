@@ -60,7 +60,7 @@ module.exports = {
 		        'public/lib/angular-parallax/angular-parallax.js',
 		        'public/lib/angular-toastr/dist/angular-toastr.min.js',
 		        'public/lib/angular-toastr/dist/angular-toastr.tpls.min.js',
-		        'public/lib/iso-3166-country-codes-angular/dist/iso-3166-country-codes-angular.min.js'
+		        'public/lib/iso-3166-country-codes-angular/dist/iso-3166-country-codes-angular.min.js',
 				// 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',
@@ -71,13 +71,16 @@ module.exports = {
 				// 'public/lib/angular-ui-router/release/angular-ui-router.js',
 				// 'public/lib/angular-ui-utils/ui-utils.js',
 				// 'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
-			]
+                'public/lib/lbservices/lb-services.js'
+
+            ]
 		},
 		css: [
 		//	'public/modules/**/css/*.css',
 			'public/dist/application.min.css'
 		],
 		js: [
+            'public/lib/lbservices/lb-services.js',
 			'public/config.js',
 			'public/application.js',
 			'public/modules/*/*.js',

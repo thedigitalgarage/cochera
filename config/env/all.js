@@ -60,7 +60,8 @@ module.exports = {
 		        'public/lib/angular-parallax/angular-parallax.js',
 		        'public/lib/angular-toastr/dist/angular-toastr.min.js',
 		        'public/lib/angular-toastr/dist/angular-toastr.tpls.min.js',
-		        'public/lib/iso-3166-country-codes-angular/dist/iso-3166-country-codes-angular.min.js'
+		        'public/lib/iso-3166-country-codes-angular/dist/iso-3166-country-codes-angular.min.js',
+                //'public/lib/lb-services.js'
 				// 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',

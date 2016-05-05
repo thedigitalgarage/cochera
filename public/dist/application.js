@@ -82,10 +82,12 @@ angular.element(document).ready(function() {
           'app.translate',
           'app.settings',
           //'app.pages',
-          'app.utils'
+          'app.utils',
+        'lbServices'
         ]);
 
 })();
+
 (function() {
     'use strict';
 
@@ -284,49 +286,56 @@ ApplicationConfiguration.registerModule('page');
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.core')
         .config(appRoutes)
-        ;
+    ;
     appRoutes.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider'];
-    function appRoutes($stateProvider, $locationProvider, $urlRouterProvider, helper){
+    function appRoutes($stateProvider, $locationProvider, $urlRouterProvider, helper) {
 
-      // Set the following to true to enable the HTML5 Mode
-      // You may have to set <base> tag in index and a routing configuration in your server
-      $locationProvider.html5Mode(false);
+        // Set the following to true to enable the HTML5 Mode
+        // You may have to set <base> tag in index and a routing configuration in your server
+        $locationProvider.html5Mode(false);
 
-      // default route
-      $urlRouterProvider.otherwise('/');
+        // default route
+        $urlRouterProvider.otherwise('/');
 
-      //
-      // Application Routes
-      // -----------------------------------
-      $stateProvider
-        .state('app', {
-            // url: '/',
-            abstract: true,
-            templateUrl: 'modules/core/views/core.client.view.html',
-            resolve: helper.resolveFor('modernizr', 'icons')
-        })
-          .state('app.dashboard', {
-            url: '/dashboard',
-            templateUrl: 'modules/core/views/dashboard.client.view.html',
-            controller : 'DashboardController',
-            controllerAs : 'DashboardCtrl'
-          })
-        .state('app.profile', {
-            url: '/user/profile',
-            templateUrl: 'modules/core/views/profile.client.view.html',
-            controller: 'ProfileController'
-        })
-        .state('app.subscription', {
-            url: '/account/subscription',
-            templateUrl: 'modules/core/views/subscription/main.client.view.html',
-            controller: 'SubscriptionController'
-        })
+        //
+        // Application Routes
+        // -----------------------------------
+        $stateProvider
+            .state('app', {
+                // url: '/',
+                abstract: true,
+                templateUrl: 'modules/core/views/core.client.view.html',
+                resolve: helper.resolveFor('modernizr', 'icons')
+            })
+            .state('app.dashboard', {
+                url: '/dashboard',
+                templateUrl: 'modules/core/views/dashboard.client.view.html',
+                controller: 'DashboardController',
+                controllerAs: 'DashboardCtrl'
+            })
+            .state('app.profile', {
+                url: '/user/profile',
+                templateUrl: 'modules/core/views/profile.client.view.html',
+                controller: 'ProfileController',
+                controllerAs: 'ctrl'
+            })
+            .state('app.profile_edit', {
+                url: '/user/profile/edit',
+                templateUrl: 'modules/core/views/profile.client.view.html',
+                controller: 'ProfileController',
+                controllerAs: 'ctrl'
+            })
+            .state('app.subscription', {
+                url: '/account/subscription',
+                templateUrl: 'modules/core/views/subscription/main.client.view.html',
+                controller: 'SubscriptionController'
+            })
             .state('app.subCusInfo_edit', {
                 url: '/account/subscription/subCusInfo_edit',
                 templateUrl: 'modules/core/views/subscription/subCusInfo_edit.client.view.html',
@@ -355,22 +364,22 @@ ApplicationConfiguration.registerModule('page');
                     'next_renewal': null
                 }
             })
-        .state('app.invoice', {
-            url: '/account/invoice',
-            templateUrl: 'modules/core/views/invoice.client.view.html',
-            controller: 'InvoiceController'
-        })
+            .state('app.invoice', {
+                url: '/account/invoice',
+                templateUrl: 'modules/core/views/invoice.client.view.html',
+                controller: 'InvoiceController'
+            })
 
-        // .state('app.someroute', {
-        //   url: '/some_url',
-        //   templateUrl: 'path_to_template.html',
-        //   controller: 'someController',
-        //   resolve: angular.extend(
-        //     helper.resolveFor(), {
-        //     // YOUR RESOLVES GO HERE
-        //     }
-        //   )
-        // })
+            // .state('app.someroute', {
+            //   url: '/some_url',
+            //   templateUrl: 'path_to_template.html',
+            //   controller: 'someController',
+            //   resolve: angular.extend(
+            //     helper.resolveFor(), {
+            //     // YOUR RESOLVES GO HERE
+            //     }
+            //   )
+            // })
         ;
 
     }
@@ -477,8 +486,8 @@ ApplicationConfiguration.registerModule('page');
 
 'use strict';
 
-angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$scope', 'Menus', '$state', 'Auth', 'Urls',
-    function (APP_BRAND, $scope, Menus, $state, Auth, Urls) {
+angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$scope', 'Menus', '$state', 'Auth', 'Url',
+    function (APP_BRAND, $scope, Menus, $state, Auth, Url) {
         $scope.brand = APP_BRAND.BIG;
         $scope.brandSmall = APP_BRAND.SMALL;
 
@@ -501,10 +510,18 @@ angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$sc
         };
 
         // Load database url
+
+        function reduce(acc, obj) {
+            acc[obj.name] = obj.value;
+            return acc;
+        }
+
         function init() {
-            Urls.getUrls().then(function (res) {
-                $scope.urls = res;
-            });
+            Url.find()
+                .$promise
+                .then(function (res) {
+                    $scope.urls = reduce(res, {});
+                });
         }
 
         init();
@@ -551,9 +568,16 @@ angular.module('app.core').controller('InvoiceController',
 
 angular.module('app.core').controller('ProfileController', ['$scope', '$state', 
 	function ($scope, $state) {
-		
+		var vm= this;
+		vm.user = {
+			name: 'leo',
+			last: 'clavijo',
+			email: 'joleocl@gmail.com',
+			date: new Date()
+		};
 	}
 ]);
+
 'use strict';
 
 angular.module('app.core').controller('SubscriptionController', 
@@ -958,30 +982,6 @@ angular.module('app.core').service('Menus', [
 		this.addMenu('sidebar');
 	}
 ]);
-
-'use strict';
-
-//Menu service used for managing  menus
-angular
-    .module('app.core')
-    .service('Urls', ['$http', function ($http) {
-        function reduce(acc, obj) {
-            acc[obj.name] = obj.value;
-            return acc;
-        }
-
-        function getAll() {
-            return $http.get('urls')
-                .then(function (res) {
-                    var red = res.data.reduce(reduce, {});
-                    return red;
-                });
-        }
-
-        return {
-            getUrls: getAll
-        };
-    }]);
 
 (function() {
 		'use strict';
