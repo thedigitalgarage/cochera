@@ -2,11 +2,10 @@
 
 module.exports = function(app) {
 	// Root routing
-	var home = require('../../app/controllers/home.server.controller');
 	var subscription = require('../../app/controllers/subscription.server.controller');
 	var events = require('../../app/controllers/events.server.controller');
 	var invoice = require('../../app/controllers/invoice.server.controller');
-	var urls = require('../../app/controllers/url.server.controller');
+
 
     // Dashboard Page
     app.route('/chargebee/events').post(events.getEvents);
@@ -28,8 +27,5 @@ module.exports = function(app) {
 	app.route('/invoice/for_subscription').post(invoice.forSubscription);
 	app.route('/invoice/retrive_pdf').post(invoice.retrivePDF);
 
-	//url
-	app.route('/urls').get(urls.urls);
-	app.route('/urls/:name').get(urls.urlById);
-	app.route('/urls').put(urls.createUrl);
+
 };

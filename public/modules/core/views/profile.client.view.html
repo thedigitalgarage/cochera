@@ -10,17 +10,18 @@
                     <div class="pull-left">
                         <img class="userimg" src="modules/home/img/footer/testimonial-1.jpg"/>
                     </div>
+                    <!--TODO set image -->
                     <div class="pull-left padding-left-20">
-                        <h4>namanhonest</h4>
-                        <p>namanhonest@outlook.com</p>
-                        <p>Member Since 12/04/2015</p>
+                        <h4>{{ctrl.user.name + ctrl.user.last}}</h4>
+                        <p>{{ctrl.user.email}}</p>
+                        <p>{{ctrl.user.date | date:'MM-dd-yyyy'}}</p>
                         <p><a href="#">Add Your Address</a></p>
-                        <p>Droplet Limit: 10  <a href="#">Increase</a></p>
+
                     </div>
                 </div>
             </div>
             <div class="col-md-4 padding-top-20">
-                <a href="#" class="btn">Edit Profile</a>
+                <a ui-sref="app.profile_edit" class="btn">Edit Profile</a>
             </div>
         </div>
     </div>
