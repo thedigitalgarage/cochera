@@ -1,0 +1,10 @@
+{
+  "realm": "openshift",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgS81ffNLpXofyLcnxOKbZP46Qyzi6ETVwLOFQ9UxvSM1gwENq0f2l5qptY9GVQwVZB50RB1VyZKOXN4UztkrD/65/ofZbhA/wUDdL9WmD3OMM1bENrTLk1U1sPYocHfKovh9rfL1+GOLytzRonsAmkjEN+oXTM25iaIg3gADVgXgZZmvFXi46Ya/nLj4HFpozE9i3f+TmhmpI5/aWqT37GfyTemEShe/uJkhBFBdpwDPYtcqBmPeJvBNrdaTfdtDGjwWGsgFj7jHoCpxMC/aNBBsFcYNVxwTr4e9Wl7HRm62WxsyC5qwtALw+AjMTGYhP2YH+vSsaGruAvGIh8bhAQIDAQAB",
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "cochera",
+  "credentials": {
+    "secret": "f9fb8492-4920-40a6-aa70-65a393f0d7ae"
+  }
+}

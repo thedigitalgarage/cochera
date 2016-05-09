@@ -101,6 +101,8 @@
 <script type="text/javascript" src="lib/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 <script type="text/javascript"
         src="lib/iso-3166-country-codes-angular/dist/iso-3166-country-codes-angular.min.js"></script>
+<script type="text/javascript" src="lib/keycloak/dist/keycloak.js"></script>
+
 <script type="text/javascript" src="config.js"></script>
 <script type="text/javascript" src="application.js"></script>
 <script type="text/javascript" src="modules/colors/colors.module.js"></script>
@@ -139,6 +141,7 @@
 <script type="text/javascript" src="modules/home/directives/scroll-to-element.client.directives.js"></script>
 <script type="text/javascript" src="modules/home/directives/show-errors.client.directives.js"></script>
 <script type="text/javascript" src="modules/home/services/auth.js"></script>
+<script type="text/javascript" src="modules/home/services/keycloakService.js"></script>
 <script type="text/javascript" src="modules/lazyload/config/lazyload.client.config.js"></script>
 <script type="text/javascript" src="modules/lazyload/config/lazyload.client.constants.js"></script>
 <script type="text/javascript" src="modules/loadingbar/config/loadingbar.client.config.js"></script>
@@ -170,25 +173,6 @@
 <!--Livereload script rendered -->
 <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
 
-
-<!-- Load KeyCloakJS -->
-<script type="text/javascript" src="http://localhost:8080/auth/js/keycloak.js"></script>
-<script type="text/javascript">
-    angular.element(document).ready(function () {
-        window.keycloakAuth = new Keycloak({
-            url: 'http://localhost:8080/auth',
-            realm: 'dev',
-            clientId: 'dev'
-        });
-        window.keycloakAuth.init({onLoad: 'check-sso'});
-        // window.keycloakAuth.init({ onLoad: 'login-required', checkLoginIframe: false }).success(function(authenticated){
-        //     alert(authenticated ? 'authenticated' : 'not authenticated');
-        // }).error(function () {
-        //     alert('fail');
-        // 	console.log(window.keycloakAuth);
-        // });
-    });
-</script>
 </body>
 
 </html>

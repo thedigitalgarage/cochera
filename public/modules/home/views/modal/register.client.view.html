@@ -1,0 +1,21 @@
+<div class="login-panel">
+    <h3>Register</h3>
+
+    <div class="form-group">
+        <input type="text" ng-model="registerform.email" placeholder="Email" class="form-control bordered-input" required>
+    </div>
+    <div class="form-group">
+        <input ng-model="registerform.firstname" placeholder="First Name" class="form-control bordered-input" required>
+    </div>
+    <div class="form-group">
+        <input ng-model="registerform.lastname" placeholder="Last Name" class="form-control bordered-input" required>
+    </div>
+
+    <div class="form-group">
+        <input type="password" ng-model="registerform.password" placeholder="Password" class="form-control bordered-input">
+    </div>
+
+    <div class="pull-right">
+        <a href="#" ng-click="register()" class="btn btn-sky login"><i class="fa fa-spinner fa-pulse"></i> Register</a>
+    </div>
+</div>

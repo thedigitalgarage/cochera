@@ -4,7 +4,6 @@ var chargebee = require('chargebee');
 var errorHandler = require('./errors');
 
 exports.authChargebee = function(req, res) {
-    console.log(req.body);
 	chargebee.subscription.retrieve(req.body.username).request(
 		function(error,result){
 			if(error){

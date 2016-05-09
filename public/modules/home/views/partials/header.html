@@ -23,10 +23,12 @@
           <a href="#">Community</a>
         </li>
         <li class="dropdown ng-scope" dropdown>
-          <a href="#" ng-click="login();">Login</a>
+          <a href="{{loginURL}}">Login</a>
         </li>
         <li class="dropdown" dropdown>
-          <a id="signup" ng-click="regKeyCloak();">Sign Up</a>
+          <a id="signup" ng-click="register()">Sign Up</a>
+            <!--<a id="signup" href="{{registerURL}}">Sign Up</a> -->
+
         </li>
         <!--
         <li class="dropdown" dropdown>
