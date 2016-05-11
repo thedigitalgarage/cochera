@@ -2,6 +2,7 @@
 
 var chargebee = require('chargebee');
 var errorHandler = require('./errors');
+var DEFAULT_PLAN = process.env.DEFAULT_PLAN || 'cbdemo_free';
 
 exports.authChargebee = function(req, res) {
 	chargebee.subscription.retrieve(req.body.username).request(
@@ -143,4 +144,18 @@ exports.cancel = function(req, res) {
 				res.json(result);
 			}
 	});
+};
+
+exports.create = function(user, cb) {
+    var customer = {
+        id: user.id,
+        first_name: user.firstName,
+        last_name: user.lastName,
+        email: user.email
+    };
+    chargebee.subscription.create({
+        id: user.id,
+        plan_id: DEFAULT_PLAN,
+        customer: customer
+    }).request(cb);
 };

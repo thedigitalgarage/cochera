@@ -4,7 +4,7 @@ var _ = require('lodash');
 
 var credentials = {
     client_id: 'admin-cli',
-    client_secret: 'dc35b4a5-1dab-440e-96b9-f215d848c401',
+    client_secret: '625c871c-63dd-4949-9840-4336083fe862',
     grant_type: 'client_credentials'
 };
 
@@ -38,29 +38,30 @@ var API = {
 };
 
 function getToken(cb) {
-    var options = getOptions(API.auth);
-    request.post(API.base + API.auth, {form: credentials}, function (err, res, body) {
-        token = JSON.parse(body).access_token;
+    request.post(API.base + API.auth.url, {form: credentials}, function (err, res, body) {
+        var token = JSON.parse(body).access_token;
         cb(err, token);
     })
 }
 
-function getOptions(method, token,  data, params){
+function getOptions(method, token, data, params){
     var url = method.url;
     if (params){
         _.forEach(_.keys(params), function(k){
-            url = url.replace(k, params[k]);
+            url = url.replace(':'+k, params[k]);
         })
     }
-    console.log(url);
     var res = {
-        url: API.base + method.url,
+        url: API.base + url,
         headers: {
-            Authorization: 'Bearer ' + token,
             'Content-Type': 'application/json'
         },
         method: method.verb
     };
+
+    if(token){
+        res.headers.Authorization= 'Bearer ' + token;
+    }
 
     if(method.verb !== 'GET' && data){
         res.body= JSON.stringify(data);
@@ -75,38 +76,55 @@ function getOptions(method, token,  data, params){
  lastName,
  firstName
  * */
-function createUser(user, token, cb) {
+var createUser = _.curry(function (user, token, cb) {
+    user.enabled = true;
+    user.requiredActions= ["UPDATE_PASSWORD"];
+
     var options = getOptions(API.users, token, user);
     request(options, function (err, res, body) {
-        console.log(err, res);
         cb(err, body);
     })
-}
+});
 
-
-function sendPassword(userid, token, cb){
+var sendPassword = _.curry(function(userid, token, cb){
     var options = getOptions(API.send_mail, token, ["UPDATE_PASSWORD"], {userid: userid});
     request(options, function (err, res, body) {
-        console.log(err, body);
         cb(err, body);
     })
-}
+});
 
-function findUser(username, token, cb){
+var findUser = _.curry(function (username, token, cb){
     var options = getOptions(API.find_user, token, null, {username: username});
     request(options, function (err, res, body) {
         var user = _.head(JSON.parse(body));
-        console.log(user);
         cb(err, user);
     });
+});
+
+var curried = _.curry(function (action, cb){
+    async.waterfall([
+        getToken,
+        action
+    ], cb);
+});
+
+function createKeycloakUser(user, cb){
+    var create =  createUser(user);
+    curried(create, cb);
 }
 
+function findKeycloakUser(username, cb){
+    var find =  findUser(username);
+    curried(find, cb);
+}
 
-//test
+function sendMailUserId(userid, cb){
+    var mail = sendPassword(userid);
+    curried(mail, cb);
+}
 
-async.waterfall([
-    getToken,
-    async.apply(findUser, 'leokraken')
-], function(){
-   process.exit(0);
-});
+module.exports = {
+    createUser: createKeycloakUser,
+    findUser: findKeycloakUser,
+    sendMail: sendMailUserId
+};
