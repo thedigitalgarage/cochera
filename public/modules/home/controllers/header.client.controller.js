@@ -12,7 +12,7 @@ angular.module('app.home').controller('HeaderController', ['APP_BRAND', '$window
         keycloakAuth.init({redirectUri: 'dashboard'}).success(function () {
             $scope.loginURL = keycloakAuth.createLoginUrl({redirectUri: location.href + '/#/dashboard'});
             $scope.registerURL = keycloakAuth.createRegisterUrl({redirectUri: location.href + ''});
-            console.log($scope.loginURL);
+            console.log($scope.loginURL,  $scope.registerURL);
         });
 
 
@@ -80,11 +80,12 @@ function login($scope, $state, $modalInstance, $http, toastr, Auth) {
     };
 }
 
-function register($scope, $state, $modalInstance, toastr, KeycloakService) {
+function register($scope, $state, $modalInstance, toastr, AccountService) {
     $scope.registerform = {};
     $scope.register = function () {
-        KeycloakService.register($scope.registerform, $scope.registerURL);
-        console.log($scope.registerform);
+
+        AccountService.register($scope.registerform, $scope.registerURL);
+        console.log($scope.registerform, $scope.registerURL);
     };
 }
 
@@ -94,4 +95,4 @@ angular
 
 angular
     .module('app.home')
-    .controller('RegisterController', ['$scope', '$state', '$modalInstance', 'toastr', 'KeycloakService', register]);
+    .controller('RegisterController', ['$scope', '$state', '$modalInstance', 'toastr', 'AccountService', register]);
