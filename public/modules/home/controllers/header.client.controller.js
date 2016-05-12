@@ -1,8 +1,8 @@
 'use strict';
 var auth = {};
 angular
-    .module('app.home').controller('HeaderController', ['APP_BRAND', '$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal',
-    function (APP_BRAND, $window, $rootScope, $scope, $state, ngProgressFactory, $modal) {
+    .module('app.home').controller('HeaderController', ['APP_BRAND', '$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal', 'Auth',
+    function (APP_BRAND, $window, $rootScope, $scope, $state, ngProgressFactory, $modal, Auth) {
 
         $scope.brand = APP_BRAND.BIG;
         $scope.brandSmall = APP_BRAND.SMALL;
@@ -24,11 +24,8 @@ angular
         //var keycloakAuth = new Keycloak('keycloak.json');
 
         function login(){
+            Auth.keyCloakLogin();
             /*
-            keycloakAuth.init({ onLoad: 'login-required' }).success(function () {
-                console.log('LOGGED IN');
-                $state.go('app.dashboard');
-            });*/
             keycloakAuth.init({ onLoad: 'login-required' }).success(function () {
                 alert(auth);
                 auth.loggedIn = true;
@@ -40,10 +37,13 @@ angular
                 //angular.bootstrap(document, ["product"]);
             }).error(function () {
                 //window.location.reload();
-            });
+            });*/
         }
         $scope.keyLogin = login;
 
+        $scope.loadUser = function () {
+            Auth.loadUser();
+        };
 
         //keycloakAuth.init({redirectUri: 'dashboard'}).success(function () {
             //console.log('SKJKJDSJKDKJSKJDKJSJKJKSKJDS', keycloakAuth.loadUserProfile());

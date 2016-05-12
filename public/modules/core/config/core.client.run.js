@@ -61,6 +61,7 @@
         document.title = title;
         return title;
       };
+
     }
 })();
 

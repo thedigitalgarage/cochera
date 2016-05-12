@@ -4,7 +4,7 @@ var _ = require('lodash');
 
 var credentials = {
     client_id: 'admin-cli',
-    client_secret: '625c871c-63dd-4949-9840-4336083fe862',
+    client_secret: '39668b1b-970f-4bdd-984e-cfde9abe7956',
     grant_type: 'client_credentials'
 };
 
