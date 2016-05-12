@@ -4,11 +4,12 @@
 		angular
 			.module('app.home')
 			.config(appRoutes)
-			.run(appRun)
-			;
+			.run(appRun);
 
 		appRun.$inject = ['$rootScope', '$state', '$cookieStore', '$http', 'Auth'];
+
 		function appRun($rootScope, $state, $cookieStore, $http, Auth){
+
 			$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 				$rootScope.subscription = $cookieStore.get('subscription');
 				$rootScope.customer = $cookieStore.get('customer');
@@ -17,8 +18,8 @@
 	            var normalRoutes = ['home.main'];
 	            var restrictedRoutes = [];
 	            if (!Auth.isLoggedIn() && $.inArray(toState.name, normalRoutes) == -1) {
-	                event.preventDefault();
-	                $state.transitionTo('home.main', null, {'reload':true});
+	                //event.preventDefault();
+	                //$state.transitionTo('home.main', null, {'reload':true});
 	            }
 	        });
 	        $rootScope.$on('$stateChangeSuccess', function(event, toState) {
@@ -39,7 +40,6 @@
 				.state('home.main', {
 					url: '/',
 					templateUrl: 'modules/home/views/home.client.view.html'
-				})
-				;
+				});
 		}
 })();

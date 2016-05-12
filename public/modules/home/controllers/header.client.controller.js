@@ -1,6 +1,7 @@
 'use strict';
-
-angular.module('app.home').controller('HeaderController', ['APP_BRAND', '$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal',
+var auth = {};
+angular
+    .module('app.home').controller('HeaderController', ['APP_BRAND', '$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal',
     function (APP_BRAND, $window, $rootScope, $scope, $state, ngProgressFactory, $modal) {
 
         $scope.brand = APP_BRAND.BIG;
@@ -8,12 +9,54 @@ angular.module('app.home').controller('HeaderController', ['APP_BRAND', '$window
         $rootScope.loginStatus = false;
         $scope.isCollapsed = true;
 
-        var keycloakAuth = new Keycloak('keycloak.json');
-        keycloakAuth.init({redirectUri: 'dashboard'}).success(function () {
-            $scope.loginURL = keycloakAuth.createLoginUrl({redirectUri: location.href + '/#/dashboard'});
+        /*
+        $window._keycloak = Keycloak('keycloak.json');
+
+        $window._keycloak
+            .init({
+                onLoad: 'login-required'
+            })
+            .success(function(){
+            //angular.bootstrap(document, ['yourApp']); // manually bootstrap Angular
+            });*/
+
+
+        //var keycloakAuth = new Keycloak('keycloak.json');
+
+        function login(){
+            /*
+            keycloakAuth.init({ onLoad: 'login-required' }).success(function () {
+                console.log('LOGGED IN');
+                $state.go('app.dashboard');
+            });*/
+            keycloakAuth.init({ onLoad: 'login-required' }).success(function () {
+                alert(auth);
+                auth.loggedIn = true;
+                auth.authz = keycloakAuth;
+                auth.logoutUrl = keycloakAuth.authServerUrl + "/realms/demo/protocol/openid-connect/logout?redirect_uri=/angular-product/index.html";
+                angular.module.factory('Auth', function() {
+                    return auth;
+                });
+                //angular.bootstrap(document, ["product"]);
+            }).error(function () {
+                //window.location.reload();
+            });
+        }
+        $scope.keyLogin = login;
+
+
+        //keycloakAuth.init({redirectUri: 'dashboard'}).success(function () {
+            //console.log('SKJKJDSJKDKJSKJDKJSJKJKSKJDS', keycloakAuth.loadUserProfile());
+
+            //keycloakAuth.login({redirectUri: location.href+'/dashboardd'}).success(function(err, res){
+            //    console.log('LOGIN SUCCESS');
+            //});
+            /*
+            $scope.loginURL = keycloakAuth.createLoginUrl({redirectUri: '/dashboard'}); //location.href + 'dashboard'
+            console.log(location.href + 'dashboard');
             $scope.registerURL = keycloakAuth.createRegisterUrl({redirectUri: location.href + ''});
-            console.log($scope.loginURL,  $scope.registerURL);
-        });
+            console.log($scope.loginURL,  $scope.registerURL);*/
+        //});
 
 
         $scope.top = function () {

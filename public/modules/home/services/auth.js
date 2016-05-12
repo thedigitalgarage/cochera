@@ -45,4 +45,8 @@ angular.module('app.home').service('Auth', ['$rootScope', '$cookies', '$cookieSt
 			});
 			$rootScope.User = false;
 		};
+
+        this.kcisLogin =  function(){
+
+        }
 	}]);

@@ -60,5 +60,19 @@ angular.element(document).ready(function() {
 	if (window.location.hash === '#_=_') window.location.hash = '#';
 
 	//Then init the app
-	angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
+    var keycloakAuth = new Keycloak('keycloak.json');
+    auth.loggedIn = false;
+
+    keycloakAuth.init({ onLoad: 'login-required' }).success(function () {
+        auth.loggedIn = true;
+        auth.authz = keycloakAuth;
+        auth.logoutUrl = keycloakAuth.authServerUrl + "/realms/demo/protocol/openid-connect/logout?redirect_uri=/angular-product/index.html";
+
+        angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
+    }).error(function () {
+        window.location.reload();
+    });
+	//angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
 });
+
+

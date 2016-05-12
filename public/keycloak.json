@@ -1,10 +1,10 @@
 {
-  "realm": "openshift",
-  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhA7KJn0EaZcO34dp84ygYEeqlyH20fR4m3KzZlDxJQGBdXk/xxyj7k5BM9413OLBlD/XWhSDw5oAtHmUzsbnHR5OVc4Ej1LaKhjL9dqXJ+DRYAXC/lt0uQp2/1ZHMJBcg5pne1w9XkulQlxjhZ1PeAfKSUk0MUeBHb+O8LqqYzG/cH6hfViExqhRBTWE43rl9gNVZ4ZsC3QTaLEPry/Teg0d5bSWwWc/uhJeZ8Khz4SgPXTw/+TCQd+4fWek41BPwICISrbSoVnhhcv7BsBEgUA7UWa1bxWwWn3bp4p+E1UcHAMFCBqPmGa6v19BtDG78sdLpi6ug4NPwe2LHG+5FwIDAQAB",
+  "realm": "master",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg/MfsQIzjg9NpDos6nHaGXtkm6lXu0zCQylocAVQi3bSzMvn8lyqDQZdTICbk0ZWzbcKXejb57aKOaabhn911ZcsHyld9yvl/V9MI1qQD4UBRdWxdQabzh6Ds/r0oLysM0p/Y/gQ/7dhRzN28Gh/wseQkmpbiGOnZ4YJtIMRgc/7JIvwLmZkRikcKsrKYNj3yUbOAV2noJ/bUSJRoa0EiZei89fSk25umBpqkQ+oALjiBRjxCM0zk5NZ+RgFWZ7Xz9Dl7G6czPBm+k9/5wsSPBcckdgl5VFFSkxyjrGQdEd4wIQOIUuuZvq7gtwvhf0brLJJaAsrHeicGaCAEBQCxQIDAQAB",
   "auth-server-url": "http://localhost:8080/auth",
   "ssl-required": "external",
   "resource": "cochera",
   "credentials": {
-    "secret": "f289ed2d-de13-4999-a6db-6c8145698741"
+    "secret": "909a3d34-1c48-40ee-8176-9c72d4058e6e"
   }
 }
