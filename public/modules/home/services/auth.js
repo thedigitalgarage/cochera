@@ -5,7 +5,6 @@ angular.module('app.home')
         var vm = this;
         vm.auth = {loggedIn: false};
         var keycloakAuth = new Keycloak('keycloak.json');
-        keycloakAuth.redirectUri = '';
         keycloakAuth.init();
 
 		var setUser = function (data) {
@@ -62,17 +61,18 @@ angular.module('app.home')
 
         this.keyCloakLogin= function(){
             vm.auth.loggedIn = false;
-            keycloakAuth.redirectUri = 'http://localhost:8081/#/dashboard';
+            keycloakAuth.redirectUri = window.location.origin + '/#/dashboard';
+            console.log(keycloakAuth.redirectUri);
+
             keycloakAuth.init({ onLoad: 'login-required'}).success(function () {
                keycloakAuth.login();
             }).error(function () {
                 console.log('error login');
-                //window.location.reload();
             });
         };
 
         this.getSubscription = function(username){
             return login({username: username});
-        }
+        };
 
 	}]);

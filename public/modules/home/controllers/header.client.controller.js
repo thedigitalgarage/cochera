@@ -2,60 +2,58 @@
 var auth = {};
 angular
     .module('app.home').controller('HeaderController', ['APP_BRAND', '$window', '$rootScope', '$scope', '$state', 'ngProgressFactory', '$modal', 'Auth',
-    function (APP_BRAND, $window, $rootScope, $scope, $state, ngProgressFactory, $modal, Auth) {
+        function (APP_BRAND, $window, $rootScope, $scope, $state, ngProgressFactory, $modal, Auth) {
 
-        $scope.brand = APP_BRAND.BIG;
-        $scope.brandSmall = APP_BRAND.SMALL;
-        $rootScope.loginStatus = false;
-        $scope.isCollapsed = true;
+            $scope.brand = APP_BRAND.BIG;
+            $scope.brandSmall = APP_BRAND.SMALL;
+            $rootScope.loginStatus = false;
+            $scope.isCollapsed = true;
 
-        function checkStatus (){
-            Auth.checkStatus();
+            function checkStatus() {
+                Auth.checkStatus();
+            }
+
+            $scope.checkStatus = checkStatus;
+
+            function login() {
+                Auth.keyCloakLogin();
+            }
+
+            $scope.keyLogin = login;
+
+            $scope.loadUser = function () {
+                Auth.loadUser();
+            };
+
+            $scope.top = function () {
+                if (document.querySelector(".main"))
+                    return document.querySelector(".main").getBoundingClientRect().top;
+            };
+
+            $scope.loginKeyCloak = function () {
+                $state.go('app.dashboard');
+            };
+
+            $scope.login = function () {
+                $modal.open({
+                    templateUrl: 'modules/home/views/modal/login.client.view.html',
+                    controller: 'LoginController',
+                    size: 'md',
+                    windowClass: 'login'
+                });
+
+            };
+
+            $scope.register = function () {
+                $modal.open({
+                    templateUrl: 'modules/home/views/modal/register.client.view.html',
+                    controller: 'RegisterController',
+                    size: 'md',
+                    windowClass: 'login'
+                });
+            };
         }
-        $scope.checkStatus = checkStatus;
-
-        function login(){
-            Auth.keyCloakLogin();
-        }
-        $scope.keyLogin = login;
-
-        $scope.loadUser = function () {
-            Auth.loadUser();
-        };
-
-        $scope.top = function () {
-            if (document.querySelector(".main"))
-                return document.querySelector(".main").getBoundingClientRect().top;
-        };
-
-        $scope.loginKeyCloak = function () {
-            $state.go('app.dashboard');
-        };
-
-        $scope.regKeyCloak = function () {
-            keycloakAuth.register();
-        };
-
-        $scope.login = function () {
-            $modal.open({
-                templateUrl: 'modules/home/views/modal/login.client.view.html',
-                controller: 'LoginController',
-                size: 'md',
-                windowClass: 'login'
-            });
-
-        };
-
-        $scope.register = function () {
-            $modal.open({
-                templateUrl: 'modules/home/views/modal/register.client.view.html',
-                controller: 'RegisterController',
-                size: 'md',
-                windowClass: 'login'
-            });
-        };
-    }
-]);
+    ]);
 
 
 /* Modal controllers*/
@@ -89,10 +87,20 @@ function login($scope, $state, $modalInstance, $http, toastr, Auth) {
 
 function register($scope, $state, $modalInstance, toastr, AccountService) {
     $scope.registerform = {};
-    $scope.register = function () {
+    $scope.submitting = false;
 
-        AccountService.register($scope.registerform, $scope.registerURL);
-        console.log($scope.registerform, $scope.registerURL);
+    $scope.register = function () {
+        $scope.submitting = true;
+        AccountService.register($scope.registerform)
+            .then(function () {
+                toastr.success('Account created, review your email account', 'Success');
+                $modalInstance.close();
+            })
+            .catch(function (err) {
+                $scope.submitting = false;
+                toastr.error(err, 'Error');
+            });
+        console.log($scope.registerform);
     };
 }
 

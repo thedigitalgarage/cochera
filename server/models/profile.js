@@ -9,6 +9,7 @@ module.exports = function(Profile) {
     }
 
     function createSubscription(cb, res){
+        console.log(res);
         chargeBee.create(res.find, cb);
     }
 
@@ -17,6 +18,7 @@ module.exports = function(Profile) {
     }
 
     Profile.register = function(user, cb){
+        console.log('USER', user);
         async.auto({
             user: async.apply(kc.createUser, user),
             find: ['user', async.apply(kc.findUser, user.username)],

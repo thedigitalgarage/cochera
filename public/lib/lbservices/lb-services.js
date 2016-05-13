@@ -2165,7 +2165,8 @@ module.factory(
          *
          * @param {Object=} parameters Request parameters.
          *
-         *  - `url` – `{object=}` - 
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
          *
          * @param {Object} postData Request data.
          *

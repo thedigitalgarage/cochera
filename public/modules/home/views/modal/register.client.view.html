@@ -2,20 +2,19 @@
     <h3>Register</h3>
 
     <div class="form-group">
+        <input type="text" ng-model="registerform.username" placeholder="Username" class="form-control bordered-input" required>
+    </div>
+    <div class="form-group">
         <input type="text" ng-model="registerform.email" placeholder="Email" class="form-control bordered-input" required>
     </div>
     <div class="form-group">
-        <input ng-model="registerform.firstname" placeholder="First Name" class="form-control bordered-input" required>
+        <input ng-model="registerform.firstName" placeholder="First Name" class="form-control bordered-input" required>
     </div>
     <div class="form-group">
-        <input ng-model="registerform.lastname" placeholder="Last Name" class="form-control bordered-input" required>
-    </div>
-
-    <div class="form-group">
-        <input type="password" ng-model="registerform.password" placeholder="Password" class="form-control bordered-input">
+        <input ng-model="registerform.lastName" placeholder="Last Name" class="form-control bordered-input" required>
     </div>
 
     <div class="pull-right">
-        <a href="#" ng-click="register()" class="btn btn-sky login"><i class="fa fa-spinner fa-pulse"></i> Register</a>
+        <a href="#" ng-click="register()" class="btn btn-sky login"><i class="fa fa-spinner fa-pulse" ng-if="submitting"></i> Register</a>
     </div>
 </div>
