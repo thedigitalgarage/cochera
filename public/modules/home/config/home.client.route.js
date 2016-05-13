@@ -12,21 +12,7 @@
 
             // Keycloack
             $rootScope.$on("$stateChangeStart",function(){
-                //var keycloakAuth = new Keycloak('keycloak.json');
-                //console.log('is AUthenticated',keycloakAuth.isTokenExpired());
-                /*
-                keycloakAuth.init({onLoad: 'check-sso'}).success(function (authorized) {
-                    console.log('check-sso route', authorized);
-                    if (!authorized){
-                        console.log('go to home');
-                        //$state.go('app.home');
-                    }
-                });
-                */
-                //do your validations here
-                //prevent the location change.
                 console.log('change location');
-
             });
             /*
 			$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {

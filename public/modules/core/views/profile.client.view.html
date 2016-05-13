@@ -12,9 +12,9 @@
                     </div>
                     <!--TODO set image -->
                     <div class="pull-left padding-left-20">
-                        <h4>{{ctrl.user.name + ctrl.user.last}}</h4>
+                        <h4>{{ctrl.user.firstName}} {{ctrl.user.lastName}}</h4>
                         <p>{{ctrl.user.email}}</p>
-                        <p>{{ctrl.user.date | date:'MM-dd-yyyy'}}</p>
+                        <p>{{ctrl.user.createdTimestamp | date:'MM-dd-yyyy'}}</p>
                         <p><a href="#">Add Your Address</a></p>
 
                     </div>

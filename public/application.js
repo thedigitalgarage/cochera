@@ -1,41 +1,88 @@
 'use strict';
 
 //Start by defining the main module and adding the module dependencies
-angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
+angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies)
+    .factory('authInterceptor', function ($q, KeyAuth) {
+        return {
+            request: function (config) {
+                var deferred = $q.defer();
+                if (KeyAuth.authz.token) {
+                    KeyAuth.authz.updateToken(5).success(function () {
+                        config.headers = config.headers || {};
+                        config.headers.Authorization = 'Bearer ' + KeyAuth.authz.token;
+
+                        deferred.resolve(config);
+                    }).error(function () {
+                        deferred.reject('Failed to refresh token');
+                    });
+                }
+                return deferred.promise;
+            }
+        };
+    })
+    .config(function ($httpProvider) {
+        $httpProvider.interceptors.push('errorInterceptor');
+        $httpProvider.interceptors.push('authInterceptor');
+    })
+
+    .factory('errorInterceptor', function ($q) {
+        return function (promise) {
+            return promise.then(function (response) {
+                return response;
+            }, function (response) {
+                if (response.status == 401) {
+                    console.log('session timeout?');
+                    logout();
+                } else if (response.status == 403) {
+                    alert("Forbidden");
+                } else if (response.status == 404) {
+                    alert("Not found");
+                } else if (response.status) {
+                    if (response.data && response.data.errorMessage) {
+                        alert(response.data.errorMessage);
+                    } else {
+                        alert("An unexpected server error has occurred");
+                    }
+                }
+                return $q.reject(response);
+            });
+        };
+    });
 
 
 var auth = {};
-var logout = function () {
-    console.log('*** LOGOUT');
-    auth.loggedIn = false;
-    auth.authz = null;
-    window.location = auth.logoutUrl;
-};
 
-
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
-    function ($locationProvider) {
-        //	$locationProvider.hashPrefix('!');
+angular
+    .module(ApplicationConfiguration.applicationModuleName)
+    .config(['$locationProvider', function ($locationProvider) {
         $locationProvider.hashPrefix('');
-    }
-]);
+    }]);
 
 angular.element(document).ready(function () {
-
     var keycloakAuth = new Keycloak('keycloak.json');
     auth.loggedIn = false;
     keycloakAuth.redirectUri = 'http://localhost:8081/#/dashboard';
     keycloakAuth.init({onLoad: 'check-sso'}).success(function (authorized) {
-        console.log('check-sso', authorized);
+        auth.authz = keycloakAuth;
+        console.log('Authorized', authorized);
+        //Create factory for keycloak
+        angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies)
+            .factory('KeyAuth', function (Auth) {
+                if(authorized){
+                    auth.authz.loadUserProfile().success(function (user) {
+                        auth.profile = user;
+                        Auth.getSubscription(user.id);
+                    });
+                }
+                return auth;
+            });
+
+        //Load application
         angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
-
-        if (authorized)
+        if (authorized){
             window.location = location.href + 'dashboard';
+        }else{
+           // window.location = '';
+        }
     });
-
-    //angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
-
-    //Fixing facebook bug with redirect
-    //if (window.location.hash === '#_=_') window.location.hash = '#!';
-    //if (window.location.hash === '#_=_') window.location.hash = '#';
 });

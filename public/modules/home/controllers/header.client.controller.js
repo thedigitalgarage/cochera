@@ -9,55 +9,19 @@ angular
         $rootScope.loginStatus = false;
         $scope.isCollapsed = true;
 
-        /*
-        $window._keycloak = Keycloak('keycloak.json');
-
-        $window._keycloak
-            .init({
-                onLoad: 'login-required'
-            })
-            .success(function(){
-            //angular.bootstrap(document, ['yourApp']); // manually bootstrap Angular
-            });*/
-
-
-        //var keycloakAuth = new Keycloak('keycloak.json');
+        function checkStatus (){
+            Auth.checkStatus();
+        }
+        $scope.checkStatus = checkStatus;
 
         function login(){
             Auth.keyCloakLogin();
-            /*
-            keycloakAuth.init({ onLoad: 'login-required' }).success(function () {
-                alert(auth);
-                auth.loggedIn = true;
-                auth.authz = keycloakAuth;
-                auth.logoutUrl = keycloakAuth.authServerUrl + "/realms/demo/protocol/openid-connect/logout?redirect_uri=/angular-product/index.html";
-                angular.module.factory('Auth', function() {
-                    return auth;
-                });
-                //angular.bootstrap(document, ["product"]);
-            }).error(function () {
-                //window.location.reload();
-            });*/
         }
         $scope.keyLogin = login;
 
         $scope.loadUser = function () {
             Auth.loadUser();
         };
-
-        //keycloakAuth.init({redirectUri: 'dashboard'}).success(function () {
-            //console.log('SKJKJDSJKDKJSKJDKJSJKJKSKJDS', keycloakAuth.loadUserProfile());
-
-            //keycloakAuth.login({redirectUri: location.href+'/dashboardd'}).success(function(err, res){
-            //    console.log('LOGIN SUCCESS');
-            //});
-            /*
-            $scope.loginURL = keycloakAuth.createLoginUrl({redirectUri: '/dashboard'}); //location.href + 'dashboard'
-            console.log(location.href + 'dashboard');
-            $scope.registerURL = keycloakAuth.createRegisterUrl({redirectUri: location.href + ''});
-            console.log($scope.loginURL,  $scope.registerURL);*/
-        //});
-
 
         $scope.top = function () {
             if (document.querySelector(".main"))

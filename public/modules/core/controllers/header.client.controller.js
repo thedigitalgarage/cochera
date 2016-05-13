@@ -18,13 +18,10 @@ angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$sc
         });
 
         $scope.logout = function () {
-            //$window.keycloakAuth.logout();
             Auth.logout();
-            $state.go('home.main');
         };
 
         // Load database url
-
         function reduce(acc, obj) {
             acc[obj.name] = obj.url;
             return acc;
@@ -34,9 +31,7 @@ angular.module('app.core').controller('HeaderCoreController', ['APP_BRAND', '$sc
             Url.find()
                 .$promise
                 .then(function (res) {
-                    console.log('RETRIEVE URLS', res);
                     $scope.urls = res.reduce(reduce, {});
-                    console.log($scope.urls);
                 });
         }
 

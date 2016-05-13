@@ -3,8 +3,8 @@ var async = require('async');
 var _ = require('lodash');
 
 var credentials = {
-    client_id: 'admin-cli',
-    client_secret: '39668b1b-970f-4bdd-984e-cfde9abe7956',
+    client_id: process.env.KEYCLOAK_CLIENT || 'admin-cli',
+    client_secret: process.env.KEYCLOAK_CLIENT_SECRET || '9475dabc-761a-488c-aa0f-97df7f790db6',
     grant_type: 'client_credentials'
 };
 

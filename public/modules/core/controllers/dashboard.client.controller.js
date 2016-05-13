@@ -9,11 +9,8 @@
         'ChargebeeEventsAPI'
     ];
 
-    function DashboardController(
-        ChargebeeEventsAPI
-    ) {
+    function DashboardController(ChargebeeEventsAPI) {
         var controller = this;
-
 
         (function initController() {
             controller.page_loading = true;

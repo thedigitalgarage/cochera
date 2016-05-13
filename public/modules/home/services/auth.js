@@ -1,8 +1,12 @@
 'use strict';
 
 angular.module('app.home')
-    .service('Auth', ['$rootScope', '$cookies', '$cookieStore', '$http', '$q', 'toastr', function ($rootScope, $cookies, $cookieStore, $http, $q, toastr) {
-        var auth = {loggedIn: false};
+    .service('Auth', ['$rootScope', '$cookies', '$state', '$cookieStore', '$http', '$q', 'toastr', function ($rootScope, $cookies, $state, $cookieStore, $http, $q, toastr) {
+        var vm = this;
+        vm.auth = {loggedIn: false};
+        var keycloakAuth = new Keycloak('keycloak.json');
+        keycloakAuth.redirectUri = '';
+        keycloakAuth.init();
 
 		var setUser = function (data) {
 			angular.forEach(data, function(val, index){
@@ -22,7 +26,7 @@ angular.module('app.home')
 
 		this.setUser = setUser;
 
-		this.login = function (credentials) {
+		function login (credentials) {
 			var defer = $q.defer();
 			$http.post('/authChargebee', credentials).success(function (data) {
 				defer.resolve(data);
@@ -32,7 +36,7 @@ angular.module('app.home')
 				toastr.error(data.message, 'Error');
 			});
 			return defer.promise;
-		};
+		}
 
 		this.isLoggedIn = function () {
 			if ($cookieStore.get('customer'))
@@ -41,51 +45,34 @@ angular.module('app.home')
 		};
 
 		this.logout = function () {
+            //clean cookies
 			var cookies = $cookies.getAll();
 			angular.forEach(cookies, function (value, key) {
 				$cookies.remove(key);
 			});
 			$rootScope.User = false;
+
+            //keycloak logout
+            keycloakAuth.logout({redirectUri: window.location.origin});
 		};
 
         this.loadUser =  function(){
-            auth.authz.loadUserInfo();
+            vm.auth.authz.loadUserInfo();
         };
 
         this.keyCloakLogin= function(){
-            var keycloakAuth = new Keycloak('keycloak.json');
-            auth.loggedIn = false;
+            vm.auth.loggedIn = false;
             keycloakAuth.redirectUri = 'http://localhost:8081/#/dashboard';
             keycloakAuth.init({ onLoad: 'login-required'}).success(function () {
-                console.log('LOGIN SUCCESS');
-                auth.loggedIn = true;
-                auth.authz = keycloakAuth;
-                auth.logoutUrl = keycloakAuth.authServerUrl + "/realms/demo/protocol/openid-connect/logout?redirect_uri=/angular-product/index.html";
-
-                console.log('token', keycloakAuth.token);
-                auth.authz.loadUserInfo();
-                window.location= 'http://localhost:8081/#/dashboard';
-                //angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
+               keycloakAuth.login();
             }).error(function () {
                 console.log('error login');
                 //window.location.reload();
             });
-            /*
-            console.log('login');
-            var keycloakAuth = new Keycloak('keycloak.json');
-            auth.loggedIn = false;
-
-            keycloakAuth.init({ onLoad: 'login-required', redirectUri: location.href+'/dashboard' }).success(function () {
-                auth.loggedIn = true;
-                auth.authz = keycloakAuth;
-                auth.logoutUrl = keycloakAuth.authServerUrl + "/realms/demo/protocol/openid-connect/logout?redirect_uri=/angular-product/index.html";
-
-                console.log('token', keycloakAuth.token);
-                auth.authz.loadUserInfo();
-            }).error(function () {
-                console.log('error login');
-                //window.location.reload();
-            });*/
         };
+
+        this.getSubscription = function(username){
+            return login({username: username});
+        }
 
 	}]);
