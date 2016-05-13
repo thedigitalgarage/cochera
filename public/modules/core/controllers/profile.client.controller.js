@@ -1,15 +1,12 @@
 'use strict';
 
-angular.module('app.core').controller('ProfileController', ['$scope', '$state', 'KeyAuth',
-	function ($scope, $state, KeyAuth) {
+angular.module('app.core').controller('ProfileController', ['$scope', '$state', 'KeyAuth', 'ProfileService',
+	function ($scope, $state, KeyAuth, ProfileService) {
 		var vm= this;
 		vm.user = KeyAuth.profile;
-        console.log(vm);
-        /*{
-			name: 'leo',
-			last: 'clavijo',
-			email: 'joleocl@gmail.com',
-			date: new Date()
-		};*/
+
+        vm.editProfile = function (profile){
+            ProfileService.update(profile);
+        };
 	}
 ]);

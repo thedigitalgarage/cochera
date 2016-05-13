@@ -13221,6 +13221,12 @@ strong {
   height: 250px;
   margin-bottom: 60px;
 }
+.login .register-panel {
+  padding: 20px 30px 50px;
+  padding-bottom: 50px;
+  height: 300px;
+  margin-bottom: 60px;
+}
 .login .login-panel > h3 {
   font-size: 30px;
   margin: 30px 0 15px;

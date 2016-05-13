@@ -39,7 +39,7 @@
             })
             .state('app.profile_edit', {
                 url: '/user/profile/edit',
-                templateUrl: 'modules/core/views/profile.client.view.html',
+                templateUrl: 'modules/core/views/profile/profile-edit.html',
                 controller: 'ProfileController',
                 controllerAs: 'ctrl'
             })
