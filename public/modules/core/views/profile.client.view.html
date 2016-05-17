@@ -12,9 +12,9 @@
                     </div>
                     <!--TODO set image -->
                     <div class="pull-left padding-left-20">
-                        <h4>{{ctrl.user.firstName}} {{ctrl.user.lastName}}</h4>
-                        <p>{{ctrl.user.email}}</p>
-                        <p>{{ctrl.user.createdTimestamp | date:'MM-dd-yyyy'}}</p>
+                        <h4>{{customer.first_name}} {{customer.last_name}}</h4>
+                        <p>{{customer.email}}</p>
+                        <p>{{customer.created_at*1000 | date:'MM-dd-yyyy'}}</p>
                     </div>
                 </div>
             </div>

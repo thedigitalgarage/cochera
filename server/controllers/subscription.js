@@ -151,7 +151,8 @@ exports.create = function(user, cb) {
         id: user.id,
         first_name: user.firstName,
         last_name: user.lastName,
-        email: user.email
+        email: user.email,
+        created_at: new Date().getTime()
     };
     chargebee.subscription.create({
         id: user.id,

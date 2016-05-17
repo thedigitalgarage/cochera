@@ -20,7 +20,6 @@
         // -----------------------------------
         $stateProvider
             .state('app', {
-                // url: '/',
                 abstract: true,
                 templateUrl: 'modules/core/views/core.client.view.html',
                 resolve: helper.resolveFor('modernizr', 'icons')
@@ -33,14 +32,12 @@
             })
             .state('app.profile', {
                 url: '/user/profile',
-                templateUrl: 'modules/core/views/profile.client.view.html',
-                controller: 'ProfileController',
-                controllerAs: 'ctrl'
+                templateUrl: 'modules/core/views/profile.client.view.html'
             })
             .state('app.profile_edit', {
                 url: '/user/profile/edit',
                 templateUrl: 'modules/core/views/profile/profile-edit.html',
-                controller: 'ProfileController',
+                controller: 'SubscriptionController',
                 controllerAs: 'ctrl'
             })
             .state('app.subscription', {
