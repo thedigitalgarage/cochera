@@ -4,35 +4,26 @@ var chargeBee = require('../controllers/subscription');
 
 module.exports = function(Profile) {
 
-    function sendMail(cb, res){
-        kc.sendMail(res.find.id, cb);
-    }
-
     function createSubscription(cb, res){
-        console.log(res);
-        chargeBee.create(res.find, cb);
+        if(!res.find){
+            chargeBee.create(res.find, cb);
+        }else{
+            cb(null, res.find);
+        }
     }
 
-    function registerCb(err, res){
-
-    }
-
-    Profile.register = function(user, cb){
-        console.log('USER', user);
+    Profile.findOrCreateSubscription = function(username, cb){
         async.auto({
-            user: async.apply(kc.createUser, user),
-            find: ['user', async.apply(kc.findUser, user.username)],
-            mail: ['find', sendMail],
+            find: async.apply(kc.findUser, username),
             subscription: ['find', createSubscription]
         }, cb);
     };
 
-    Profile.remoteMethod('register', {
+    Profile.remoteMethod('findOrCreateSubscription', {
         accepts: [
-            {arg: 'user', type: 'object', http: {source: 'body'}}
+            {arg: 'username', type: 'string', http:{source:'path'}}
         ],
-        http: {path: '/register', verb: 'post'},
+        http: {path: '/findOrCreate/:username', verb: 'post'},
         returns: {type: 'object', root: true}
     });
-
 };

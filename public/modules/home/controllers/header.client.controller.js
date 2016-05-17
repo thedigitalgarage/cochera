@@ -9,6 +9,8 @@ angular
             $rootScope.loginStatus = false;
             $scope.isCollapsed = true;
 
+            $scope.registerUrl = Auth.register();
+
             function checkStatus() {
                 Auth.checkStatus();
             }
@@ -45,12 +47,15 @@ angular
             };
 
             $scope.register = function () {
+
+
+                /*
                 $modal.open({
                     templateUrl: 'modules/home/views/modal/register.client.view.html',
                     controller: 'RegisterController',
                     size: 'md',
                     windowClass: 'login'
-                });
+                });*/
             };
         }
     ]);

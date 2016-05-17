@@ -49,9 +49,6 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
         };
     });
 
-
-var auth = {};
-
 angular
     .module(ApplicationConfiguration.applicationModuleName)
     .config(['$locationProvider', function ($locationProvider) {
@@ -60,21 +57,13 @@ angular
 
 angular.element(document).ready(function () {
     var keycloakAuth = new Keycloak('keycloak.json');
-    auth.loggedIn = false;
     keycloakAuth.redirectUri = 'http://localhost:8081/#/dashboard';
     keycloakAuth.init({onLoad: 'check-sso'}).success(function (authorized) {
-        auth.authz = keycloakAuth;
         console.log('Authorized', authorized);
         //Create factory for keycloak
         angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies)
-            .factory('KeyAuth', function (Auth) {
-                if(authorized){
-                    auth.authz.loadUserProfile().success(function (user) {
-                        auth.profile = user;
-                        Auth.getSubscription(user.id);
-                    });
-                }
-                return auth;
+            .factory('KeyAuth', function () {
+                return keycloakAuth;
             });
 
         //Load application

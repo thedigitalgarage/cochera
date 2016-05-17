@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.home')
-    .service('Auth', ['$rootScope', '$cookies', '$state', '$cookieStore', '$http', '$q', 'toastr', function ($rootScope, $cookies, $state, $cookieStore, $http, $q, toastr) {
+    .service('Auth', ['$rootScope', '$cookies', '$state', '$cookieStore', '$http', '$q', 'toastr', 'KeyAuth', 'Profile', function ($rootScope, $cookies, $state, $cookieStore, $http, $q, toastr, KeyAuth, Profile) {
         var vm = this;
         vm.auth = {loggedIn: false};
         var keycloakAuth = new Keycloak('keycloak.json');
@@ -71,8 +71,26 @@ angular.module('app.home')
             });
         };
 
+        this.register = function (){
+            return keycloakAuth.createRegisterUrl();
+        };
+
+
+        function findOrCreate(){
+            console.log(KeyAuth);
+            if(KeyAuth.authenticated){
+                return KeyAuth.loadUserInfo().success(function(profile){
+                    console.log(profile);
+                    return Profile.findOrCreateSubscription({username:profile.preferred_username}, {}).$promise
+                        .then(function(){
+                            login({username:profile.sub});
+                        });
+                });
+            }
+        }
+
         this.getSubscription = function(username){
-            return login({username: username});
+            findOrCreate(username);
         };
 
 	}]);

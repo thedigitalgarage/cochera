@@ -2154,7 +2154,7 @@ module.factory(
 
         /**
          * @ngdoc method
-         * @name lbServices.Profile#register
+         * @name lbServices.Profile#findOrCreateSubscription
          * @methodOf lbServices.Profile
          *
          * @description
@@ -2165,12 +2165,11 @@ module.factory(
          *
          * @param {Object=} parameters Request parameters.
          *
-         *   This method does not accept any parameters.
-         *   Supply an empty object or omit this argument altogether.
+         *  - `username` – `{string=}` - 
          *
          * @param {Object} postData Request data.
          *
-         * This method expects a subset of model properties as request parameters.
+         * This method does not accept any data. Supply an empty object.
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -2187,8 +2186,8 @@ module.factory(
          * This usually means the response is a `Profile` object.)
          * </em>
          */
-        "register": {
-          url: urlBase + "/profiles/register",
+        "findOrCreateSubscription": {
+          url: urlBase + "/profiles/findOrCreate/:username",
           method: "POST"
         },
       }

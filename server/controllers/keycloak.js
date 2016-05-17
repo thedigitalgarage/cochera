@@ -1,38 +1,46 @@
 var request = require('request');
 var async = require('async');
 var _ = require('lodash');
+var fs = require('fs');
+
+var CONFIG = JSON.parse(fs.readFileSync('server/config/kc-admin-cli.json', 'utf8'));
+
+var KC_CLIENT = CONFIG.resource;
+var KC_CLIENT_SECRET = CONFIG.credentials.secret;
+var KC_HOST = CONFIG['auth-server-url'];
+
 
 var credentials = {
-    client_id: process.env.KEYCLOAK_CLIENT || 'admin-cli',
-    client_secret: process.env.KEYCLOAK_CLIENT_SECRET || '9475dabc-761a-488c-aa0f-97df7f790db6',
+    client_id: KC_CLIENT,
+    client_secret: KC_CLIENT_SECRET,
     grant_type: 'client_credentials'
 };
 
 var API = {
-    base: process.env.KEYCLOAK_HOST || 'http://localhost:8080',
+    base: KC_HOST,
     auth: {
         id: 'auth',
-        url: '/auth/realms/master/protocol/openid-connect/token',
+        url: '/realms/master/protocol/openid-connect/token',
         verb: 'POST'
     },
     users: {
         id: 'createUser',
-        url: '/auth/admin/realms/master/users',
+        url: '/admin/realms/master/users',
         verb: 'POST'
     },
     reset: {
         id: 'reset',
-        url: '/auth/admin/realms/master/users/:userid/reset-password',
+        url: '/admin/realms/master/users/:userid/reset-password',
         verb: 'PUT'
     },
     send_mail: {
         id: 'sendMail',
-        url: '/auth/admin/realms/master/users/:userid/execute-actions-email',
+        url: '/admin/realms/master/users/:userid/execute-actions-email',
         verb: 'PUT'
     },
     find_user: {
         id: 'findUser',
-        url: '/auth/admin/realms/master/users?username=:username',
+        url: '/admin/realms/master/users?username=:username',
         verb: 'GET'
     }
 };

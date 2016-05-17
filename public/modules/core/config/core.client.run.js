@@ -5,21 +5,19 @@
         .module('app.core')
         .run(appRun);
 
-    appRun.$inject = ['$rootScope', '$state', '$stateParams',  '$window', '$templateCache', 'Colors', 'KeyAuth'];
+    appRun.$inject = ['$rootScope', '$state', '$stateParams',  '$window', '$templateCache', 'Colors', 'Auth'];
 
-    function appRun($rootScope, $state, $stateParams, $window, $templateCache, Colors, KeyAuth) {
+    function appRun($rootScope, $state, $stateParams, $window, $templateCache, Colors, Auth) {
+
 
       // Set reference to access them from any scope
       $rootScope.$state = $state;
       $rootScope.$stateParams = $stateParams;
       $rootScope.$storage = $window.localStorage;
 
-      // Uncomment this to disable template cache
-      /*$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-          if (typeof(toState) !== 'undefined'){
-            $templateCache.remove(toState.templateUrl);
-          }
-      });*/
+
+      //Find or create chargeBee account
+      Auth.getSubscription();
 
       // Allows to use branding color with interpolation
       // {{ colorByName('primary') }}
