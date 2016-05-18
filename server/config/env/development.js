@@ -3,7 +3,7 @@
 module.exports = {
 	app: {
 		title: 'The Digital Garage - Development Environment',
-		keycloak: 'http://localhost:8080/auth/js/keycloak.js',
+		keycloak: 'http://localhost:8080/auth/js/keycloak.js'
 	},
 	mailer: {
 		from: process.env.MAILER_FROM || 'MAILER_FROM',
