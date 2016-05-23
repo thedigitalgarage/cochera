@@ -1,6 +1,7 @@
 var request = require('request');
 var async = require('async');
 var _ = require('lodash');
+var app = require('../server');
 
 var API = {
     base: 'http://localhost:8080',
@@ -110,12 +111,42 @@ var user = {
     "requiredActions": ["UPDATE_PASSWORD"]
 };
 
+//ghost authentication
+var ghostCredentials = {
+    username: 'lclavijo@bixlabs.com',
+    password: 'leonar14',
+    grant_type: 'password',
+    client_id: 'ghost-admin',
+    client_secret: 'not_available'
+};
+
+
+function findGhostUrl(cb){
+    app.models.Url.findOne({where:{name: 'ghost'}}, cb);
+}
+
+function authRequest(url, cb){
+    console.log(url.url);
+    request.post(url.url+'/ghost/api/v0.1/authentication/token', {form: ghostCredentials}, function(err, res, body){
+        cb(err, JSON.parse(body));
+    });
+}
+
+function createUrl(cb){
+    app.models.Url.create({name:'ghost', url: 'http://localhost:2368'}, cb);
+}
+
+function loginGhost(cb){
+    async.waterfall([
+        findGhostUrl,
+        authRequest
+    ], cb);
+}
+
+
 async.waterfall([
-    getToken,
-    async.apply(findUser, 'kraken5')
-    //sendPassword
-    //resetPassword
-    //async.apply(createUser, user)
-], function(){
+    loginGhost
+], function(err, res){
+    console.log(err, res);
     process.exit(0);
 });
