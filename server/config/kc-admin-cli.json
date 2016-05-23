@@ -1,10 +1,10 @@
 {
   "realm": "master",
-  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj7R7cS2LB8Eb/x8jgfs91CbvKLj+jlFj8+C1za1vuA8yrhOqfIJ1D+d9gYLOGZFpMmG7rza+m2cYuYd+sMGGfE2H8BsHteSo1eLD6lPOmIIDXjf1V/U2AWTgtPUcegp9DlKs5Uo8/9CHbf021+9GG4SozbVMNAw/l0VvdDDmeMReBKSQG4q6Vzm0SyLYC/DYVEpoQa7IlMXRm1q3jPAM7SqSlqIhguOYjU/RG6Sz2J3UvO05aJwTQy0Tbi0pHQWQhoyMXZE/KMuJxQxNSq8m+RpuPbu8qaMMOVNR0gN+6R3dxohEpi7LND7O2OIgbH4uevG6sw3kCttVKNcaW0dmtwIDAQAB",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtMIOUA11bnn066OV6Nzikx08jZkJQCLxqu4tMrJobcAX0VovH5C2o8TEcVIKnPyclojPKQKKPt3hW+sKyKyFU9WhitqQMFUkRLv4KnRAQNUCHgWY3v0+JVb1CswgjsRt761GoYhVLODG36M1SDXhbHmR7BC1gCE1Z8OFoJXNGF/F314pS+1tzBNyVHFHxUqWZtVxfwZErRUDpS6Bsraw/je5TABJmUK4vXjenjazYm+tGMkwvXXWfm/JW3CvyTlFp3/0hXEo3nPKUaVjPLxUh3ouqnQuOj0vsQu0dyrjoqTEfEleZeoTJjnEJElBZ+9FEfflx7q9wb/0FdEw2x0FTQIDAQAB",
   "auth-server-url": "http://localhost:8180/auth",
   "ssl-required": "external",
   "resource": "admin-cli",
   "credentials": {
-    "secret": "b6a18132-e6cb-4e84-8bfd-903ac65441e9"
+    "secret": "b852e809-3284-49b9-909c-7eb7e8723f46"
   }
 }

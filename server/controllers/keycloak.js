@@ -47,6 +47,7 @@ var API = {
 
 function getToken(cb) {
     request.post(API.base + API.auth.url, {form: credentials}, function (err, res, body) {
+        console.log(err, body);
         var token = JSON.parse(body).access_token;
         cb(err, token);
     })
