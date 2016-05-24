@@ -9,8 +9,8 @@
   "properties": {
     "name": {
       "type": "string",
-      "required": true,
-      "id": true
+      "id": true,
+      "required": true
     },
     "url": {
       "type": "string",

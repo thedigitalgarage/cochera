@@ -40,14 +40,13 @@ var API = {
     },
     find_user: {
         id: 'findUser',
-        url: '/admin/realms/master/users?username=:username',
+        url: '/admin/realms/master/users?email=:email',
         verb: 'GET'
     }
 };
 
 function getToken(cb) {
     request.post(API.base + API.auth.url, {form: credentials}, function (err, res, body) {
-        console.log(err, body);
         var token = JSON.parse(body).access_token;
         cb(err, token);
     })
@@ -102,8 +101,9 @@ var sendPassword = _.curry(function(userid, token, cb){
     })
 });
 
-var findUser = _.curry(function (username, token, cb){
-    var options = getOptions(API.find_user, token, null, {username: username});
+var findUser = _.curry(function (email, token, cb){
+    console.log(email);
+    var options = getOptions(API.find_user, token, null, {email: email});
     request(options, function (err, res, body) {
         var user = _.head(JSON.parse(body));
         cb(err, user);

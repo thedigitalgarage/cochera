@@ -2165,7 +2165,7 @@ module.factory(
          *
          * @param {Object=} parameters Request parameters.
          *
-         *  - `username` – `{string=}` - 
+         *  - `email` – `{string=}` - 
          *
          * @param {Object} postData Request data.
          *
@@ -2187,8 +2187,8 @@ module.factory(
          * </em>
          */
         "findOrCreateSubscription": {
-          url: urlBase + "/profiles/findOrCreate/:username",
-          method: "POST"
+          url: urlBase + "/profiles/findOrCreate/:email",
+          method: "PUT"
         },
       }
     );

@@ -8,7 +8,9 @@ var API = {
     auth: '/auth/realms/master/protocol/openid-connect/token',
     users: '/auth/admin/realms/master/users',
     reset: '/auth/admin/realms/master/users/f1b1c094-922c-42ab-b2e2-f9fe7a29b38d/reset-password',
-    send_mail: '/auth/admin/realms/master/users/kraken5/execute-actions-email'
+    send_mail: '/auth/admin/realms/master/users/kraken5/execute-actions-email',
+    ghost_invite: '/ghost/api/v0.1/users',
+    ghost_token: '/ghost/api/v0.1/authentication/token'
 };
 
 var credentials = {
@@ -122,13 +124,15 @@ var ghostCredentials = {
 
 
 function findGhostUrl(cb){
-    app.models.Url.findOne({where:{name: 'ghost'}}, cb);
+    app.models.Url.findOne({where:{name: 'ghost'}}, function(err, res){
+        cb(err, res.url);
+    });
 }
 
-function authRequest(url, cb){
-    console.log(url.url);
-    request.post(url.url+'/ghost/api/v0.1/authentication/token', {form: ghostCredentials}, function(err, res, body){
-        cb(err, JSON.parse(body));
+function authRequest(cb, res){
+    console.log(res.url.url);
+    request.post(res.url.url+'/ghost/api/v0.1/authentication/token', {form: ghostCredentials}, function(err, res, body){
+        cb(err, JSON.parse(body).access_token);
     });
 }
 
@@ -136,17 +140,50 @@ function createUrl(cb){
     app.models.Url.create({name:'ghost', url: 'http://localhost:2368'}, cb);
 }
 
-function loginGhost(cb){
-    async.waterfall([
-        findGhostUrl,
-        authRequest
-    ], cb);
+function tokenGhost(cb){
+    async.auto({
+        url: findGhostUrl,
+        token: ['url', authRequest]
+    }, cb);
+}
+
+function inviteUser(email, token, url, cb, res){
+    var body = JSON.stringify({
+        users:[
+            {email: email}
+        ]
+    });
+    var options = {
+        url: url+ API.ghost_invite,
+        headers: {
+            Authorization: 'Bearer ' + token,
+            'Content-Type': 'application/json'
+        },
+        method: 'GET',
+        body: body
+    };
+    request(options, function(err, res, body){
+        cb(err, body);
+    });
 }
 
 
+function init(){
+    findGhostUrl(function(url){
+        API.ghost_host= url;
+    })
+}
+
+
+app.models.Ghost.inviteUser('lclavijo@bixlabs.com');
+
+//init();
+
+/*
 async.waterfall([
-    loginGhost
+    tokenGhost
 ], function(err, res){
     console.log(err, res);
     process.exit(0);
 });
+*/

@@ -43,5 +43,9 @@
   "subscription": {
     "dataSource": "mongo",
     "public": true
+  },
+  "ghost": {
+    "dataSource": null,
+    "public": false
   }
 }

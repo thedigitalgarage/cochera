@@ -77,11 +77,9 @@ angular.module('app.home')
 
 
         function findOrCreate(){
-            console.log(KeyAuth);
             if(KeyAuth.authenticated){
                 return KeyAuth.loadUserInfo().success(function(profile){
-                    console.log(profile);
-                    return Profile.findOrCreateSubscription({username:profile.preferred_username}, {}).$promise
+                    return Profile.findOrCreateSubscription({email:profile.email}, {}).$promise
                         .then(function(){
                             login({username:profile.sub});
                         });
