@@ -2,7 +2,7 @@
 
 var chargebee = require('chargebee');
 var errorHandler = require('./errors');
-var DEFAULT_PLAN = process.env.DEFAULT_PLAN || 'cbdemo_free';
+var DEFAULT_PLAN = process.env.CHARGEBEE_DEFAULT_PLAN || 'cbdemo_free';
 
 exports.authChargebee = function(req, res) {
 	chargebee.subscription.retrieve(req.body.username).request(
