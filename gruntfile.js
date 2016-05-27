@@ -157,7 +157,7 @@ module.exports = function(grunt) {
 		},
 		env: {
 			default: {
-				PORT: 3000,
+				PORT: 8080,
 				chargebeeSite: 'thedigitalgarage-test',
 				chargebeeAPIKey: 'test_1XcdcdRWOQYMUdsd3VE9c1gbwdaxrj6Vj3'
 			},

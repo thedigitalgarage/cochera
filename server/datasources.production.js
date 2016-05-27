@@ -1,4 +1,4 @@
-var MONGO_HOST = process.env.MONGODB_SERVICE_HOST || 'localhost';
+var MONGO_HOST = process.env.MONGODB_SERVICE_HOST || 'mongo';
 var MONGODB_DATABASE = process.env.MONGODB_DATABASE || 'cochera';
 var MONGODB_USER = process.env.MONGODB_USER || 'cochera';
 var MONGODB_PASSWORD = process.env.MONGODB_PASSWORD || 'cochera';
@@ -13,7 +13,7 @@ module.exports = {
         connector: "mongodb",
         host: MONGO_HOST,
         database: MONGODB_DATABASE,
-        //user: MONGODB_USER,
-        //password: MONGODB_PASSWORD
+        user: MONGODB_USER,
+        password: MONGODB_PASSWORD
     }
 };
