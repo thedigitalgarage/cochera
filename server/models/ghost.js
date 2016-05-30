@@ -25,8 +25,12 @@ module.exports = function(Ghost) {
 
     function authRequest(cb, res) {
         request.post(res.url + '/ghost/api/v0.1/authentication/token', {form: ghostCredentials}, function (err, res, body) {
-            console.log(err, body);
-            cb(err, JSON.parse(body).access_token);
+            if(!err){
+                cb(err, JSON.parse(body).access_token);
+            }else{
+                console.log('GHOST AUTHENTICATION ERROR!');
+                cb(err);
+            }
         });
     }
 
@@ -53,7 +57,6 @@ module.exports = function(Ghost) {
             body: body
         };
         request(options, function (err, res, body) {
-            console.log(err, body);
             cb(err, body);
         });
     }

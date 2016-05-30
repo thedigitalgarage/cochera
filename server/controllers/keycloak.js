@@ -47,16 +47,21 @@ var API = {
 
 function getToken(cb) {
     request.post(API.base + API.auth.url, {form: credentials}, function (err, res, body) {
-        var token = JSON.parse(body).access_token;
-        cb(err, token);
+        if (!err) {
+            var token = JSON.parse(body).access_token;
+            cb(err, token);
+        }
+        else {
+            cb(err);
+        }
     })
 }
 
-function getOptions(method, token, data, params){
+function getOptions(method, token, data, params) {
     var url = method.url;
-    if (params){
-        _.forEach(_.keys(params), function(k){
-            url = url.replace(':'+k, params[k]);
+    if (params) {
+        _.forEach(_.keys(params), function (k) {
+            url = url.replace(':' + k, params[k]);
         })
     }
     var res = {
@@ -67,12 +72,12 @@ function getOptions(method, token, data, params){
         method: method.verb
     };
 
-    if(token){
-        res.headers.Authorization= 'Bearer ' + token;
+    if (token) {
+        res.headers.Authorization = 'Bearer ' + token;
     }
 
-    if(method.verb !== 'GET' && data){
-        res.body= JSON.stringify(data);
+    if (method.verb !== 'GET' && data) {
+        res.body = JSON.stringify(data);
     }
     return res;
 }
@@ -86,7 +91,7 @@ function getOptions(method, token, data, params){
  * */
 var createUser = _.curry(function (user, token, cb) {
     user.enabled = true;
-    user.requiredActions= ["UPDATE_PASSWORD"];
+    user.requiredActions = ["UPDATE_PASSWORD"];
 
     var options = getOptions(API.users, token, user);
     request(options, function (err, res, body) {
@@ -94,14 +99,14 @@ var createUser = _.curry(function (user, token, cb) {
     })
 });
 
-var sendPassword = _.curry(function(userid, token, cb){
+var sendPassword = _.curry(function (userid, token, cb) {
     var options = getOptions(API.send_mail, token, ["UPDATE_PASSWORD"], {userid: userid});
     request(options, function (err, res, body) {
         cb(err, body);
     })
 });
 
-var findUser = _.curry(function (email, token, cb){
+var findUser = _.curry(function (email, token, cb) {
     console.log(email);
     var options = getOptions(API.find_user, token, null, {email: email});
     request(options, function (err, res, body) {
@@ -110,24 +115,24 @@ var findUser = _.curry(function (email, token, cb){
     });
 });
 
-var curried = _.curry(function (action, cb){
+var curried = _.curry(function (action, cb) {
     async.waterfall([
         getToken,
         action
     ], cb);
 });
 
-function createKeycloakUser(user, cb){
-    var create =  createUser(user);
+function createKeycloakUser(user, cb) {
+    var create = createUser(user);
     curried(create, cb);
 }
 
-function findKeycloakUser(username, cb){
-    var find =  findUser(username);
+function findKeycloakUser(username, cb) {
+    var find = findUser(username);
     curried(find, cb);
 }
 
-function sendMailUserId(userid, cb){
+function sendMailUserId(userid, cb) {
     var mail = sendPassword(userid);
     curried(mail, cb);
 }
