@@ -1,28 +1,24 @@
-FROM node:slim
+FROM node:0.10.38
 
-MAINTAINER Matthias Luebken, matthias@catalyst-zero.com
+MAINTAINER Bixlabs, bixlabs@bixlabs.com
 
 WORKDIR /home/mean
 
 # Install Mean.JS Prerequisites
 RUN npm install -g grunt-cli bower
 
-# Install Mean.JS packages
 ADD package.json /home/mean/package.json
-#RUN npm install
+RUN npm install
 
 # Manually trigger bower. Why doesnt this work via npm install?
 #ADD .bowerrc /home/mean/.bowerrc
-#ADD bower.json /home/mean/bower.json
+ADD bower.json /home/mean/bower.json
 #RUN bower install --config.interactive=false --allow-root
 
 # Make everything available for start
 ADD . /home/mean
 
-# currently only works for development
 ENV NODE_ENV development
 
-# Port 3000 for server
-# Port 35729 for livereload
 EXPOSE 3000 35729
 CMD ["grunt"]
