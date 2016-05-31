@@ -8,8 +8,8 @@ module.exports = function (Profile) {
     }
 
     function createSubscription(user, cb, res) {
-        console.log('FIND USER', res.find);
         if(!res.find){
+            console.log('creating user', user);
             chargeBee.create(user, cb);
         }else{
             cb();
@@ -26,11 +26,11 @@ module.exports = function (Profile) {
         cb();
     }
 
-    Profile.findOrCreateSubscription = function (email, user, cb) {
+    Profile.findOrCreateSubscription = function (user, cb) {
         async.auto({
-            find: async.apply(findCustomer, email),
+            find: async.apply(findCustomer, user.sub),
             subscription: ['find', async.apply(createSubscription, user)],
-            ghost: ['subscription', async.apply(ghostRegister, email)]
+            ghost: ['subscription', async.apply(ghostRegister, user.email)]
         }, function (err, res) {
             cb(null, res.find);
         });
@@ -38,11 +38,10 @@ module.exports = function (Profile) {
 
     Profile.remoteMethod('findOrCreateSubscription', {
         accepts: [
-            {arg: 'email', type: 'string', http: {source: 'path'}},
             {arg: 'user', type: 'object', http: {source: 'body'}}
 
         ],
-        http: {path: '/findOrCreate/:email', verb: 'PUT'},
+        http: {path: '/findOrCreate', verb: 'PUT'},
         returns: {type: 'object', root: true}
     });
 };

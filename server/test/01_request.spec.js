@@ -174,10 +174,11 @@ function init(){
     })
 }
 
+var charge = require('../controllers/subscription');
 
-app.models.Ghost.inviteUser('lclavijo@bixlabs.com');
-
-//init();
+charge.findCustomer('lclavijo@bixlabs.com', function(err, res){
+    console.log(err, res);
+});
 
 /*
 async.waterfall([

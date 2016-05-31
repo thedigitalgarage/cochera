@@ -150,30 +150,24 @@ exports.cancel = function (req, res) {
 
 exports.create = function (user, cb) {
     var customer = {
-        id: user.sub,
         first_name: user.given_name,
         last_name: user.family_name,
         email: user.email,
         created_at: new Date().getTime()
     };
     chargebee.subscription.create({
-        id: user.id,
+        id: user.sub,
         plan_id: DEFAULT_PLAN,
         customer: customer
     }).request(cb);
 };
 
-exports.findCustomer = function (email, cb) {
-    chargebee.customer.list({
-        limit: 1,
-        "email[is]": email
-    }).request(function (error, result) {
+exports.findCustomer = function (id, cb) {
+    chargebee.customer.retrieve(id).request(function (error, result) {
         if (error) {
-            //handle error
-            console.log(error);
-            cb(error);
+            cb();
         } else {
-            cb(error, _.head(result.list).customer);
+            cb(error, result);
         }
     });
 };

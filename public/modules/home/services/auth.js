@@ -62,7 +62,6 @@ angular.module('app.home')
         this.keyCloakLogin= function(){
             vm.auth.loggedIn = false;
             keycloakAuth.redirectUri = window.location.origin + '/#/dashboard';
-            console.log(keycloakAuth.redirectUri);
 
             keycloakAuth.init({ onLoad: 'login-required'}).success(function () {
                keycloakAuth.login();
