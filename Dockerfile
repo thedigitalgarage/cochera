@@ -20,5 +20,5 @@ ADD . /home/mean
 
 ENV NODE_ENV development
 
-EXPOSE 3000 35729
+EXPOSE 8080 35729
 CMD ["grunt"]

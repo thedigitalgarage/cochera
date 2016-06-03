@@ -1,10 +1,10 @@
 {
   "realm": "master",
-  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtMIOUA11bnn066OV6Nzikx08jZkJQCLxqu4tMrJobcAX0VovH5C2o8TEcVIKnPyclojPKQKKPt3hW+sKyKyFU9WhitqQMFUkRLv4KnRAQNUCHgWY3v0+JVb1CswgjsRt761GoYhVLODG36M1SDXhbHmR7BC1gCE1Z8OFoJXNGF/F314pS+1tzBNyVHFHxUqWZtVxfwZErRUDpS6Bsraw/je5TABJmUK4vXjenjazYm+tGMkwvXXWfm/JW3CvyTlFp3/0hXEo3nPKUaVjPLxUh3ouqnQuOj0vsQu0dyrjoqTEfEleZeoTJjnEJElBZ+9FEfflx7q9wb/0FdEw2x0FTQIDAQAB",
-  "auth-server-url": "https://localhost:8543/auth",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAns9AFDlpwUZpGozim8lWzss2KPdddbpS9rwD2yw5hxHkuokCiBQ7JDUZ/0cUxRpjFrnXcODEbnjsVwzlKDPBFkCwTU09zLPAeq5CJ96q0eFwjKlhn0ynEzVOO3VmpoEsNdKxUkk/JwLSI9NYItSmqJTpL3RQdfH7yNhCTihLSgdugwwc3e6n79bbE0D2I3ehwQNOx2gVuU529CBJ80OgD+UOZzJqG/cEstbIBmPFIer69WC9grlcKS+0mOulXBsUwq/52M5pJI62lS6dkyWt5pbkc1ratuBx44KmWNM/FabVuDmN9VsaD3sqa7cFWGA67D1Li1/svGxC1w1IOK3HeQIDAQAB",
+  "auth-server-url": "https://keycloak-leotesting.apps.thedigitalgarage.io/auth",
   "ssl-required": "external",
   "resource": "cochera",
   "credentials": {
-    "secret": "915eb44c-9476-43f4-99f8-d7c6620787e8"
+    "secret": "49c13b15-85c3-4ff7-82dd-928cf8cf86fd"
   }
 }
