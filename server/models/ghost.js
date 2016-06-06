@@ -18,9 +18,15 @@ module.exports = function(Ghost) {
     };
 
     function findGhostUrl(cb) {
-        app.models.Url.findOne({where: {name: 'ghost'}}, function (err, res) {
-            cb(err, res.url);
-        });
+        var url = process.env.GHOST_URL;
+        if(!url){
+            app.models.Url.findOne({where: {name: 'ghost'}}, function (err, res) {
+                cb(err, res.url);
+            });
+        }else{
+            cb(null, url);
+        }
+
     }
 
     function authRequest(cb, res) {
