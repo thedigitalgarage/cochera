@@ -11624,7 +11624,7 @@ h3 > .breadcrumb.pull-right,
  ========================================================================== */
 /**
  * Custom form elements
- *    - Checkbox
+ *    - Checkbox 
  *    - Radios
  *    - Switch
  *    - Rounded inputs
@@ -12595,7 +12595,7 @@ label + .form-control + .parsley-errors-list + .form-control-feedback {
   max-width: 100%;
   min-width: 100%;
 }
-/**
+/** 
  * Displays hidden content on hover. Add this class to the parent element.
  * Markup
  *   <div class="hover-visible">
@@ -12931,12 +12931,19 @@ strong {
   font-size: 20px;
   line-height: 40px;
 }
-
-.navbar .navbar-brand.brand-logo-collapsed {
-    height: 35px;
-    padding-top: 17px;
+.navbar .navbar-brand.brand-logo {
+  padding-top: 10px;
 }
-
+.navbar .navbar-brand.brand-logo-collapsed {
+  height: 35px;
+  padding-top: 17px;
+}
+.navbar .navbar-brand.brand-logo img {
+  width: 200px;
+}
+.navbar .navbar-brand.brand-logo-collapsed img {
+  width: 32px;
+}
 .navbar .navbar-brand:hover {
   color: #b7b7b7;
 }
@@ -14033,7 +14040,7 @@ ul.pagination > li > span:hover {
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
   /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.65)), color-stop(100%, rgba(0, 0, 0, 0)));
-  /*  Chrome,Safari4+ */
+  /* 	Chrome,Safari4+ */
   background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
   /* Chrome10+,Safari5.1+ */
   background: -o-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
