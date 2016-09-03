@@ -12931,6 +12931,19 @@ strong {
   font-size: 20px;
   line-height: 40px;
 }
+.navbar .navbar-brand.brand-logo {
+  padding-top: 10px;
+}
+.navbar .navbar-brand.brand-logo-collapsed {
+  height: 35px;
+  padding-top: 17px;
+}
+.navbar .navbar-brand.brand-logo img {
+  width: 200px;
+}
+.navbar .navbar-brand.brand-logo-collapsed img {
+  width: 32px;
+}
 .navbar .navbar-brand:hover {
   color: #b7b7b7;
 }
